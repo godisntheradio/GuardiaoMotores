@@ -1,0 +1,23 @@
+extends Spatial
+class_name Map
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+var TileClass = preload("res://Objects/Tile.tscn")
+var mapTiles : Array = []
+export var width : int
+export var height : int
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	for x in range(10):
+		for y in range(10):
+			var instance = TileClass.instance()
+			var mesh = instance.get_node("MeshInstance").mesh as CubeMesh
+			add_child(instance)
+			instance.translate(Vector3(translation.x + 2.1 * x, 0 , translation.z + 2.1 * y ))
+			mapTiles.append(instance)
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass

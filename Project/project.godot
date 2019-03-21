@@ -8,14 +8,50 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Object",
+"class": "AStar",
+"language": "GDScript",
+"path": "res://Script/AStar.gd"
+}, {
+"base": "Spatial",
+"class": "Map",
+"language": "GDScript",
+"path": "res://Script/Map.gd"
+}, {
+"base": "Spatial",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Script/Player.gd"
+}, {
+"base": "Object",
+"class": "Stats",
+"language": "GDScript",
+"path": "res://Script/Stats.gd"
+}, {
+"base": "Spatial",
+"class": "Tile",
+"language": "GDScript",
+"path": "res://Script/Tile.gd"
+}, {
+"base": "Spatial",
+"class": "Unit",
+"language": "GDScript",
+"path": "res://Script/Unit.gd"
+} ]
 _global_script_class_icons={
-
+"AStar": "",
+"Map": "",
+"Player": "",
+"Stats": "",
+"Tile": "",
+"Unit": ""
 }
 
 [application]
 
 config/name="Guardiao"
+run/main_scene="res://Objects/Main.tscn"
 config/icon="res://icon.png"
 
 [rendering]
