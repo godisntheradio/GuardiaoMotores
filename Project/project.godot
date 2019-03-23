@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Object",
-"class": "AStar",
-"language": "GDScript",
-"path": "res://Script/AStar.gd"
-}, {
 "base": "Spatial",
 "class": "Map",
 "language": "GDScript",
@@ -40,7 +35,6 @@ _global_script_classes=[ {
 "path": "res://Script/Unit.gd"
 } ]
 _global_script_class_icons={
-"AStar": "",
 "Map": "",
 "Player": "",
 "Stats": "",

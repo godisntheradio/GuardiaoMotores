@@ -1,5 +1,22 @@
-[gd_resource type="SpatialMaterial" format=2]
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Shader/tile.shader" type="Shader" id=1]
 
 [resource]
-albedo_color = Color( 0.215686, 0.611765, 0.0235294, 1 )
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/albedo = Color( 0.290196, 1, 0, 1 )
+shader_param/specular = null
+shader_param/metallic = null
+shader_param/roughness = null
+shader_param/point_size = null
+shader_param/metallic_texture_channel = null
+shader_param/roughness_texture_channel = null
+shader_param/uv1_scale = null
+shader_param/uv1_offset = null
+shader_param/uv2_scale = null
+shader_param/uv2_offset = null
+shader_param/should_blink = false
+shader_param/blink_color = Plane( 1, 1, 0, 0 )
+shader_param/blink_speed = 10.0
 

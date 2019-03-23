@@ -1,5 +1,5 @@
-extends Object
-class_name AStar
+extends MeshInstance
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

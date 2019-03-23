@@ -14,8 +14,9 @@ func _ready():
 			var instance = TileClass.instance()
 			var mesh = instance.get_node("MeshInstance").mesh as CubeMesh
 			add_child(instance)
-			instance.translate(Vector3(translation.x + 2.1 * x, 0 , translation.z + 2.1 * y ))
+			instance.translate(Vector3(translation.x + mesh.size.x * x, 0 , translation.z + mesh.size.z * y ))
 			mapTiles.append(instance)
+			instance.name = instance.name + str(x) + str(y)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -10,6 +10,8 @@ func _ready():
 func _physics_process(delta):
 	var mouse = get_viewport().get_mouse_position()
 	var space_state = get_world().direct_space_state
-	var result = space_state.intersect_ray(translation, camera.project_ray_normal(mouse))
-	if(result):
-		print(result.position + " " + result.collider.get_name())
+	var dir = camera.project_ray_normal(mouse)
+	var origin = camera.project_ray_origin(mouse)
+	var result = space_state.intersect_ray(origin, origin + dir * 250 )
+#	if(result):
+#		print(result.collider.get_parent().get_name())
