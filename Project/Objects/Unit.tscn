@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Script/Unit.gd" type="Script" id=1]
 [ext_resource path="res://Materials/Unit.tres" type="Material" id=2]
 
 [sub_resource type="CapsuleMesh" id=1]
+
+[sub_resource type="CapsuleShape" id=2]
 
 [node name="Unit" type="Spatial"]
 script = ExtResource( 1 )
@@ -13,4 +15,10 @@ transform = Transform( 0.75, 0, 0, 0, -3.27835e-008, 0.75, 0, -0.75, -3.27835e-0
 material_override = ExtResource( 2 )
 mesh = SubResource( 1 )
 material/0 = null
+
+[node name="RigidBody" type="RigidBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+transform = Transform( 0.8, 0, 0, 0, -3.49691e-008, -0.8, 0, 0.8, -3.49691e-008, 0, 0, 0 )
+shape = SubResource( 2 )
 

@@ -3,11 +3,12 @@ class_name Stats
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var hit_points : float
-var attack : float
-var defense : float
-var magicAtk : float
-var magicDef : float
+export var hit_points : float
+export var name : String
+export var attack : float
+export var defense : float
+export var magicAtk : float
+export var magicDef : float
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -22,4 +23,5 @@ func add(other : Stats):
 	result.magicAtk = magicAtk + other.magicAtk
 	result.magicDef = magicDef + other.magicDef
 	result.hit_points = hit_points + other.hit_points
+	result.name = name
 	return result

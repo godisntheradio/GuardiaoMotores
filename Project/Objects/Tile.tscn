@@ -1,59 +1,22 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Materials/Tile.tres" type="Material" id=1]
+[ext_resource path="res://Script/Tile.gd" type="Script" id=1]
+[ext_resource path="res://Materials/Tile.tres" type="Material" id=2]
 
-[sub_resource type="GDScript" id=3]
-script/source = "extends Spatial
-class_name Tile
-
-var terrain_type
-var elevation
-var blocked
-var pos
-
-var hover : bool
-var material_ref
-
-func _ready():
-	hover = false
-	material_ref = get_node(\"MeshInstance\").get_surface_material(0)
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-func _on_RigidBody_mouse_exited():
-	hover = false
-	stop_blinking()
-	pass # Replace with function body.
-func _on_RigidBody_mouse_entered():
-	hover = true
-	start_blinking()
-	pass # Replace with function body.
-	
-	
-
-func start_blinking():
-	material_ref.set_shader_param(\"should_blink\",true)
-	pass
-func stop_blinking():
-	material_ref.set_shader_param(\"should_blink\",false)
-	pass
-"
-
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="CubeMesh" id=1]
 
 [sub_resource type="BoxShape" id=2]
 
 [node name="Tile" type="Spatial"]
-script = SubResource( 3 )
+script = ExtResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 4 )
-material/0 = ExtResource( 1 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
 
 [node name="RigidBody" type="RigidBody" parent="."]
+collision_layer = 2
+collision_mask = 2
 mode = 1
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]

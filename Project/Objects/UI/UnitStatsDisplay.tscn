@@ -1,0 +1,122 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Script/UnitStatsDisplay.gd" type="Script" id=1]
+
+[node name="UnitStatsDisplay" type="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.20529
+margin_bottom = -2.20532
+script = ExtResource( 1 )
+name_path = NodePath("Panel/UnitName")
+hp_path = NodePath("Panel/HPBar")
+attack_path = NodePath("Panel/AttackL/Value")
+defense_path = NodePath("Panel/DefenseL/Value")
+mag_atk_path = NodePath("Panel/MagicAtkL/Value")
+mag_def_path = NodePath("Panel/MagicDefL/Value")
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 20.0
+margin_top = 402.205
+margin_right = 190.0
+margin_bottom = 584.205
+
+[node name="UnitName" type="Label" parent="Panel"]
+margin_left = 0.568787
+margin_top = 8.20529
+margin_right = 169.569
+margin_bottom = 29.2053
+text = "Unit Name"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HPBar" type="ProgressBar" parent="Panel"]
+margin_left = 0.735077
+margin_top = 38.2053
+margin_right = 169.735
+margin_bottom = 58.2053
+custom_colors/font_color = Color( 0.898039, 0.160784, 0.160784, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+value = 49.99
+percent_visible = false
+
+[node name="AttackL" type="Label" parent="Panel"]
+editor/display_folded = true
+margin_left = 7.0
+margin_top = 78.2053
+margin_right = 85.0
+margin_bottom = 92.2053
+text = "Attack:"
+align = 2
+valign = 1
+
+[node name="Value" type="Label" parent="Panel/AttackL"]
+margin_left = 78.0
+margin_top = 1.0
+margin_right = 153.0
+margin_bottom = 15.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="DefenseL" type="Label" parent="Panel"]
+editor/display_folded = true
+margin_left = 7.0
+margin_top = 99.4106
+margin_right = 85.0
+margin_bottom = 113.411
+text = "Defense:"
+align = 2
+valign = 1
+
+[node name="Value" type="Label" parent="Panel/DefenseL"]
+margin_left = 78.0
+margin_top = 1.0
+margin_right = 153.0
+margin_bottom = 15.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="MagicAtkL" type="Label" parent="Panel"]
+editor/display_folded = true
+margin_left = 7.0
+margin_top = 119.411
+margin_right = 85.0
+margin_bottom = 133.411
+text = "Magic ATK:"
+align = 2
+valign = 1
+
+[node name="Value" type="Label" parent="Panel/MagicAtkL"]
+margin_left = 78.0
+margin_top = 1.0
+margin_right = 153.0
+margin_bottom = 15.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="MagicDefL" type="Label" parent="Panel"]
+editor/display_folded = true
+margin_left = 7.0
+margin_top = 139.411
+margin_right = 85.0
+margin_bottom = 153.411
+text = "Magic DEF:"
+align = 2
+valign = 1
+
+[node name="Value" type="Label" parent="Panel/MagicDefL"]
+margin_left = 78.0
+margin_top = 1.0
+margin_right = 153.0
+margin_bottom = 15.0
+text = "0"
+align = 1
+valign = 1
+
