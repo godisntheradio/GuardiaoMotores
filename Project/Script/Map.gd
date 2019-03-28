@@ -17,11 +17,6 @@ func _ready():
 			instance.translate(Vector3(translation.x + mesh.size.x * x, 0 , translation.z + mesh.size.z * y ))
 			mapTiles.append(instance)
 			instance.name = instance.name + str(x) + str(y)
-			if(y == 1 && x == 1):
-				var unit = get_tree().get_root().get_node("Main/Unit")
-				unit.global_transform.origin = instance.global_transform.origin
-				unit.translate(Vector3(0,2,0))
-				instance.occupying_unit = unit
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -5,7 +5,7 @@
 [ext_resource path="res://Objects/Map.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/UI/CommandWindow.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/UI/UnitStatsDisplay.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Objects/Unit.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/UI/DeployUnitsWindow.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Spatial"]
 
@@ -24,9 +24,9 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="CommandWindow" parent="Control" instance=ExtResource( 4 )]
+visible = false
 
 [node name="UnitStatsDisplay" parent="Control" instance=ExtResource( 5 )]
 
-[node name="Unit" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9591, 0.574009 )
+[node name="DeployUnitsWindow" parent="Control" instance=ExtResource( 6 )]
 

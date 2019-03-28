@@ -1,9 +1,12 @@
 extends Spatial
 var camera : Camera
 export var camera_speed : float
+var result
+var dir : Vector3
+var origin : Vector3
 func _ready():
 	camera  = get_node("Camera")
-
+	result = null
 	pass
 func _process(delta):
 	processCameraMovement(delta)
@@ -14,9 +17,9 @@ func _physics_process(delta):
 func updateRay():
 	var mouse = get_viewport().get_mouse_position()
 	var space_state = get_world().direct_space_state
-	var dir = camera.project_ray_normal(mouse)
-	var origin = camera.project_ray_origin(mouse)
-	var result = space_state.intersect_ray(origin, origin + dir * 250 )
+	dir = camera.project_ray_normal(mouse)
+	origin = camera.project_ray_origin(mouse)
+	result = space_state.intersect_ray(origin, origin + dir * 250 )
 	
 func processCameraMovement(delta):
 	var move : Vector3
@@ -31,6 +34,6 @@ func processCameraMovement(delta):
 	if(move != Vector3.ZERO):
 		var cameraDir = camera.transform.basis.z.normalized()
 		cameraDir.y = 0.0
-		var result = camera.transform.basis.x.normalized() * move.x + cameraDir * move.z
-		translate(result * delta * camera_speed)
+		var move_result = camera.transform.basis.x.normalized() * move.x + cameraDir * move.z
+		translate(move_result * delta * camera_speed)
 	

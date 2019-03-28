@@ -4,7 +4,6 @@ class_name Tile
 export var terrain_type : int 
 export var elevation : float
 export var blocked : bool
-export var pos : Vector3
 
 var occupying_unit
 var hover : bool
@@ -12,7 +11,6 @@ var material_ref
 
 var display
 func _ready():
-	pos = translation + Vector3(0,2.0,0)
 	hover = false
 	material_ref = get_node("MeshInstance").get_surface_material(0)
 	display  = get_tree().get_root().get_node("Main/Control/UnitStatsDisplay")

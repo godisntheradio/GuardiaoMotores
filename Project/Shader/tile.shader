@@ -10,6 +10,8 @@ uniform sampler2D texture_metallic : hint_white;
 uniform vec4 metallic_texture_channel;
 uniform sampler2D texture_roughness : hint_white;
 uniform vec4 roughness_texture_channel;
+uniform sampler2D texture_normal : hint_normal;
+uniform float normal_scale : hint_range(-16,16);
 uniform vec3 uv1_scale;
 uniform vec3 uv1_offset;
 uniform vec3 uv2_scale;
@@ -35,5 +37,7 @@ void fragment() {
 	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
 	ROUGHNESS = roughness_tex * roughness;
 	SPECULAR = specular;
+	NORMALMAP = texture(texture_normal,base_uv).rgb;
+	NORMALMAP_DEPTH = normal_scale;
 }
 
