@@ -30,3 +30,5 @@ margin_bottom = 350.0
 max_text_lines = 6
 same_column_width = true
 
+[connection signal="mouse_entered" from="Panel/ItemList" to="." method="_on_ItemList_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/ItemList" to="." method="_on_ItemList_mouse_exited"]

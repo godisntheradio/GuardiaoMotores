@@ -4,6 +4,7 @@ class_name Tile
 export var terrain_type : int 
 export var elevation : float
 export var blocked : bool
+export var starting_position : bool
 
 var occupying_unit
 var hover : bool
@@ -14,12 +15,12 @@ func _ready():
 	hover = false
 	material_ref = get_node("MeshInstance").get_surface_material(0)
 	display  = get_tree().get_root().get_node("Main/Control/UnitStatsDisplay")
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+	pass
+	
+func remove_unit():
+	if (occupying_unit != null):
+		occupying_unit.free()
+		occupying_unit = null
 func _on_RigidBody_mouse_exited():
 	hover = false
 	stop_blinking()

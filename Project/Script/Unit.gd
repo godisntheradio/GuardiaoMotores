@@ -14,7 +14,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-func attack(pos : Vector2):
+func attack(pos : Tile):
 	pass
-func move(pos : Vector2):
+func move(pos : Tile):
 	pass
