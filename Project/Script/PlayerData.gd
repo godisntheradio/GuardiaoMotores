@@ -2,6 +2,8 @@ extends Spatial
 
 var available_units = []
 
+
+
 func _ready():
 	var unit1 = Stats.new()
 	unit1.hit_points = 50.0
@@ -28,3 +30,8 @@ func _ready():
 	available_units.append(unit2)
 	available_units.append(unit3)
 	pass
+	
+func find_unit_index(to_find):
+	for i in available_units.size():
+		if(available_units[i].name == to_find.stats.name):
+			return i
