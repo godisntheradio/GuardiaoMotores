@@ -8,6 +8,8 @@ var map
 var to_be_positioned
 var to_be_positioned_index
 
+var positioned_count = 0
+
 func _ready():
 	item_list = get_node("Panel/ItemList")
 	item_list.connect("item_activated",self,"_on_selected_from_list")
@@ -43,11 +45,13 @@ func _process(delta):
 				var i = PlayerData.find_unit_index(tile.occupying_unit)
 				print(tile.occupying_unit.stats.name + str(i))
 				reactivate(i)
+				positioned_count += -1
 				tile.remove_unit()
 	
 func position_unit(new_unit : Unit, tile : Tile):
 	if(tile.occupying_unit == null):
 		tile.occupying_unit = new_unit
+		positioned_count += 1
 		deactivate()
 	pass
 func make_unit(stats):
@@ -81,3 +85,8 @@ func reactivate(index):
 func select(index):
 	to_be_positioned_index = index
 	to_be_positioned =  make_unit(PlayerData.available_units[index])
+
+func _on_Begin_button_up():
+	if (positioned_count > 0):
+		queue_free()
+	pass # Replace with function body.
