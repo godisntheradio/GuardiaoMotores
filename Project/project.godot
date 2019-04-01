@@ -97,6 +97,10 @@ right_click={
  ]
 }
 
+[locale]
+
+locale_filter=[ 0, [  ] ]
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

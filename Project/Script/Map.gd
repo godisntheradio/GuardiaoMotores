@@ -9,8 +9,8 @@ export var width : int
 export var height : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for x in range(10):
-		for y in range(10):
+	for y in range(height):
+		for x in range(width):
 			var instance = TileClass.instance()
 			var mesh = instance.get_node("MeshInstance").mesh
 			add_child(instance)
@@ -19,6 +19,11 @@ func _ready():
 			instance.name = instance.name + str(x) + str(y)
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+func world_to_map(p : Vector3):
+	p -= translation
+	var tSize = mapTiles[0].get_node("MeshInstance").mesh.size.x
+	return Vector2(floor(p.x / tSize), floor(p.z / tSize))
+
+func get_tile(pos : Vector2):
+	return mapTiles[pos.y * width + pos.x]

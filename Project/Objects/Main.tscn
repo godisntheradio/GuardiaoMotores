@@ -18,8 +18,8 @@ player_input = NodePath("../PlayerInput")
 
 [node name="Map" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0 )
-width = 3
-height = 3
+width = 10
+height = 10
 
 [node name="Control" type="Control" parent="."]
 margin_right = 40.0
@@ -32,3 +32,4 @@ margin_bottom = 40.0
 [node name="CommandWindow" parent="Control" instance=ExtResource( 6 )]
 visible = false
 
+[connection signal="tree_exited" from="Control/DeployUnitsWindow" to="BattleManager" method="_on_DeployUnitsWindow_tree_exited"]
