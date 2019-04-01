@@ -69,10 +69,14 @@ func _available_movement_recurs(pId : int, currentCost : float, maxCost : float,
 		if addSelf:
 			outIds.append({ "id": pId, "cost": currentCost })
 		for n in astar.get_point_connections(pId):
+			var found = false
 			for i in outIds:
 				if i.id == n:
+					found = true
 					if currentCost < i.cost:
 						i.cost = currentCost
 						_available_movement_recurs(n, currentCost + cost, maxCost, outIds, false)
-					continue
+					break
+			if found:
+				continue
 			_available_movement_recurs(n, currentCost + cost, maxCost, outIds, true)
