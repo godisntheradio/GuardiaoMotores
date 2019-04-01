@@ -20,9 +20,10 @@ func _ready():
 	command_window.connect("move",self,"on_move")
 	is_attacking = false
 	is_moving = false
-func _process(delta):
-	if(turn):
-		if(Input.is_action_just_released("left_click")):
+	
+func _input(event):
+	if turn:
+		if event is InputEventMouseButton && !event.pressed && event.button_index == BUTTON_LEFT:
 			if(selecting_target): # selecionar ação quando tiver unidade selecionada
 				if(player_input.result.size() > 0):
 					var tile = player_input.result.collider.get_parent()
@@ -43,6 +44,10 @@ func _process(delta):
 					var tile = player_input.result.collider.get_parent()
 					if(tile is Tile && !tile.is_tile_empty()):
 						on_selected(tile)
+	
+func _process(delta):
+	pass
+	
 func begin_turn():
 	print("begin turn")
 	turn = true
