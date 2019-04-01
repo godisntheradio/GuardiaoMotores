@@ -3,9 +3,9 @@
 [ext_resource path="res://Objects/PlayerInput.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/BattleManager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/Map.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Objects/UI/CommandWindow.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Objects/UI/UnitStatsDisplay.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Objects/UI/DeployUnitsWindow.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/UI/UnitStatsDisplay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/UI/DeployUnitsWindow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/UI/CommandWindow.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Spatial"]
 
@@ -13,6 +13,8 @@
 camera_speed = 10.0
 
 [node name="BattleManager" parent="." instance=ExtResource( 2 )]
+command_window = NodePath("../Control/CommandWindow")
+player_input = NodePath("../PlayerInput")
 
 [node name="Map" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0 )
@@ -23,10 +25,10 @@ height = 3
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="CommandWindow" parent="Control" instance=ExtResource( 4 )]
+[node name="UnitStatsDisplay" parent="Control" instance=ExtResource( 4 )]
+
+[node name="DeployUnitsWindow" parent="Control" instance=ExtResource( 5 )]
+
+[node name="CommandWindow" parent="Control" instance=ExtResource( 6 )]
 visible = false
-
-[node name="UnitStatsDisplay" parent="Control" instance=ExtResource( 5 )]
-
-[node name="DeployUnitsWindow" parent="Control" instance=ExtResource( 6 )]
 

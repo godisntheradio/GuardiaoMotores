@@ -10,9 +10,12 @@ var to_be_positioned_index
 
 var positioned_count = 0
 
+signal begin_battle
+
 func _ready():
 	item_list = get_node("Panel/ItemList")
 	item_list.connect("item_activated",self,"_on_selected_from_list")
+	connect("begin_battle",get_tree().get_root().get_node("Main/BattleManager"),"on_begin_battle")
 	map = get_tree().get_root().get_node("Main/Map")
 	input = get_tree().get_root().get_node("Main/PlayerInput")
 	# load list
@@ -21,19 +24,17 @@ func _ready():
 	item_list.set_auto_height(true)
 	for unit in PlayerData.available_units:
 		item_list.add_item(unit.name + "   " )
-
-
-func _physics_process(delta):
+	
+func _process(delta):
 	if(to_be_positioned != null):
 		if(input.result.size() > 0):
 			var tile = input.result.collider.get_parent()
 			if(tile is Tile):
-				to_be_positioned.global_transform.origin = tile.global_transform.origin + Vector3(0,3.0,0)
+				to_be_positioned.global_transform.origin = tile.global_transform.origin + Vector3(0,2.0,0)
 		else:
 			to_be_positioned.global_transform.origin = input.dir.normalized() * 2
-	pass
-func _process(delta):
-	if(Input.is_action_pressed("left_click")): # clique esquerdo posiciona uma unidade selecionada na lista no campo
+	
+	if(Input.is_action_just_released("left_click")): # clique esquerdo posiciona uma unidade selecionada na lista no campo
 		if(input.result.size() > 0 && to_be_positioned != null):#checa se o raycast colidiu com algo e se há uma unidade selecionada para posicionar
 			var tile = input.result.collider.get_parent()
 			if(tile is Tile):
@@ -41,15 +42,16 @@ func _process(delta):
 	if(Input.is_action_just_released("right_click")): # clique direito tira uma unidade do campo e retorna para a lista caso deseje reposicionar
 		if(input.result.size() > 0 && to_be_positioned == null): #checa se o raycast colidiu com algo e se nao tem nada selecionado para posicionar
 			var tile = input.result.collider.get_parent()
-			if(tile is Tile && tile.occupying_unit != null): #chega se a colisao foi com um tile e se tile possui uma unidade para tirar do campo
+			if(tile is Tile && !tile.is_tile_empty()): #chega se a colisao foi com um tile e se tile possui uma unidade para tirar do campo
 				var i = PlayerData.find_unit_index(tile.occupying_unit)
 				print(tile.occupying_unit.stats.name + str(i))
 				reactivate(i)
 				positioned_count += -1
+				tile.occupying_unit.free()
 				tile.remove_unit()
 	
 func position_unit(new_unit : Unit, tile : Tile):
-	if(tile.occupying_unit == null):
+	if(tile.is_tile_empty()):
 		tile.occupying_unit = new_unit
 		positioned_count += 1
 		deactivate()
@@ -88,5 +90,6 @@ func select(index):
 
 func _on_Begin_button_up():
 	if (positioned_count > 0):
+		emit_signal("begin_battle")
 		queue_free()
 	pass # Replace with function body.

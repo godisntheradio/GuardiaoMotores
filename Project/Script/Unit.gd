@@ -15,6 +15,7 @@ func _ready():
 #func _process(delta):
 #	pass
 func attack(pos : Tile):
-	pass
+	pos.occupying_unit.hp += - stats.attack
 func move(pos : Tile):
-	pass
+	global_transform.origin = pos.global_transform.origin  + Vector3(0,2.0,0)
+	pos.occupying_unit = self

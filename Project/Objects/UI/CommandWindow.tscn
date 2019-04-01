@@ -1,8 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Script/CommandWindow.gd" type="Script" id=1]
 
 [node name="CommandWindow" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 
 [node name="ItemList" type="ItemList" parent="."]
 margin_left = 827.0
@@ -34,3 +37,6 @@ margin_bottom = 100.0
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 text = "Return"
 
+[connection signal="button_up" from="ItemList/AttackButton" to="." method="_on_AttackButton_button_up"]
+[connection signal="button_up" from="ItemList/MoveButton" to="." method="_on_MoveButton_button_up"]
+[connection signal="button_up" from="ItemList/ReturnButton" to="." method="_on_ReturnButton_button_up"]

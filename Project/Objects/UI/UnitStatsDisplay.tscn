@@ -11,6 +11,7 @@ margin_bottom = -2.20532
 script = ExtResource( 1 )
 name_path = NodePath("Panel/UnitName")
 hp_path = NodePath("Panel/HPBar")
+hp_text = NodePath("Panel/HPBar/Label")
 attack_path = NodePath("Panel/AttackL/Value")
 defense_path = NodePath("Panel/DefenseL/Value")
 mag_atk_path = NodePath("Panel/MagicAtkL/Value")
@@ -43,6 +44,15 @@ custom_colors/font_color = Color( 0.898039, 0.160784, 0.160784, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 value = 49.99
 percent_visible = false
+
+[node name="Label" type="Label" parent="Panel/HPBar"]
+margin_left = 49.0
+margin_top = 2.98605
+margin_right = 119.0
+margin_bottom = 19.9861
+text = "0/0"
+align = 1
+valign = 1
 
 [node name="AttackL" type="Label" parent="Panel"]
 editor/display_folded = true

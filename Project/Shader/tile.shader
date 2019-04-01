@@ -18,8 +18,10 @@ uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 
 uniform float should_blink;
-uniform vec4 blink_color;
+uniform vec4 blink_color : hint_color;
 uniform float blink_speed;
+
+uniform vec4 tint_color : hint_color;
 
 void vertex() {
 	UV=UV*uv1_scale.xy+uv1_offset.xy;
@@ -31,7 +33,7 @@ void fragment() {
 	// blinking code --	
 	float clamped_time = (sin ( TIME * blink_speed ) + 1.0) / 2.0;
 	vec4 blinking = blink_color * clamped_time * should_blink;
-	ALBEDO = albedo.rgb * albedo_tex.rgb + blinking.rgb;
+	ALBEDO = albedo.rgb * albedo_tex.rgb + blinking.rgb + tint_color.rgb;
 	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
 	METALLIC = metallic_tex * metallic;
 	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
