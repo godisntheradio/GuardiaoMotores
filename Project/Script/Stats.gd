@@ -9,6 +9,7 @@ export var attack : float
 export var defense : float
 export var magicAtk : float
 export var magicDef : float
+export var movement : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -24,4 +25,5 @@ func add(other : Stats):
 	result.magicDef = magicDef + other.magicDef
 	result.hit_points = hit_points + other.hit_points
 	result.name = name
+	result.movement = movement + other.movement
 	return result

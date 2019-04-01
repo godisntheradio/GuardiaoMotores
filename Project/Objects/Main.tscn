@@ -32,4 +32,3 @@ margin_bottom = 40.0
 [node name="CommandWindow" parent="Control" instance=ExtResource( 6 )]
 visible = false
 
-[connection signal="tree_exited" from="Control/DeployUnitsWindow" to="BattleManager" method="_on_DeployUnitsWindow_tree_exited"]

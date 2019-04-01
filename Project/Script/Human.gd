@@ -6,9 +6,12 @@ var selecting_target : bool
 var is_attacking : bool
 var is_moving : bool
 var selected_tile : Tile
+var units_in_battle = []
+var within_reach = [] # tiles within reach
 
 var command_window
 var player_input
+var battle_manager
 
 func _ready():
 	turn = false
@@ -28,7 +31,11 @@ func _process(delta):
 							selected_tile.occupying_unit.attack(tile)
 							after_move()
 						elif(is_moving && tile.is_tile_empty()):
-							selected_tile.occupying_unit.move(tile)
+							var path = battle_manager.get_path_from_to(selected_tile, tile)
+							var world_path : PoolVector3Array
+							for point in path:
+								world_path.append(battle_manager.map.get_tile(Vector2(point.x,point.y)).global_transform.origin)
+							selected_tile.occupying_unit.move(tile, world_path)
 							selected_tile.remove_unit()
 							after_move()
 			else: # selecionar unidade para selecionar ação
@@ -50,15 +57,22 @@ func on_selected(tile):
 	selected_tile.select()
 	command_window.visible = true
 func on_deselected():
+	selecting_target = false
 	selected_tile.deselect()
 	selected_tile = null
+	for point in within_reach:
+		var tile : Tile = battle_manager.map.get_tile(Vector2(point.x, point.y))
+		tile.stop_highlight()
+	within_reach = []
 	command_window.visible = false
 func on_attack():
-	print("attack by " + selected_tile.occupying_unit.stats.name)
 	selecting_target = true
 	is_attacking = true
 func on_move():
-	print("move by " + selected_tile.occupying_unit.stats.name)
+	within_reach = battle_manager.get_available_movement(selected_tile)
+	for point in within_reach:
+		var tile : Tile = battle_manager.map.get_tile(Vector2(point.x, point.y))
+		tile.highlight()
 	selecting_target = true
 	is_moving = true
 func after_move():

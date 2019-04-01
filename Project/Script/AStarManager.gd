@@ -42,7 +42,8 @@ func get_point_id(p : Vector2):
 
 func is_outside_bounds(p : Vector2):
 	return (p.x < 0 || p.x >= width || p.y < 0 || p.y >= height)
-	
+
+#recebe posição na matriz
 func get_path(from : Vector2, to : Vector2):
 	return astar.get_point_path(get_point_id(from), get_point_id(to))
 	

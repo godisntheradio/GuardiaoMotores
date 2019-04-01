@@ -9,6 +9,7 @@ export var starting_position : bool
 var occupying_unit
 var hover : bool
 var selected : bool
+var highlighted : bool
 var material_ref
 
 var display
@@ -18,9 +19,10 @@ export var within_reach_color : Color
 
 func _ready():
 	hover = false
+	selected = false
+	highlighted = false
 	material_ref = get_node("MeshInstance").get_surface_material(0)
 	display  = get_tree().get_root().get_node("Main/Control/UnitStatsDisplay")
-	selected = false
 	pass
 	
 func remove_unit(): #nao deve deletar a unidade da memoria
@@ -31,6 +33,8 @@ func _on_RigidBody_mouse_exited():
 	hover = false
 	if(!selected):
 		stop_blinking()
+	elif(!highlighted):
+		stop_highlight()
 	else:
 		start_blinking(selected_color)
 	if(!is_tile_empty()):
@@ -69,3 +73,10 @@ func select():
 func deselect():
 	stop_blinking()
 	selected = false
+	
+func highlight():
+	highlighted = true
+	material_ref.set_shader_param("tint_color",within_reach_color)
+func stop_highlight():
+	highlighted = false
+	material_ref.set_shader_param("tint_color",Color(0,0,0,1))
