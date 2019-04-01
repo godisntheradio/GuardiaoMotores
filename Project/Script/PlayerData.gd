@@ -11,7 +11,7 @@ func _ready():
 	unit1.defense = 3.0
 	unit1.magicAtk = 5.0
 	unit1.magicDef = 3.0
-	unit1.movement = 1
+	unit1.movement = 10
 	var unit2 = Stats.new()
 	unit2.hit_points = 30.0
 	unit2.name = "unit2"
@@ -19,7 +19,7 @@ func _ready():
 	unit2.defense = 5.0
 	unit2.magicAtk = 5.0
 	unit2.magicDef = 10.0
-	unit2.movement = 2
+	unit2.movement = 4
 	var unit3 = Stats.new()
 	unit3.hit_points = 50.0
 	unit3.name = "unit3"
@@ -27,7 +27,7 @@ func _ready():
 	unit3.defense = 10.0
 	unit3.magicAtk = 5.0
 	unit3.magicDef = 5.0
-	unit3.movement = 3
+	unit3.movement = 6
 	available_units.append(unit1)
 	available_units.append(unit2)
 	available_units.append(unit3)
