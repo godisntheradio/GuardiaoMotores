@@ -70,10 +70,6 @@ config/icon="res://icon.png"
 
 PlayerData="*res://Objects/PlayerData.tscn"
 
-[editor_plugins]
-
-enabled=PoolStringArray( "Dock" )
-
 [input]
 
 move_camera_right={
