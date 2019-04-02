@@ -47,5 +47,6 @@ func move_animation(delta):
 			current_index += 1
 			update_destination()
 		else:
+			translation = path[current_index] + Vector3(0, 2.0, 0)
 			is_moving = false
 			current_index = 0

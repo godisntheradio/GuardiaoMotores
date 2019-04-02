@@ -38,6 +38,7 @@ func _input(event):
 							if(is_move_valid(tile)):
 								var path = battle_manager.get_path_from_to(selected_tile, tile)
 								var world_path : PoolVector3Array
+								var tileSize = selected_tile.get_node("MeshInstance").mesh.size.x
 								for point in path:
 									world_path.append(battle_manager.map.get_tile(Vector2(point.x,point.y)).global_transform.origin)
 								selected_tile.occupying_unit.move(tile, world_path)

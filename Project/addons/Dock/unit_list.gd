@@ -1,12 +1,16 @@
 tool
 extends ItemList
 
-const FILE_PATH = "res://units.txt"
+const FILE_PATH = "res://units"
 
 class UnitData:
 	var name : String
 	var hp : float
 	var attack : float
+	var defense : float
+	var magic_attack : float
+	var magic_defense : float
+	var movement : int
 
 var units : Array = []
 
@@ -34,7 +38,8 @@ func deselect():
 
 func _ready():
 	connect("item_selected", self, "_on_select")
-	load_from_file()	
+	remove_item(0)
+	load_from_file()
 	
 func select_connect(fRef : FuncRef):
 	selectedCallbacks.append(fRef)
@@ -68,6 +73,10 @@ func save_to_file():
 		file.store_pascal_string(u.name)
 		file.store_float(u.hp)
 		file.store_float(u.attack)
+		file.store_float(u.defense)
+		file.store_float(u.magic_attack)
+		file.store_float(u.magic_defense)
+		file.store_16(u.movement)
 		
 func load_from_file():
 	var file = File.new()
@@ -80,6 +89,10 @@ func load_from_file():
 		units[i].name = file.get_pascal_string()
 		units[i].hp = file.get_float()
 		units[i].attack = file.get_float()
+		units[i].defense = file.get_float()
+		units[i].magic_attack = file.get_float()
+		units[i].magic_defense = file.get_float()
+		units[i].movement = file.get_16()
 		add_item(units[i].name)
 	
 func _on_SaveButton_button_up():
