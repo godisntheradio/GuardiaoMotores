@@ -44,6 +44,7 @@ func _input(event):
 								selected_tile.occupying_unit.move(tile, world_path)
 								selected_tile.remove_unit()
 								after_move()
+								battle_manager.astarManager.update_connections()
 			else: # selecionar unidade para selecionar ação
 				if(player_input.result.size() > 0):
 					var tile = player_input.result.collider.get_parent()
