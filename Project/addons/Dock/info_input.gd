@@ -7,12 +7,14 @@ func _on_text_changed(new_text : String):
 	if(unit_list.selected != null):
 		if(get_parent().name == "Name"):
 			unit_list.set_selected_name(text)
+		elif get_parent().name == "Movement":
+			unit_list.selected.set(get_parent().name.to_lower(), text.to_int())
 		else:
 			unit_list.selected.set(get_parent().name.to_lower(), text.to_float())
 	
 func _on_item_selected():
 	if(unit_list.selected != null):
-		if(get_parent().name == "Name"):
+		if get_parent().name == "Name":
 			text = unit_list.selected.get(get_parent().name.to_lower())
 		else:
 			text = str(unit_list.selected.get(get_parent().name.to_lower()))
