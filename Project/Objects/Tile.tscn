@@ -12,6 +12,7 @@ script = ExtResource( 1 )
 hover_color = Color( 1, 1, 1, 1 )
 selected_color = Color( 0.898039, 0.972549, 0.0156863, 1 )
 within_reach_color = Color( 0.054902, 0.0666667, 0.886275, 1 )
+can_attack_color = Color( 1, 0, 0, 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )

@@ -36,5 +36,8 @@ func on_end_player_turn():
 func get_available_movement(tile : Tile):
 	var mov = astarManager.get_available_movement(map.world_to_map(tile.translation), tile.occupying_unit.stats.movement)
 	return mov.duplicate()
+func get_available_attack(tile : Tile):
+	var mov = astarManager.get_available_movement(map.world_to_map(tile.translation), 1)
+	return mov.duplicate()
 func get_path_from_to(from : Tile, to : Tile):
 	return astarManager.get_path(map.world_to_map(from.translation),map.world_to_map(to.translation))

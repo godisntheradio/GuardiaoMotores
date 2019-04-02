@@ -16,7 +16,7 @@ var display
 export var hover_color : Color
 export var selected_color : Color
 export var within_reach_color : Color
-
+export var can_attack_color : Color
 func _ready():
 	hover = false
 	selected = false
@@ -74,9 +74,12 @@ func deselect():
 	stop_blinking()
 	selected = false
 	
-func highlight():
+func highlight_movable():
 	highlighted = true
 	material_ref.set_shader_param("tint_color",within_reach_color)
+func highlight_attackable():
+	highlighted = true
+	material_ref.set_shader_param("tint_color",can_attack_color)
 func stop_highlight():
 	highlighted = false
 	material_ref.set_shader_param("tint_color",Color(0,0,0,1))
