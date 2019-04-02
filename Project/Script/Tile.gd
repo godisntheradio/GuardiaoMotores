@@ -40,6 +40,7 @@ func _on_RigidBody_mouse_exited():
 	if(!is_tile_empty()):
 		hide_stats()
 func _on_RigidBody_mouse_entered():
+	print(name)
 	hover = true
 	start_blinking(hover_color)
 	if(!is_tile_empty()):

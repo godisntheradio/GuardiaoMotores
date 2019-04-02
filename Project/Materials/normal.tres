@@ -3,6 +3,7 @@
 [resource]
 metallic = 1.0
 metallic_specular = 0.7
+roughness = 0.26
 normal_enabled = true
 normal_scale = 1.0
 

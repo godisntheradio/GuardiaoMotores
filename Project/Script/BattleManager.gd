@@ -9,6 +9,7 @@ var HumanPlayerScene = preload("res://Objects/HumanPlayer.tscn")
 var AIPlayerScene = preload("res://Objects/AIPlayer.tscn")
 var AStarManager = load("res://Script/AStarManager.gd")
 
+
 var human_player
 var astarManager
 var canControl : bool = false
@@ -21,7 +22,7 @@ func _ready():
 	human_player.command_window = get_node(command_window)
 	human_player.player_input = get_node(player_input)
 	human_player.battle_manager = self
-	map = get_node("../Map")
+	map = get_node("../Level").get_child(0)
 	astarManager = AStarManager.new(map)
 	add_child(human_player)
 func on_begin_battle(deployed_units):
