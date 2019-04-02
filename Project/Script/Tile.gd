@@ -84,3 +84,6 @@ func highlight_attackable():
 func stop_highlight():
 	highlighted = false
 	material_ref.set_shader_param("tint_color",Color(0,0,0,1))
+	
+func get_cost():
+	return 1.0

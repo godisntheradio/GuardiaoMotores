@@ -9,7 +9,6 @@
 
 [node name="Main" type="Spatial"]
 
-[node name="PlayerInput" parent="." instance=ExtResource( 1 )]
 camera_speed = 10.0
 
 [node name="BattleManager" parent="." instance=ExtResource( 2 )]
