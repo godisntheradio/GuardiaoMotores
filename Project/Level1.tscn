@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Script/Map.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Tile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/Unit.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/AIPlayer.tscn" type="PackedScene" id=4]
 
 [node name="Level1" type="Spatial"]
 
 [node name="Map" type="Spatial" parent="."]
-editor/display_folded = true
 script = ExtResource( 1 )
 width = 9
 height = 8
@@ -68,7 +68,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 2 )
 
 [node name="Tile3" parent="Map" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4 )
 
 [node name="Tile9" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4 )
@@ -177,7 +177,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 10 )
 unit = NodePath("../../Unit2")
 
 [node name="Tile7" parent="Map" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 12 )
 
 [node name="Tile15" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 12 )
@@ -235,6 +235,7 @@ unit = NodePath("../../Unit")
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.985, 2, 13.961 )
 editor_created = true
+ai_path = NodePath("../AIPlayer")
 hit_points = 40.0
 unit_name = "Inimigo 2"
 attack = 5.0
@@ -247,6 +248,7 @@ hp = 40.0
 [node name="Unit2" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.985, 2, 9.961 )
 editor_created = true
+ai_path = NodePath("../AIPlayer")
 hit_points = 50.0
 unit_name = "Inimigo"
 attack = 3.0
@@ -255,4 +257,6 @@ magicAtk = 2.0
 magicDef = 2.0
 movement = 5
 hp = 50.0
+
+[node name="AIPlayer" parent="." instance=ExtResource( 4 )]
 

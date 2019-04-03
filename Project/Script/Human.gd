@@ -103,7 +103,7 @@ func is_attack_valid(tile) -> bool:
 		return false
 	if(within_reach.has(tile)):
 		return true
-	if(PlayerData.find_unit_index(tile) == null):
+	if(PlayerData.find_unit_index(tile.occupying_unit) == null): 
 		return true
 	else:
 		return false

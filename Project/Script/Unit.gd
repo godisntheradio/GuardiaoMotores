@@ -4,6 +4,7 @@ class_name Unit
 var stats : Stats
 #para criar unidades inimigas atraves do editor abilite editor creator e preencha os stats
 export var editor_created : bool
+export var ai_path : NodePath
 export var hit_points : float
 export var unit_name : String
 export var attack : float
@@ -26,10 +27,13 @@ var current_index : int
 var current_start : Vector3
 var clock : float
 
+var player : Player
+
 func _ready():
 	stats = Stats.new()
 	if(editor_created):
 		create_from_editor_stats()
+		player = get_node(ai_path)
 	current_index = 0
 func _process(delta):
 	if (is_moving):
@@ -42,7 +46,13 @@ func move(pos : Tile, points : PoolVector3Array):
 	update_destination()
 	is_moving = true
 	pos.occupying_unit = self
-	
+func take_damage():
+	pass
+func death():
+	#tirar do player in battle
+	#remover do tile
+	#queue_free()
+	pass
 func update_destination():
 	clock = 0
 	current_destination = path[current_index] + Vector3(0,2.0,0)
