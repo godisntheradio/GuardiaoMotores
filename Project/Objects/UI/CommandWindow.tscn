@@ -1,8 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Script/CommandWindow.gd" type="Script" id=1]
 
 [sub_resource type="Animation" id=1]
+resource_name = "move_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 7.62939e-006, 0.777778 ), Vector2( 243, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
 resource_name = "move_out"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
@@ -38,29 +53,38 @@ margin_bottom = 100.0
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 text = "Return"
 
-[node name="Control" type="Control" parent="ItemList"]
+[node name="Attack" type="Control" parent="ItemList"]
 margin_left = -0.773796
 margin_top = 0.00397396
 margin_right = 39.2262
 margin_bottom = 40.004
 
-[node name="AttackButton" type="Button" parent="ItemList/Control"]
+[node name="AttackButton" type="Button" parent="ItemList/Attack"]
 margin_top = 0.777771
 margin_right = 193.0
 margin_bottom = 33.7778
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 text = "Attack"
 
-[node name="MoveButton" type="Button" parent="ItemList/Control"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ItemList/Attack"]
+anims/move_out = SubResource( 1 )
+
+[node name="Move" type="Control" parent="ItemList"]
+margin_left = -0.773796
+margin_top = 0.00397396
+margin_right = 39.2262
+margin_bottom = 40.004
+
+[node name="MoveButton" type="Button" parent="ItemList/Move"]
 margin_top = 34.0
 margin_right = 193.0
 margin_bottom = 67.0
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 text = "Move"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ItemList/Control"]
-anims/move_out = SubResource( 1 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ItemList/Move"]
+anims/move_out = SubResource( 2 )
 
 [connection signal="button_up" from="ItemList/ReturnButton" to="." method="_on_ReturnButton_button_up"]
-[connection signal="button_up" from="ItemList/Control/AttackButton" to="." method="_on_AttackButton_button_up"]
-[connection signal="button_up" from="ItemList/Control/MoveButton" to="." method="_on_MoveButton_button_up"]
+[connection signal="button_up" from="ItemList/Attack/AttackButton" to="." method="_on_AttackButton_button_up"]
+[connection signal="button_up" from="ItemList/Move/MoveButton" to="." method="_on_MoveButton_button_up"]

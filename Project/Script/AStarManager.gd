@@ -99,7 +99,7 @@ func get_available_movement(origin : Vector2, movement : int, include_units : bo
 func _available_movement_recurs(pos : Vector2, currentCost : float, maxCost : float, include_units : bool, consider_costs : bool, outIds : Array, addSelf : bool):
 	var tile = map.get_tile(pos)
 	
-	if include_units && !tile.is_tile_empty():
+	if !include_units && !tile.is_tile_empty():
 		return
 			
 	var cost = 1

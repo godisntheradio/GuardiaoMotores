@@ -27,15 +27,23 @@ func _ready():
 	add_child(human_player)
 func on_begin_battle(deployed_units):
 	player_list.append(human_player)
+	var ai = get_child(0).get_node("AIPlayer")
+	player_list.append(ai)
 	canControl = true
-	human_player.units_in_battle = deployed_units
+	human_player.units = deployed_units
+	for unit in human_player.units:
+		unit.player = human_player
+	for unit in ai.units:
+		unit.player = ai
+	ai.battle_manager = self
+	astarManager.update_connections()
 	player_list[turn_count % player_list.size()].begin_turn()
 	pass
 func on_end_player_turn():
 	turn_count += 1
 	pass
 func get_available_movement(tile : Tile):
-	var mov = astarManager.get_available_movement(map.world_to_map(tile.translation), tile.occupying_unit.stats.movement,true)
+	var mov = astarManager.get_available_movement(map.world_to_map(tile.translation), tile.occupying_unit.stats.movement)
 	return mov.duplicate()
 func get_available_attack(tile : Tile):
 	var mov = astarManager.get_available_movement(map.world_to_map(tile.translation), 1,true)

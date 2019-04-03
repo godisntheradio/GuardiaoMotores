@@ -33,3 +33,4 @@ margin_bottom = 40.0
 [node name="CommandWindow" parent="Control" instance=ExtResource( 6 )]
 visible = false
 
+[connection signal="visibility_changed" from="Control/CommandWindow" to="Control/CommandWindow" method="_on_CommandWindow_visibility_changed"]

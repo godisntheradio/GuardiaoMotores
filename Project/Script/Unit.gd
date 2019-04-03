@@ -15,11 +15,13 @@ export var movement : int
 
 export var movement_speed : float
 
-export var tilePos : Vector2
 export var hp : float
 
 var is_attacking : bool
 var is_moving : bool
+
+var has_attacked : bool = false
+var has_moved : bool = false
 
 var path : PoolVector3Array
 var current_destination : Vector3
@@ -39,19 +41,22 @@ func _process(delta):
 	if (is_moving):
 		move_animation(delta)
 func attack(pos : Tile):
-	pos.occupying_unit.hp += - stats.attack
+#	pos.occupying_unit.hp += - stats.attack
+	has_attacked = true
+	pos.occupying_unit.death()
 func move(pos : Tile, points : PoolVector3Array):
+	has_moved = true
 	path = points
 	path.remove(0)
 	update_destination()
 	is_moving = true
 	pos.occupying_unit = self
 func take_damage():
+	death()
 	pass
 func death():
-	#tirar do player in battle
-	#remover do tile
-	#queue_free()
+	player.remove_unit(self)
+	queue_free()
 	pass
 func update_destination():
 	clock = 0
@@ -77,3 +82,6 @@ func create_from_editor_stats():
 	stats.magicAtk = magicAtk
 	stats.magicDef = magicDef 
 	stats.movement = movement 
+func reset():
+	has_attacked = false
+	has_moved = false
