@@ -9,15 +9,18 @@
 
 [node name="Main" type="Spatial"]
 
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.481603, 0.876389, 0, -0.876389, -0.481603, 0, 8.42976, 0 )
+shadow_enabled = true
+
+[node name="PlayerInput" parent="." instance=ExtResource( 1 )]
 camera_speed = 10.0
 
 [node name="BattleManager" parent="." instance=ExtResource( 2 )]
 command_window = NodePath("../Control/CommandWindow")
 player_input = NodePath("../PlayerInput")
 
-[node name="Level" type="Spatial" parent="."]
-
-[node name="Level1" parent="Level" instance=ExtResource( 3 )]
+[node name="Level1" parent="BattleManager" instance=ExtResource( 3 )]
 
 [node name="Control" type="Control" parent="."]
 margin_right = 40.0
@@ -29,7 +32,4 @@ margin_bottom = 40.0
 
 [node name="CommandWindow" parent="Control" instance=ExtResource( 6 )]
 visible = false
-
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -0.481603, 0.876389, 0, -0.876389, -0.481603, 0, 8.42976, 0 )
 

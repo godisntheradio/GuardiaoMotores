@@ -1,227 +1,258 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Script/Map.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Tile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/Unit.tscn" type="PackedScene" id=3]
 
 [node name="Level1" type="Spatial"]
+
+[node name="Map" type="Spatial" parent="."]
+editor/display_folded = true
 script = ExtResource( 1 )
 width = 9
 height = 8
 procedural = false
 
-[node name="Tile" parent="." instance=ExtResource( 2 )]
+[node name="Tile" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
-[node name="Tile16" parent="." instance=ExtResource( 2 )]
+[node name="Tile16" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
 
-[node name="Tile19" parent="." instance=ExtResource( 2 )]
+[node name="Tile19" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
 
-[node name="Tile27" parent="." instance=ExtResource( 2 )]
+[node name="Tile27" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0 )
 
-[node name="Tile35" parent="." instance=ExtResource( 2 )]
+[node name="Tile35" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0 )
 
-[node name="Tile47" parent="." instance=ExtResource( 2 )]
+[node name="Tile47" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0 )
 
-[node name="Tile56" parent="." instance=ExtResource( 2 )]
+[node name="Tile56" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0 )
 
-[node name="Tile64" parent="." instance=ExtResource( 2 )]
+[node name="Tile64" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0 )
 
-[node name="Tile66" parent="." instance=ExtResource( 2 )]
+[node name="Tile66" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0 )
 
-[node name="Tile2" parent="." instance=ExtResource( 2 )]
+[node name="Tile2" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2 )
 
-[node name="Tile13" parent="." instance=ExtResource( 2 )]
+[node name="Tile13" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2 )
 
-[node name="Tile20" parent="." instance=ExtResource( 2 )]
+[node name="Tile20" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
 
-[node name="Tile28" parent="." instance=ExtResource( 2 )]
+[node name="Tile28" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2 )
 
-[node name="Tile33" parent="." instance=ExtResource( 2 )]
+[node name="Tile33" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 2 )
 
-[node name="Tile42" parent="." instance=ExtResource( 2 )]
+[node name="Tile42" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 2 )
 
-[node name="Tile49" parent="." instance=ExtResource( 2 )]
+[node name="Tile49" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 2 )
 
-[node name="Tile59" parent="." instance=ExtResource( 2 )]
+[node name="Tile59" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 2 )
 
-[node name="Tile70" parent="." instance=ExtResource( 2 )]
+[node name="Tile70" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 2 )
 
-[node name="Tile3" parent="." instance=ExtResource( 2 )]
+[node name="Tile3" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
 
-[node name="Tile9" parent="." instance=ExtResource( 2 )]
+[node name="Tile9" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4 )
 
-[node name="Tile21" parent="." instance=ExtResource( 2 )]
+[node name="Tile21" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4 )
 
-[node name="Tile30" parent="." instance=ExtResource( 2 )]
+[node name="Tile30" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4 )
 
-[node name="Tile36" parent="." instance=ExtResource( 2 )]
+[node name="Tile36" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4 )
 
-[node name="Tile41" parent="." instance=ExtResource( 2 )]
+[node name="Tile41" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 4 )
 
-[node name="Tile53" parent="." instance=ExtResource( 2 )]
+[node name="Tile53" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 4 )
 
-[node name="Tile57" parent="." instance=ExtResource( 2 )]
+[node name="Tile57" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 4 )
 
-[node name="Tile68" parent="." instance=ExtResource( 2 )]
+[node name="Tile68" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 4 )
 
-[node name="Tile4" parent="." instance=ExtResource( 2 )]
+[node name="Tile4" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6 )
 
-[node name="Tile12" parent="." instance=ExtResource( 2 )]
+[node name="Tile12" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6 )
 
-[node name="Tile23" parent="." instance=ExtResource( 2 )]
+[node name="Tile23" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6 )
 
-[node name="Tile29" parent="." instance=ExtResource( 2 )]
+[node name="Tile29" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 6 )
 
-[node name="Tile39" parent="." instance=ExtResource( 2 )]
+[node name="Tile39" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 6 )
 
-[node name="Tile46" parent="." instance=ExtResource( 2 )]
+[node name="Tile46" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 6 )
 
-[node name="Tile55" parent="." instance=ExtResource( 2 )]
+[node name="Tile55" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 6 )
 
-[node name="Tile62" parent="." instance=ExtResource( 2 )]
+[node name="Tile62" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 6 )
 
-[node name="Tile67" parent="." instance=ExtResource( 2 )]
+[node name="Tile67" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 6 )
 
-[node name="Tile5" parent="." instance=ExtResource( 2 )]
+[node name="Tile5" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8 )
 
-[node name="Tile14" parent="." instance=ExtResource( 2 )]
+[node name="Tile14" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8 )
 
-[node name="Tile18" parent="." instance=ExtResource( 2 )]
+[node name="Tile18" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8 )
 
-[node name="Tile26" parent="." instance=ExtResource( 2 )]
+[node name="Tile26" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 8 )
 
-[node name="Tile38" parent="." instance=ExtResource( 2 )]
+[node name="Tile38" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8 )
 
-[node name="Tile44" parent="." instance=ExtResource( 2 )]
+[node name="Tile44" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 8 )
 
-[node name="Tile51" parent="." instance=ExtResource( 2 )]
+[node name="Tile51" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 8 )
 
-[node name="Tile60" parent="." instance=ExtResource( 2 )]
+[node name="Tile60" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 8 )
 
-[node name="Tile71" parent="." instance=ExtResource( 2 )]
+[node name="Tile71" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 8 )
 
-[node name="Tile6" parent="." instance=ExtResource( 2 )]
+[node name="Tile6" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
 
-[node name="Tile10" parent="." instance=ExtResource( 2 )]
+[node name="Tile10" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 10 )
 
-[node name="Tile17" parent="." instance=ExtResource( 2 )]
+[node name="Tile17" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 10 )
 
-[node name="Tile25" parent="." instance=ExtResource( 2 )]
+[node name="Tile25" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 10 )
 
-[node name="Tile37" parent="." instance=ExtResource( 2 )]
+[node name="Tile37" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 10 )
 
-[node name="Tile43" parent="." instance=ExtResource( 2 )]
+[node name="Tile43" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
 
-[node name="Tile50" parent="." instance=ExtResource( 2 )]
+[node name="Tile50" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 10 )
 
-[node name="Tile58" parent="." instance=ExtResource( 2 )]
+[node name="Tile58" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 10 )
 
-[node name="Tile69" parent="." instance=ExtResource( 2 )]
+[node name="Tile69" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 10 )
+unit = NodePath("../../Unit2")
 
-[node name="Tile7" parent="." instance=ExtResource( 2 )]
+[node name="Tile7" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12 )
 
-[node name="Tile15" parent="." instance=ExtResource( 2 )]
+[node name="Tile15" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 12 )
 
-[node name="Tile22" parent="." instance=ExtResource( 2 )]
+[node name="Tile22" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 12 )
 
-[node name="Tile31" parent="." instance=ExtResource( 2 )]
+[node name="Tile31" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 12 )
 
-[node name="Tile34" parent="." instance=ExtResource( 2 )]
+[node name="Tile34" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 12 )
 
-[node name="Tile45" parent="." instance=ExtResource( 2 )]
+[node name="Tile45" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 12 )
 
-[node name="Tile52" parent="." instance=ExtResource( 2 )]
+[node name="Tile52" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 12 )
 
-[node name="Tile63" parent="." instance=ExtResource( 2 )]
+[node name="Tile63" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 12 )
 
-[node name="Tile65" parent="." instance=ExtResource( 2 )]
+[node name="Tile65" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 12 )
 
-[node name="Tile8" parent="." instance=ExtResource( 2 )]
+[node name="Tile8" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14 )
 
-[node name="Tile11" parent="." instance=ExtResource( 2 )]
+[node name="Tile11" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 14 )
 
-[node name="Tile24" parent="." instance=ExtResource( 2 )]
+[node name="Tile24" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 14 )
 
-[node name="Tile32" parent="." instance=ExtResource( 2 )]
+[node name="Tile32" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 14 )
 
-[node name="Tile40" parent="." instance=ExtResource( 2 )]
+[node name="Tile40" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 14 )
 
-[node name="Tile48" parent="." instance=ExtResource( 2 )]
+[node name="Tile48" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 14 )
 
-[node name="Tile54" parent="." instance=ExtResource( 2 )]
+[node name="Tile54" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 14 )
 
-[node name="Tile61" parent="." instance=ExtResource( 2 )]
+[node name="Tile61" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 14 )
 
-[node name="Tile72" parent="." instance=ExtResource( 2 )]
+[node name="Tile72" parent="Map" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 14 )
+unit = NodePath("../../Unit")
+
+[node name="Unit" parent="." instance=ExtResource( 3 )]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.985, 2, 13.961 )
+editor_created = true
+hit_points = 40.0
+unit_name = "Inimigo 2"
+attack = 5.0
+defense = 5.0
+magicAtk = 5.0
+magicDef = 5.0
+movement = 3
+hp = 40.0
+
+[node name="Unit2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.985, 2, 9.961 )
+editor_created = true
+hit_points = 50.0
+unit_name = "Inimigo"
+attack = 3.0
+defense = 3.0
+magicAtk = 2.0
+magicDef = 2.0
+movement = 5
+hp = 50.0
 

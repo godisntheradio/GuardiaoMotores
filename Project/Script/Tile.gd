@@ -5,6 +5,7 @@ export var terrain_type : int
 export var elevation : float
 export var blocked : bool
 export var starting_position : bool
+export var unit : NodePath
 
 var occupying_unit
 var hover : bool
@@ -23,6 +24,8 @@ func _ready():
 	highlighted = false
 	material_ref = get_node("MeshInstance").get_surface_material(0)
 	display  = get_tree().get_root().get_node("Main/Control/UnitStatsDisplay")
+	if(!unit.is_empty()):
+		occupying_unit = get_node(unit)
 	pass
 	
 func remove_unit(): #nao deve deletar a unidade da memoria
@@ -40,7 +43,7 @@ func _on_RigidBody_mouse_exited():
 	if(!is_tile_empty()):
 		hide_stats()
 func _on_RigidBody_mouse_entered():
-	print(name)
+#	print(name)
 	hover = true
 	start_blinking(hover_color)
 	if(!is_tile_empty()):

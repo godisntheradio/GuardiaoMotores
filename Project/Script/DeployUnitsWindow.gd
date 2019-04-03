@@ -45,12 +45,13 @@ func _input(event):
 			var tile = input.result.collider.get_parent()
 			if(tile is Tile && !tile.is_tile_empty()): #chega se a colisao foi com um tile e se tile possui uma unidade para tirar do campo
 				var i = PlayerData.find_unit_index(tile.occupying_unit)
-				reactivate(i)
-				var index = deployed_units.find(i)
-				deployed_units.remove(index)
-				positioned_count += -1
-				tile.occupying_unit.queue_free()
-				tile.remove_unit()
+				if (i != null):
+					reactivate(i)
+					var index = deployed_units.find(i)
+					deployed_units.remove(index)
+					positioned_count += -1
+					tile.occupying_unit.queue_free()
+					tile.remove_unit()
 	
 func position_unit(new_unit : Unit, tile : Tile):
 	if(tile.is_tile_empty()):

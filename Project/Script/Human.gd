@@ -40,7 +40,7 @@ func _input(event):
 								var world_path : PoolVector3Array
 								var tileSize = selected_tile.get_node("MeshInstance").mesh.size.x
 								for point in path:
-									world_path.append(battle_manager.map.get_tile(Vector2(point.x,point.y)).global_transform.origin)
+									world_path.append(battle_manager.map.get_tile(Vector2(point.x,point.y)).translation)
 								selected_tile.occupying_unit.move(tile, world_path)
 								selected_tile.remove_unit()
 								after_move()
@@ -48,8 +48,10 @@ func _input(event):
 			else: # selecionar unidade para selecionar ação
 				if(player_input.result.size() > 0):
 					var tile = player_input.result.collider.get_parent()
-					if(tile is Tile && !tile.is_tile_empty()):
-						on_selected(tile)
+					if(tile is Tile && !tile.is_tile_empty() ):
+						var i = PlayerData.find_unit_index(tile.occupying_unit)
+						if(i != null):
+							on_selected(tile)
 	
 func _process(delta):
 	pass
@@ -95,13 +97,17 @@ func on_move():
 	is_moving = true
 func after_move():
 	on_deselected()
+
 func is_attack_valid(tile) -> bool:
 	if(tile.is_tile_empty()):
 		return false
 	if(within_reach.has(tile)):
 		return true
+	if(PlayerData.find_unit_index(tile) == null):
+		return true
 	else:
 		return false
+
 func is_move_valid(tile) -> bool:
 	if(!tile.is_tile_empty()):
 		return false
