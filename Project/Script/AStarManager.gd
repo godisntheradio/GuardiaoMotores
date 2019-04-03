@@ -21,8 +21,10 @@ func _init(map : Map):
 
 func update_connections():
 	#Conecta todos os pontos com seus vizinhos
-	for pIdx in astar.get_points():
-		clear_connections(pIdx)
+	var points = astar.get_points()
+	for p in points:
+		clear_connections(p)
+	for pIdx in points:
 		var p = astar.get_point_position(pIdx)
 		var neighbours = PoolVector2Array([
 			Vector2(p.x + 1, p.y),
@@ -36,10 +38,12 @@ func update_connections():
 				continue
 			if !astar.has_point(get_point_id(n)):
 				continue
-			if map.get_tile(Vector2(n.x, n.y)).occupying_unit != null:
+			if map.get_tile(n).occupying_unit != null:
+				#print("P:"+str(p)+"  N:"+str(n))
 				continue
-				
 			astar.connect_points(get_point_id(Vector2(p.x, p.y)), get_point_id(n), false)
+		if p == Vector3(1, 0, 0):
+			print(get_connection_positions(Vector2(0, 0)))
 	
 func clear_connections(tileId : int):
 	var con = astar.get_point_connections(tileId)
@@ -68,6 +72,14 @@ func get_neighbour_positions(p : Vector2):
 		if !is_outside_bounds(n):
 			res.append(n)
 			
+	return res
+	
+func get_connection_positions(p : Vector2):
+	var cons = astar.get_point_connections(p.y * width + p.x)
+	var res = []
+	for c in cons:
+		var con_p = astar.get_point_position(c)
+		res.append(Vector2(con_p.x, con_p.y))
 	return res
 	
 #Retorna as posições dos tiles disponiveis para o movimento
