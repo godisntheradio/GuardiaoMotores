@@ -64,6 +64,7 @@ func on_selected(tile):
 	selected_tile = tile
 	selected_tile.select()
 	command_window.visible = true
+	command_window.move_in()
 	if(selected_tile.occupying_unit.has_attacked):
 		command_window.hide_attack()
 	if(selected_tile.occupying_unit.has_moved):

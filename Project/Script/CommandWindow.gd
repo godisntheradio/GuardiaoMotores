@@ -42,6 +42,4 @@ func hide_move():
 	get_node("ItemList/Move/AnimationPlayer").playback_speed = speed
 	get_node("ItemList/Move/AnimationPlayer").play("move_out")
 func _on_CommandWindow_visibility_changed():
-	if (visible == true):
-		move_in()
-	pass # Replace with function body.
+	move_in()

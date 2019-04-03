@@ -55,7 +55,7 @@ func _input(event):
 					tile.remove_unit()
 	
 func position_unit(new_unit : Unit, tile : Tile):
-	if(tile.is_tile_empty()):
+	if(tile.is_tile_empty() && !tile.blocked):
 		tile.occupying_unit = new_unit
 		positioned_count += 1
 		deployed_units.append(to_be_positioned_index)
