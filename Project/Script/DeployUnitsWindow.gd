@@ -10,7 +10,7 @@ var to_be_positioned_index
 
 var positioned_count = 0
 var deployed_units = []
-
+var instanced_units = []
 signal begin_battle
 
 func _ready():
@@ -45,18 +45,21 @@ func _input(event):
 			var tile = input.result.collider.get_parent()
 			if(tile is Tile && !tile.is_tile_empty()): #chega se a colisao foi com um tile e se tile possui uma unidade para tirar do campo
 				var i = PlayerData.find_unit_index(tile.occupying_unit)
-				reactivate(i)
-				var index = deployed_units.find(i)
-				deployed_units.remove(index)
-				positioned_count += -1
-				tile.occupying_unit.queue_free()
-				tile.remove_unit()
+				if (i != null):
+					reactivate(i)
+					var index = deployed_units.find(i)
+					deployed_units.remove(index)
+					instanced_units.remove(index)
+					positioned_count += -1
+					tile.occupying_unit.queue_free()
+					tile.remove_unit()
 	
 func position_unit(new_unit : Unit, tile : Tile):
-	if(tile.is_tile_empty()):
+	if(tile.is_tile_empty() && !tile.blocked):
 		tile.occupying_unit = new_unit
 		positioned_count += 1
 		deployed_units.append(to_be_positioned_index)
+		instanced_units.append(to_be_positioned)
 		deactivate()
 	pass
 func make_unit(stats):
@@ -79,6 +82,7 @@ func _on_ItemList_mouse_entered():
 #funções relacionadas ao clique do mouse
 func deselect():
 	to_be_positioned.queue_free()
+	
 	to_be_positioned_index = -1
 func select(index):
 	to_be_positioned_index = index
@@ -95,6 +99,6 @@ func reactivate(index):
 
 func _on_Begin_button_up():
 	if (positioned_count > 0):
-		emit_signal("begin_battle",deployed_units)
+		emit_signal("begin_battle",instanced_units)
 		queue_free()
 	pass # Replace with function body.

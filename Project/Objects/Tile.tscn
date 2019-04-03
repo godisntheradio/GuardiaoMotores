@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Script/Tile.gd" type="Script" id=1]
 [ext_resource path="res://Materials/Tile.tres" type="Material" id=2]
+[ext_resource path="res://Objects/TileEffectManager.gd" type="Script" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -17,6 +18,7 @@ can_attack_color = Color( 1, 0, 0, 1 )
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
 material/0 = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="RigidBody" type="RigidBody" parent="."]
 collision_layer = 2

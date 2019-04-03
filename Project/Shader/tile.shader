@@ -34,6 +34,7 @@ void fragment() {
 	float clamped_time = (sin ( TIME * blink_speed ) + 1.0) / 2.0;
 	vec4 blinking = blink_color * clamped_time * should_blink;
 	ALBEDO = albedo.rgb * albedo_tex.rgb + blinking.rgb + tint_color.rgb;
+	// --- modificação
 	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
 	METALLIC = metallic_tex * metallic;
 	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);

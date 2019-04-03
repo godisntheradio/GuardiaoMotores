@@ -5,14 +5,16 @@ export var terrain_type : int
 export var elevation : float
 export var blocked : bool
 export var starting_position : bool
+export var unit : NodePath
 
 var occupying_unit
 var hover : bool
 var selected : bool
 var highlighted : bool
-var material_ref
 
 var display
+var mesh_node
+
 export var hover_color : Color
 export var selected_color : Color
 export var within_reach_color : Color
@@ -21,44 +23,21 @@ func _ready():
 	hover = false
 	selected = false
 	highlighted = false
-	material_ref = get_node("MeshInstance").get_surface_material(0)
+	mesh_node = get_node("MeshInstance")
 	display  = get_tree().get_root().get_node("Main/Control/UnitStatsDisplay")
+	if(!unit.is_empty()):
+		occupying_unit = get_node(unit)
 	pass
 	
 func remove_unit(): #nao deve deletar a unidade da memoria
 	if (!is_tile_empty()):
 		occupying_unit = null
-		
-func _on_RigidBody_mouse_exited():
-	hover = false
-	if(!selected):
-		stop_blinking()
-	elif(!highlighted):
-		stop_highlight()
-	else:
-		start_blinking(selected_color)
-	if(!is_tile_empty()):
-		hide_stats()
-func _on_RigidBody_mouse_entered():
-	hover = true
-	start_blinking(hover_color)
-	if(!is_tile_empty()):
-		show_stats()
-		
 func is_tile_empty():
 	if(occupying_unit != null):
 		return false
 	else:
 		return true
 		
-func start_blinking(color):
-	material_ref.set_shader_param("blink_color",color)
-	material_ref.set_shader_param("should_blink",true)
-	pass
-func stop_blinking():
-	material_ref.set_shader_param("should_blink",false)
-	pass
-	
 func show_stats():
 	display.visible = true
 	display.set_unit_stats(occupying_unit)
@@ -66,23 +45,20 @@ func show_stats():
 func hide_stats():
 	display.visible = false
 	pass
-	
-func select():
-	selected = true
-	start_blinking(selected_color)
-func deselect():
-	stop_blinking()
-	selected = false
-	
-func highlight_movable():
-	highlighted = true
-	material_ref.set_shader_param("tint_color",within_reach_color)
-func highlight_attackable():
-	highlighted = true
-	material_ref.set_shader_param("tint_color",can_attack_color)
-func stop_highlight():
-	highlighted = false
-	material_ref.set_shader_param("tint_color",Color(0,0,0,1))
-	
+
 func get_cost():
 	return 1.0
+func select():
+	mesh_node.select()
+func deselect():
+	mesh_node.deselect()
+func _on_RigidBody_mouse_exited():
+	mesh_node.mouse_exited()
+func _on_RigidBody_mouse_entered():
+	mesh_node.mouse_entered()
+func highlight_movable():
+	mesh_node.highlight_movable()
+func highlight_attackable():
+	mesh_node.highlight_attackable()
+func stop_highlight():
+	mesh_node.stop_highlight()

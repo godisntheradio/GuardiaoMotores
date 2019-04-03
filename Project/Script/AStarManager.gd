@@ -41,6 +41,8 @@ func update_connections():
 			if map.get_tile(n).occupying_unit != null:
 				#print("P:"+str(p)+"  N:"+str(n))
 				continue
+			if map.get_tile(n).blocked:
+				continue
 			astar.connect_points(get_point_id(Vector2(p.x, p.y)), get_point_id(n), false)
 		if p == Vector3(1, 0, 0):
 			print(get_connection_positions(Vector2(0, 0)))
@@ -99,9 +101,10 @@ func get_available_movement(origin : Vector2, movement : int, include_units : bo
 func _available_movement_recurs(pos : Vector2, currentCost : float, maxCost : float, include_units : bool, consider_costs : bool, outIds : Array, addSelf : bool):
 	var tile = map.get_tile(pos)
 	
-	if !include_units && tile.occupying_unit != null:
+	if !include_units && !tile.is_tile_empty():
 		return
-			
+	if tile.blocked:
+		return
 	var cost = 1
 	if(consider_costs):
 		cost = tile.get_cost()

@@ -4,9 +4,9 @@ class_name Map
 # var a = 2
 # var b = "text"
 var TileClass = preload("res://Objects/Tile.tscn")
-export var mapTiles : Array = []
-export var width : int
-export var height : int
+export var mapTiles = []
+export var width : int # cresce para x+ 
+export var height : int # cresce para z+
 export var procedural : bool
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,10 +20,9 @@ func _ready():
 				mapTiles.append(instance)
 				instance.name = instance.name + str(x) + str(y)
 	else:# get tiles from pre
-		var l = sqrt(get_child_count())
-		for y in range(l):
-			for x in range(l):
-				pass
+		var tiles = get_children()
+		for t in tiles:
+			mapTiles.append(t)
 
 func world_to_map(p : Vector3):
 	p -= translation

@@ -53,3 +53,4 @@ func find_unit_index(to_find):
 	for i in available_units.size():
 		if(available_units[i].name == to_find.stats.name):
 			return i
+	return null
