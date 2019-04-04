@@ -1,17 +1,39 @@
 extends Player
 
+var has_turn : bool = false
+
+var tasks = []
+var curr_task = 0
+
 func _ready():
 	pass
 func begin_turn():
+	has_turn = true
 	assign_tasks()
-	battle_manager.on_end_player_turn()
+	
+func _process(delta):
+	if has_turn:
+		if curr_task >= tasks.size():
+			battle_manager.on_end_player_turn()
+			return
+		
+		if curr_task > 0:
+			if tasks[curr_task-1].unit.is_moving:
+				return
+		
+		execute_task(tasks[curr_task])
+		curr_task += 1
+		
 func end_turn():
+	tasks.clear()
+	curr_task = 0
 	reset_units()
 	pass
 func assign_tasks():
+	print(units.size())
 	for unit in units:
-		var task = choose_task(unit)
-		execute_task(task)
+		tasks.append(choose_task(unit))
+
 func choose_task(unit : Unit):
 	var tasks = []
 	var mov = battle_manager.get_available_movement(unit)
@@ -20,7 +42,7 @@ func choose_task(unit : Unit):
 		var atk = battle_manager.astarManager.get_available_movement(t, 1, true, false)
 		for a in atk:
 			var a_tile = battle_manager.map.get_tile(a)
-			if !a_tile.is_tile_empty() && !found_units.has(a_tile.occupying_unit):
+			if !a_tile.is_tile_empty() && a_tile.occupying_unit.player != self && !found_units.has(a_tile.occupying_unit):
 				found_units.append(a_tile.occupying_unit)
 	var rest = []
 	for e in battle_manager.get_enemy_units(self):
@@ -42,27 +64,52 @@ func choose_task(unit : Unit):
 	
 func execute_task(task : Task):
 	var move_tile = null
-	if in_range:
+	if task.in_range:
 		var neighbours = battle_manager.get_available_attack(task.target)
 		for n in neighbours:
-			
-	
-	var path = battle_manager.get_path_from_to(selected_tile, tile)
+			var n_tile = battle_manager.map.get_tile(n)
+			if move_tile == null:
+				move_tile = n_tile
+			else:
+				var mt_dist = move_tile.global_transform.origin.distance_to(task.unit.global_transform.origin)
+				var n_dist = n_tile.global_transform.origin.distance_to(task.unit.global_transform.origin)
+				if n_dist < mt_dist:
+					move_tile = n_tile
+	else:
+		var mov = battle_manager.get_available_movement(task.target)
+		for t in mov:
+			var tile = battle_manager.map.get_tile(t)
+			if move_tile == null:
+				move_tile = tile
+			else:
+				var mt_dist = move_tile.global_transform.origin.distance_to(task.target.global_transform.origin)
+				var tile_dist = tile.global_transform.origin.distance_to(task.target.global_transform.origin)
+				if tile_dist < mt_dist:
+					move_tile = tile
+				
+	if move_tile == null:
+		return
+		
+	var unit_tile = battle_manager.map.get_tile(battle_manager.map.world_to_map(task.unit.global_transform.origin))
+	var path = battle_manager.get_path_from_to(unit_tile, move_tile)
 	var world_path : PoolVector3Array
-	var tileSize = selected_tile.get_node("MeshInstance").mesh.size.x
+	var tileSize = unit_tile.get_node("MeshInstance").mesh.size.x
 	for point in path:
 		world_path.append(battle_manager.map.get_tile(Vector2(point.x,point.y)).translation)
-	selected_tile.occupying_unit.move(tile, world_path)
-	selected_tile.remove_unit()
-	after_move()
+	task.unit.move(move_tile, world_path)
+	unit_tile.remove_unit()
 	battle_manager.astarManager.update_connections()
+	
+	if(task.in_range):
+		var target_tile = battle_manager.map.get_tile(battle_manager.map.world_to_map(task.target.global_transform.origin))
+		task.unit.attack(target_tile)
 
 class Task:
-	var target : Unit
-	var score
-	var unit : Unit
-	var in_range : bool
-	var map : Map
+	var target : Unit = null
+	var score : int = 0
+	var unit : Unit = null
+	var in_range : bool = false
+	var map : Map = null
 	
 	func _init(unit, target, map):
 		self.target = target

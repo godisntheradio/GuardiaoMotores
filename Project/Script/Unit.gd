@@ -22,6 +22,7 @@ var is_moving : bool
 
 var has_attacked : bool = false
 var has_moved : bool = false
+var start_pos : Vector2
 
 var path : PoolVector3Array
 var current_destination : Vector3
@@ -36,6 +37,7 @@ func _ready():
 	if(editor_created):
 		create_from_editor_stats()
 		player = get_node(ai_path)
+		player.units.append(self)
 	current_index = 0
 func _process(delta):
 	if (is_moving):
@@ -51,6 +53,11 @@ func move(pos : Tile, points : PoolVector3Array):
 	update_destination()
 	is_moving = true
 	pos.occupying_unit = self
+func undo_move(world_pos : Vector3):
+	if has_moved:
+		has_moved = false
+		global_transform.origin = Vector3(world_pos.x, global_transform.origin.y, world_pos.z)
+
 func take_damage():
 	death()
 	pass

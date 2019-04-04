@@ -11,6 +11,9 @@ var within_reach = [] # tiles within reach
 var command_window
 var player_input
 var turn_window
+
+var last_moved : Unit = null
+
 func _ready():
 	turn = false
 	command_window.connect("deselected",self,"on_deselected")
@@ -49,7 +52,8 @@ func _input(event):
 					if(tile is Tile && !tile.is_tile_empty() ):
 						if(tile.occupying_unit.player == self):
 							on_selected(tile)
-	
+    	elif event is InputEventMouseButton && !event.pressed && event.button_index == BUTTON_RIGHT:
+        	undo_move()
 	
 func begin_turn():
 	turn_window.visible = true
@@ -59,7 +63,8 @@ func end_turn():
 	turn_window.visible = false
 	turn = false
 	reset_units()
-	pass
+	last_moved = null
+	
 func on_selected(tile):
 	if(selected_tile != null):
 		selected_tile.deselect()
@@ -120,7 +125,13 @@ func is_move_valid(tile) -> bool:
 	else:
 		return false
 
-
+func undo_move():
+	if last_moved != null:
+		var pos = battle_manager.map.world_to_map(last_moved.global_transform.origin)
+		battle_manager.map.get_tile(pos).remove_unit()
+		battle_manager.map.get_tile(last_moved.start_pos).occupying_unit = last_moved
+		last_moved.undo_move(battle_manager.map.get_tile(last_moved.start_pos).global_transform.origin)
+		battle_manager.astarManager.update_connections()
 
 
 

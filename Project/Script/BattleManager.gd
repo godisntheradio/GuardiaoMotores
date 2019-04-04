@@ -43,10 +43,10 @@ func on_end_player_turn():
 	player_list[turn_count % player_list.size()].begin_turn()
 	pass
 func get_available_movement(unit : Unit):
-	var mov = astarManager.get_available_movement(map.world_to_map(unit.transform.origin), unit.stats.movement)
+	var mov = astarManager.get_available_movement(map.world_to_map(unit.global_transform.origin), unit.stats.movement)
 	return mov.duplicate()
 func get_available_attack(unit : Unit):
-	var mov = astarManager.get_available_movement(map.world_to_map(unit.transform.origin), 1, true)
+	var mov = astarManager.get_available_movement(map.world_to_map(unit.global_transform.origin), 1, true)
 	return mov.duplicate()
 func get_path_from_to(from : Tile, to : Tile):
 	return astarManager.get_path(map.world_to_map(from.translation),map.world_to_map(to.translation))
