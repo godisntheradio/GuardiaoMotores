@@ -10,7 +10,7 @@ var within_reach = [] # tiles within reach
 
 var command_window
 var player_input
-
+var turn_window
 func _ready():
 	turn = false
 	command_window.connect("deselected",self,"on_deselected")
@@ -52,11 +52,13 @@ func _input(event):
 	
 	
 func begin_turn():
-	print("begin turn")
+	turn_window.visible = true
 	turn = true
 	pass
 func end_turn():
+	turn_window.visible = false
 	turn = false
+	reset_units()
 	pass
 func on_selected(tile):
 	if(selected_tile != null):
@@ -83,7 +85,7 @@ func on_deselected():
 		
 func on_attack():
 	within_reach.clear()
-	var within_reach_points = battle_manager.get_available_attack(selected_tile)
+	var within_reach_points = battle_manager.get_available_attack(selected_tile.occupying_unit)
 	for point in within_reach_points:
 		var tile : Tile = battle_manager.map.get_tile(Vector2(point.x, point.y))
 		tile.highlight_attackable()
@@ -92,7 +94,7 @@ func on_attack():
 	is_attacking = true
 func on_move():
 	within_reach.clear()	
-	var within_reach_points = battle_manager.get_available_movement(selected_tile)
+	var within_reach_points = battle_manager.get_available_movement(selected_tile.occupying_unit)
 	for point in within_reach_points:
 		var tile : Tile = battle_manager.map.get_tile(Vector2(point.x, point.y))
 		tile.highlight_movable()
