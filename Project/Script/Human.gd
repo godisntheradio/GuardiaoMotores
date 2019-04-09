@@ -2,11 +2,15 @@ extends Player
 class_name Human
 
 var turn : bool
-var selecting_target : bool
-var is_attacking : bool
-var is_moving : bool
 var selected_tile : Tile
 var within_reach = [] # tiles within reach
+
+var is_attacking : bool
+var is_moving : bool
+var tile_selected : bool
+var target_selected : bool
+var return_pressed : bool
+var action_finished : bool
 
 var command_window
 var player_input
@@ -16,43 +20,19 @@ var last_moved : Unit = null
 
 func _ready():
 	turn = false
-	command_window.connect("deselected",self,"on_deselected")
+	command_window.connect("return",self,"on_return")
 	command_window.connect("attack",self,"on_attack")
 	command_window.connect("move",self,"on_move")
+	
 	is_attacking = false
 	is_moving = false
-	
+	tile_selected = false
+	target_selected = false
+	return_pressed = false
+	action_finished = false
 func _input(event):
 	if turn:
-		if event is InputEventMouseButton && !event.pressed && event.button_index == BUTTON_LEFT:
-			if(selecting_target): # selecionar ação quando tiver unidade selecionada
-				if(player_input.result.size() > 0):
-					var tile = player_input.result.collider.get_parent()
-					if(tile is Tile):
-						if(is_attacking):
-							if(is_attack_valid(tile)):
-								selected_tile.occupying_unit.attack(tile)
-								after_move()
-							else:
-								print("cant attack tile" + tile.name)
-						elif(is_moving):
-							if(is_move_valid(tile)):
-								var path = battle_manager.get_path_from_to(selected_tile, tile)
-								var world_path : PoolVector3Array
-								var tileSize = selected_tile.get_node("MeshInstance").mesh.size.x
-								for point in path:
-									world_path.append(battle_manager.map.get_tile(Vector2(point.x,point.y)).translation)
-								selected_tile.occupying_unit.move(tile, world_path)
-								selected_tile.remove_unit()
-								after_move()
-								battle_manager.astarManager.update_connections()
-			else: # selecionar unidade para selecionar ação
-				if(player_input.result.size() > 0):
-					var tile = player_input.result.collider.get_parent()
-					if(tile is Tile && !tile.is_tile_empty() ):
-						if(tile.occupying_unit.player == self):
-							on_selected(tile)
-    	elif event is InputEventMouseButton && !event.pressed && event.button_index == BUTTON_RIGHT:
+		if event is InputEventMouseButton && !event.pressed && event.button_index == BUTTON_RIGHT:
         	undo_move()
 	
 func begin_turn():
@@ -65,29 +45,29 @@ func end_turn():
 	reset_units()
 	last_moved = null
 	
-func on_selected(tile):
+func select_unit(tile):
 	if(selected_tile != null):
 		selected_tile.deselect()
 	selected_tile = tile
-	selected_tile.select()
-	command_window.visible = true
+	selected_tile.select() # muda efeito visual do tile
+	command_window.visible = true #cuida da visibilidade da janela de comandos
 	command_window.move_in()
 	if(selected_tile.occupying_unit.has_attacked):
 		command_window.hide_attack()
 	if(selected_tile.occupying_unit.has_moved):
 		command_window.hide_move()
-func on_deselected():
-	selecting_target = false
-	is_attacking = false
-	is_moving = false
+func deselect_unit():
 	selected_tile.deselect()
 	selected_tile = null
+	command_window.visible = false
+func deselect_action():
+	is_attacking = false
+	is_moving = false
 	for tile in within_reach:
 		tile.stop_highlight()
 	within_reach = []
-	command_window.visible = false
-	
-		
+
+# eventos
 func on_attack():
 	within_reach.clear()
 	var within_reach_points = battle_manager.get_available_attack(selected_tile.occupying_unit)
@@ -95,20 +75,25 @@ func on_attack():
 		var tile : Tile = battle_manager.map.get_tile(Vector2(point.x, point.y))
 		tile.highlight_attackable()
 		within_reach.append(tile)
-	selecting_target = true
 	is_attacking = true
 func on_move():
-	within_reach.clear()	
+	within_reach.clear()
 	var within_reach_points = battle_manager.get_available_movement(selected_tile.occupying_unit)
 	for point in within_reach_points:
 		var tile : Tile = battle_manager.map.get_tile(Vector2(point.x, point.y))
 		tile.highlight_movable()
 		within_reach.append(tile)
-	selecting_target = true
 	is_moving = true
-func after_move():
-	on_deselected()
+func on_return():
+	return_pressed = true
+func on_unit_finished_action():
+	action_finished = true
+	
 
+func after_move():
+	deselect_unit()
+	deselect_action()
+	
 func is_attack_valid(tile) -> bool:
 	if(tile.is_tile_empty()):
 		return false

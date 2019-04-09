@@ -30,6 +30,16 @@ _global_script_classes=[ {
 "path": "res://Script/Player.gd"
 }, {
 "base": "Object",
+"class": "State",
+"language": "GDScript",
+"path": "res://Script/State.gd"
+}, {
+"base": "Object",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Script/StateMachine.gd"
+}, {
+"base": "Object",
 "class": "Stats",
 "language": "GDScript",
 "path": "res://Script/Stats.gd"
@@ -38,6 +48,11 @@ _global_script_classes=[ {
 "class": "Tile",
 "language": "GDScript",
 "path": "res://Script/Tile.gd"
+}, {
+"base": "Object",
+"class": "Transition",
+"language": "GDScript",
+"path": "res://Script/Transition.gd"
 }, {
 "base": "Spatial",
 "class": "Unit",
@@ -54,8 +69,11 @@ _global_script_class_icons={
 "Human": "",
 "Map": "",
 "Player": "",
+"State": "",
+"StateMachine": "",
 "Stats": "",
 "Tile": "",
+"Transition": "",
 "Unit": "",
 "UnitStatsDisplay": ""
 }

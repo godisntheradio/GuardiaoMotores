@@ -15,3 +15,5 @@ func remove_unit(unit):
 func reset_units():
 	for unit in units:
 		unit.reset()
+func on_unit_finished_action():
+	pass

@@ -31,8 +31,10 @@ func on_begin_battle(deployed_units):
 	human_player.units = deployed_units
 	for unit in human_player.units:
 		unit.player = human_player
+		unit.connect("action_finished", human_player, "on_unit_finished_action")
 	for unit in ai.units:
 		unit.player = ai
+		unit.connect("action_finished", ai, "on_unit_finished_action")
 	ai.battle_manager = self
 	astarManager.update_connections()
 	player_list[turn_count % player_list.size()].begin_turn()

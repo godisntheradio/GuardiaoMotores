@@ -25,7 +25,7 @@ func _on_MoveButton_button_up():
 
 func _on_ReturnButton_button_up():
 	move_in()
-	emit_signal("deselected")
+	emit_signal("return")
 	pass # Replace with function body.
 func move_out():
 	hide_attack()
