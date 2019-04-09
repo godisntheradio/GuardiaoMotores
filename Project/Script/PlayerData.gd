@@ -2,7 +2,7 @@ extends Spatial
 
 var available_units = []
 
-const FILE_PATH = "res://units"
+const FILE_PATH = "res://units.txt"
 
 func _ready():
 	
