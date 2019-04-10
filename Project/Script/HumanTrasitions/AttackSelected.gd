@@ -1,5 +1,7 @@
 extends Transition
-
+class_name AttackSelected
+func _init(fsm).(fsm):
+	pass
 func entry_action():
 	pass
 func exit_action():

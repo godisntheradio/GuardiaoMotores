@@ -1,5 +1,7 @@
 extends State
-
+class_name SelectingAction
+func _init(fsm).(fsm):
+	pass
 func action():
 	if fsm.input_event is InputEventMouseButton && !fsm.input_event.pressed && fsm.input_event.button_index == BUTTON_LEFT:
 		if(get_fsm_owner().player_input.result.size() > 0):
@@ -9,7 +11,6 @@ func action():
 					get_fsm_owner().select_unit(tile)
 func entry_action():
 	get_fsm_owner().deselect_action()
-	get_fsm_owner().action_selected = false
 func exit_action():
 	pass
 static func get_name():

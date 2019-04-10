@@ -1,5 +1,7 @@
 extends Transition
-
+class_name MoveSelected
+func _init(fsm).(fsm):
+	pass
 func entry_action():
 	pass
 func exit_action():

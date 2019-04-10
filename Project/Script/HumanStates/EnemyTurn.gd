@@ -1,5 +1,7 @@
 extends State
-
+class_name EnemyTurn
+func _init(fsm).(fsm):
+	pass
 func action():
 	pass
 func entry_action():

@@ -1,10 +1,12 @@
 extends State
-
+class_name ExecutingAction
+func _init(fsm).(fsm):
+	pass
 func action():
 	pass
 func entry_action():
 	pass
 func exit_action():
-	pass
+	get_fsm_owner().action_finished = false
 static func get_name():
-	pass
+	return "Executing Action"

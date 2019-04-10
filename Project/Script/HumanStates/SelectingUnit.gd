@@ -1,5 +1,7 @@
 extends State
-
+class_name SelectingUnit
+func _init(fsm).(fsm):
+	pass
 func action():
 	if fsm.input_event is InputEventMouseButton && !fsm.input_event.pressed && fsm.input_event.button_index == BUTTON_LEFT:
 		if(get_fsm_owner().player_input.result.size() > 0):

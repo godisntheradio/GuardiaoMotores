@@ -1,5 +1,5 @@
 extends Transition
-class_name UnitSelected
+class_name TurnBegun
 func _init(fsm).(fsm):
 	pass
 func entry_action():
@@ -7,4 +7,4 @@ func entry_action():
 func exit_action():
 	pass
 func is_triggered():
-	return get_fsm_owner().tile_selected
+	return get_fsm_owner().turn

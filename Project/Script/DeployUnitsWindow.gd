@@ -73,12 +73,15 @@ func _on_selected_from_list(index):
 		if(to_be_positioned != null):
 			deselect()
 		select(index)
+		item_list.release_focus()
 
 func _on_ItemList_mouse_exited():
-	input.allowed_to_cast = true
+	#input.allowed_to_cast = true
+	pass
 	
 func _on_ItemList_mouse_entered():
-	input.allowed_to_cast = false
+	#input.allowed_to_cast = false
+	pass
 #funções relacionadas ao clique do mouse
 func deselect():
 	to_be_positioned.queue_free()

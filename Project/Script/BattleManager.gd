@@ -12,26 +12,27 @@ var AStarManager = load("res://Script/AStarManager.gd")
 
 var human_player
 var astarManager
-var canControl : bool = false
 
 export var command_window : NodePath
 export var player_input : NodePath
 export var turn_window : NodePath
 func _ready():
-	human_player = HumanPlayerScene.instance()
+	pass
+func on_begin_battle(deployed_units):
 	prepare_player()
 	map = get_node("Level1").get_child(0)
 	astarManager = AStarManager.new(map)
-	add_child(human_player)
-func on_begin_battle(deployed_units):
-	player_list.append(human_player)
+	
 	var ai = get_child(0).get_node("AIPlayer")
+	
+	player_list.append(human_player)
 	player_list.append(ai)
-	canControl = true
 	human_player.units = deployed_units
+	human_player.initialize_state_machine()
 	for unit in human_player.units:
 		unit.player = human_player
 		unit.connect("action_finished", human_player, "on_unit_finished_action")
+		
 	for unit in ai.units:
 		unit.player = ai
 		unit.connect("action_finished", ai, "on_unit_finished_action")
@@ -54,10 +55,12 @@ func get_path_from_to(from : Tile, to : Tile):
 	return astarManager.get_path(map.world_to_map(from.translation),map.world_to_map(to.translation))
 	
 func prepare_player():
+	human_player = HumanPlayerScene.instance()
 	human_player.command_window = get_node(command_window)
 	human_player.player_input = get_node(player_input)
 	human_player.battle_manager = self
 	human_player.turn_window = get_node(turn_window)
+	add_child(human_player)
 
 func get_enemy_units(player : Player):
 	var res = []
