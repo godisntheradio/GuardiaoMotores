@@ -49,6 +49,7 @@ func attack(pos : Tile):
 #	pos.occupying_unit.hp += - stats.attack
 	has_attacked = true
 	pos.occupying_unit.death()
+	pos.occupying_unit = null
 	emit_signal("action_finished")
 func move(pos : Tile, points : PoolVector3Array):
 	has_moved = true
