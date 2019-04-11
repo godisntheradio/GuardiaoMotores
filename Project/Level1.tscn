@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Script/Map.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Tile.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Objects/AIPlayer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Props/Tree1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Props/Cabin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/MapBounds.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SpatialMaterial" id=1]
 resource_local_to_scene = true
@@ -1057,6 +1058,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.84574, 1.75811, 9.09949 )
 
 [node name="Cabin" parent="Details" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7563, 2.05205, 3.7607 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Details"]
+transform = Transform( 1, 0, 0, 0, -0.789111, 0.61425, 0, -0.61425, -0.789111, 11.5453, 8.4656, 0 )
+light_indirect_energy = 1.94
+shadow_enabled = true
+shadow_color = Color( 0, 0.254902, 0.0431373, 1 )
+
+[node name="MapBounds" parent="Details" instance=ExtResource( 7 )]
+transform = Transform( 0.373886, 0, 0.463225, 0, 1, 0, -0.373886, 0, 0.463225, 11.7887, 6.16211, 22.6736 )
 
 
 [editable path="Unit"]

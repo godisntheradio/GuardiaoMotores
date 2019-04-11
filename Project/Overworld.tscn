@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Overworld.gd" type="Script" id=1]
+[ext_resource path="res://Materials/normal.tres" type="Material" id=2]
+[ext_resource path="res://Objects/Stage.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/PlayerInput.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.027451, 0.156863, 0.337255, 1 )
+
+[node name="Overworld" type="Spatial"]
+script = ExtResource( 1 )
+battle_path = "res://Objects/Main.tscn"
+
+[node name="WorldMap" type="Spatial" parent="."]
+editor/display_folded = true
+
+[node name="MeshInstance" type="MeshInstance" parent="WorldMap"]
+transform = Transform( 32.7327, 0, 0, 0, 0.0835291, 0, 0, 0, 32.7327, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="Stage" parent="." instance=ExtResource( 3 )]
+editor/display_folded = true
+
+[node name="MeshInstance" parent="Stage" index="0"]
+material/0 = SubResource( 2 )
+
+[node name="Stage2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.113565, 0.481101, -9.74395 )
+
+[node name="Stage3" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.80039, 0.481101, -7.83092 )
+
+[node name="Stage4" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9985, 0.481099, 6.04386 )
+
+[node name="PlayerInput" parent="." instance=ExtResource( 4 )]
+
+
+[editable path="Stage"]
