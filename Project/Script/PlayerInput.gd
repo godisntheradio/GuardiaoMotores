@@ -1,4 +1,6 @@
 extends Spatial
+
+export var camera_path : NodePath
 var camera : Camera
 export var camera_speed : float
 var result
@@ -8,14 +10,14 @@ var origin : Vector3
 var allowed_to_cast : bool
 
 func _ready():
-	camera  = get_node("Camera")
+	camera  = get_node(camera_path)
 	allowed_to_cast = true
 	result = null
 	pass
 func _process(delta):
-	processCameraMovement(delta)
 	pass
 func _physics_process(delta):
+	processCameraMovement(delta)
 	updateRay()
 	pass
 func updateRay():
@@ -39,8 +41,9 @@ func processCameraMovement(delta):
 	if Input.is_action_pressed("move_camera_back"):
 		move.z = 1.0
 	if(move != Vector3.ZERO):
-		var cameraDir = camera.transform.basis.z.normalized()
+		var cameraDir = get_node("KinematicBody").transform.basis.z.normalized()
 		cameraDir.y = 0.0
-		var move_result = camera.transform.basis.x.normalized() * move.x + cameraDir * move.z
-		translate(move_result * delta * camera_speed)
-	
+		var move_result = get_node("KinematicBody").transform.basis.x.normalized() * move.x + cameraDir * move.z
+		var kinematic = get_node("KinematicBody") as KinematicBody
+		var motion = move_result * delta * camera_speed
+		kinematic.move_and_collide(motion)

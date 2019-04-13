@@ -2,8 +2,7 @@
 
 [ext_resource path="res://Script/CommandWindow.gd" type="Script" id=1]
 
-[sub_resource type="Animation" id=1]
-resource_name = "move_out"
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
 tracks/0/interp = 1
@@ -17,7 +16,7 @@ tracks/0/keys = {
 "values": [ Vector2( 7.62939e-006, 0.777778 ), Vector2( 243, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "move_out"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
@@ -37,54 +36,53 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 
-[node name="ItemList" type="ItemList" parent="."]
-margin_left = 827.0
-margin_top = 217.0
-margin_right = 1020.0
-margin_bottom = 317.0
+[node name="Panel" type="Panel" parent="."]
+margin_left = 790.0
+margin_top = 290.0
+margin_right = 990.0
+margin_bottom = 395.0
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ReturnButton" type="Button" parent="ItemList"]
-margin_top = 67.0
-margin_right = 193.0
-margin_bottom = 100.0
-custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
-text = "Return"
+[node name="Attack" type="Control" parent="Panel"]
+margin_left = 7.62939e-006
+margin_top = 0.777778
+margin_right = 200.0
+margin_bottom = 35.7778
 
-[node name="Attack" type="Control" parent="ItemList"]
-margin_left = -0.773796
-margin_top = 0.00397396
-margin_right = 39.2262
-margin_bottom = 40.004
-
-[node name="AttackButton" type="Button" parent="ItemList/Attack"]
-margin_top = 0.777771
-margin_right = 193.0
-margin_bottom = 33.7778
+[node name="AttackButton" type="Button" parent="Panel/Attack"]
+margin_right = 200.0
+margin_bottom = 35.0
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 text = "Attack"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ItemList/Attack"]
-anims/move_out = SubResource( 1 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/Attack"]
+anims/move_out = SubResource( 2 )
 
-[node name="Move" type="Control" parent="ItemList"]
-margin_left = -0.773796
-margin_top = 0.00397396
-margin_right = 39.2262
-margin_bottom = 40.004
+[node name="Move" type="Control" parent="Panel"]
+margin_left = 7.62939e-006
+margin_top = 0.777778
+margin_right = 200.0
+margin_bottom = 35.7778
 
-[node name="MoveButton" type="Button" parent="ItemList/Move"]
-margin_top = 34.0
-margin_right = 193.0
-margin_bottom = 67.0
+[node name="MoveButton" type="Button" parent="Panel/Move"]
+margin_top = 35.0
+margin_right = 200.0
+margin_bottom = 70.0
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 text = "Move"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ItemList/Move"]
-anims/move_out = SubResource( 2 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/Move"]
+anims/move_out = SubResource( 1 )
 
-[connection signal="button_up" from="ItemList/ReturnButton" to="." method="_on_ReturnButton_button_up"]
-[connection signal="button_up" from="ItemList/Attack/AttackButton" to="." method="_on_AttackButton_button_up"]
-[connection signal="button_up" from="ItemList/Move/MoveButton" to="." method="_on_MoveButton_button_up"]
+[node name="ReturnButton" type="Button" parent="Panel"]
+margin_top = 70.0
+margin_right = 200.0
+margin_bottom = 105.0
+custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
+text = "Return"
+
+[connection signal="button_up" from="Panel/Attack/AttackButton" to="." method="_on_AttackButton_button_up"]
+[connection signal="button_up" from="Panel/Move/MoveButton" to="." method="_on_MoveButton_button_up"]
+[connection signal="button_up" from="Panel/ReturnButton" to="." method="_on_ReturnButton_button_up"]

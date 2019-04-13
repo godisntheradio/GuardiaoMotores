@@ -9,40 +9,130 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Transition",
+"class": "ActionFinished",
+"language": "GDScript",
+"path": "res://Script/HumanTrasitions/ActionFinished.gd"
+}, {
+"base": "Transition",
+"class": "AttackSelected",
+"language": "GDScript",
+"path": "res://Script/HumanTrasitions/AttackSelected.gd"
+}, {
 "base": "Spatial",
 "class": "BattleManager",
 "language": "GDScript",
 "path": "res://Script/BattleManager.gd"
+}, {
+"base": "Transition",
+"class": "EndTurnPressed",
+"language": "GDScript",
+"path": "res://Script/HumanTrasitions/EndTurnPressed.gd"
+}, {
+"base": "State",
+"class": "EnemyTurn",
+"language": "GDScript",
+"path": "res://Script/HumanStates/EnemyTurn.gd"
+}, {
+"base": "State",
+"class": "ExecutingAction",
+"language": "GDScript",
+"path": "res://Script/HumanStates/ExecutingAction.gd"
 }, {
 "base": "Player",
 "class": "Human",
 "language": "GDScript",
 "path": "res://Script/Human.gd"
 }, {
+"base": "State",
+"class": "HumanTurn",
+"language": "GDScript",
+"path": "res://Script/HumanStates/HumanTurn.gd"
+}, {
 "base": "Spatial",
 "class": "Map",
 "language": "GDScript",
 "path": "res://Script/Map.gd"
+}, {
+"base": "Transition",
+"class": "MoveSelected",
+"language": "GDScript",
+"path": "res://Script/HumanTrasitions/MoveSelected.gd"
 }, {
 "base": "Spatial",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Script/Player.gd"
 }, {
+"base": "Transition",
+"class": "ReturnPressed",
+"language": "GDScript",
+"path": "res://Script/HumanTrasitions/ReturnPressed.gd"
+}, {
+"base": "State",
+"class": "SelectingAction",
+"language": "GDScript",
+"path": "res://Script/HumanStates/SelectingAction.gd"
+}, {
+"base": "State",
+"class": "SelectingAttackTarget",
+"language": "GDScript",
+"path": "res://Script/HumanStates/SelectingAttackTarget.gd"
+}, {
+"base": "State",
+"class": "SelectingMoveTarget",
+"language": "GDScript",
+"path": "res://Script/HumanStates/SelectingMoveTarget.gd"
+}, {
+"base": "State",
+"class": "SelectingUnit",
+"language": "GDScript",
+"path": "res://Script/HumanStates/SelectingUnit.gd"
+}, {
+"base": "Object",
+"class": "State",
+"language": "GDScript",
+"path": "res://Script/State.gd"
+}, {
+"base": "Object",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Script/StateMachine.gd"
+}, {
 "base": "Object",
 "class": "Stats",
 "language": "GDScript",
 "path": "res://Script/Stats.gd"
+}, {
+"base": "Transition",
+"class": "TargetSelected",
+"language": "GDScript",
+"path": "res://Script/HumanTrasitions/TargetSelected.gd"
 }, {
 "base": "Spatial",
 "class": "Tile",
 "language": "GDScript",
 "path": "res://Script/Tile.gd"
 }, {
+"base": "Object",
+"class": "Transition",
+"language": "GDScript",
+"path": "res://Script/Transition.gd"
+}, {
+"base": "Transition",
+"class": "TurnBegun",
+"language": "GDScript",
+"path": "res://Script/HumanTrasitions/TurnBegun.gd"
+}, {
 "base": "Spatial",
 "class": "Unit",
 "language": "GDScript",
 "path": "res://Script/Unit.gd"
+}, {
+"base": "Transition",
+"class": "UnitSelected",
+"language": "GDScript",
+"path": "res://Script/HumanTrasitions/UnitSelected.gd"
 }, {
 "base": "Control",
 "class": "UnitStatsDisplay",
@@ -50,20 +140,38 @@ _global_script_classes=[ {
 "path": "res://Script/UnitStatsDisplay.gd"
 } ]
 _global_script_class_icons={
+"ActionFinished": "",
+"AttackSelected": "",
 "BattleManager": "",
+"EndTurnPressed": "",
+"EnemyTurn": "",
+"ExecutingAction": "",
 "Human": "",
+"HumanTurn": "",
 "Map": "",
+"MoveSelected": "",
 "Player": "",
+"ReturnPressed": "",
+"SelectingAction": "",
+"SelectingAttackTarget": "",
+"SelectingMoveTarget": "",
+"SelectingUnit": "",
+"State": "",
+"StateMachine": "",
 "Stats": "",
+"TargetSelected": "",
 "Tile": "",
+"Transition": "",
+"TurnBegun": "",
 "Unit": "",
+"UnitSelected": "",
 "UnitStatsDisplay": ""
 }
 
 [application]
 
 config/name="Guardiao"
-run/main_scene="res://Objects/Main.tscn"
+run/main_scene="res://Overworld.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -100,6 +208,11 @@ left_click={
 right_click={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+restart={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":85,"unicode":0,"echo":false,"script":null)
  ]
 }
 

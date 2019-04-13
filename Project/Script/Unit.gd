@@ -32,6 +32,9 @@ var clock : float
 
 var player : Player
 
+
+signal action_finished
+
 func _ready():
 	stats = Stats.new()
 	if(editor_created):
@@ -46,6 +49,8 @@ func attack(pos : Tile):
 #	pos.occupying_unit.hp += - stats.attack
 	has_attacked = true
 	pos.occupying_unit.death()
+	pos.occupying_unit = null
+	emit_signal("action_finished")
 func move(pos : Tile, points : PoolVector3Array):
 	has_moved = true
 	path = points
@@ -80,6 +85,7 @@ func move_animation(delta):
 		else:
 			translation = path[current_index] + Vector3(0, 2.0, 0)
 			is_moving = false
+			emit_signal("action_finished")
 			current_index = 0
 func create_from_editor_stats():
 	stats.hit_points = hit_points 

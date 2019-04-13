@@ -1,6 +1,8 @@
 extends Spatial
 
 var available_units = []
+var to_load : String
+
 
 const FILE_PATH = "res://units.txt"
 
@@ -54,3 +56,6 @@ func find_unit_index(to_find):
 		if(available_units[i].name == to_find.stats.name):
 			return i
 	return null
+func _process(delta):
+	if (Input.is_action_pressed("restart")):
+		get_tree().reload_current_scene()

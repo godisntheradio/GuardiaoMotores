@@ -105,6 +105,8 @@ func execute_task(task : Task):
 		var tileSize = unit_tile.get_node("MeshInstance").mesh.size.x
 		for point in path:
 			world_path.append(battle_manager.map.get_tile(Vector2(point.x,point.y)).global_transform.origin)
+		if path.size() < 1:
+			return
 		task.unit.move(move_tile, world_path)
 		unit_tile.remove_unit()
 		battle_manager.astarManager.update_connections()
