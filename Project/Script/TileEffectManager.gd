@@ -6,6 +6,8 @@ var hover : bool
 var selected : bool
 var highlighted : bool
 
+export var color : Color
+
 func _ready():
 	hover = false
 	selected = false
