@@ -19,7 +19,6 @@ albedo_color = Color( 0, 0.788235, 1, 1 )
 [node name="Level1" type="Spatial"]
 
 [node name="Map" type="Spatial" parent="."]
-editor/display_folded = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true

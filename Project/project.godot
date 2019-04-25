@@ -180,7 +180,7 @@ PlayerData="*res://Objects/PlayerData.tscn"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "CreateTileTerrain" )
+enabled=PoolStringArray( "MultiLayer GridMap" )
 
 [input]
 
