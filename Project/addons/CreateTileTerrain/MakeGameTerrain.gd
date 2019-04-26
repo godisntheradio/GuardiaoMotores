@@ -17,14 +17,22 @@ func _ready():
 func _on_Button_button_up():
 #	planes.clear()
 	if(get_tree().get_edited_scene_root().name == "Scene Root"):
-		print("oi")
-		planes = get_tree().get_edited_scene_root().get_children().duplicate()
-		for block in planes:
-			print(block.name)
-#			var tile = Spatial.new()
-#			get_tree().get_edited_scene_root().add_child(tile)
-#			var copy = block.duplicate()
-#			tile.add_child(copy)
-#			tile.set_script(tile_s_res)
-			block.set_script(tile_fx_res)
-			block.color = Color(1,1,1)
+		for block in get_tree().get_edited_scene_root().get_children():
+			planes.append(block)
+		for plane in planes:
+			var tile = Spatial.new()
+			get_tree().get_edited_scene_root().add_child(tile)
+			tile.set_owner(get_tree().get_edited_scene_root())
+			
+			get_tree().get_edited_scene_root().remove_child(plane)
+			tile.add_child(plane)
+			plane.set_owner(tile)
+			
+			tile.set_script(tile_s_res)
+			plane.set_script(tile_fx_res)
+			plane.color = Color(1,1,1)
+
+func _on_Button2_button_up():
+	for block in planes:
+		print(block.name)
+	pass # Replace with function body.
