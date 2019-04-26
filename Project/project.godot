@@ -171,7 +171,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Guardiao"
-run/main_scene="res://Overworld.tscn"
+run/main_scene="res://Objects/Overworld.tscn"
 config/icon="res://icon.png"
 
 [autoload]

@@ -111,7 +111,6 @@ func on_move():
 func on_return():
 	return_pressed = true
 func on_unit_finished_action():
-	print("entrou aqui")
 	action_finished = true
 	
 
