@@ -5,8 +5,8 @@ var map : Map
 export var player_list = []
 var turn_count = 0
 
-var HumanPlayerScene = preload("res://Objects/HumanPlayer.tscn")
-var AIPlayerScene = preload("res://Objects/AIPlayer.tscn")
+var HumanPlayerScene = preload("res://Objects/PlayerHuman.tscn")
+var AIPlayerScene = preload("res://Objects/PlayerAI.tscn")
 var AStarManager = load("res://Script/AStarManager.gd")
 
 
@@ -14,16 +14,16 @@ var human_player
 var astarManager
 
 export var command_window : NodePath
-export var player_input : NodePath
 export var turn_window : NodePath
 func _ready():
-#	var level_resource = load(PlayerData.to_load)
-#	var level = level_resource.instance()
-#	add_child(level)
+	var level_resource = load(GameData.to_load)
+	var level = level_resource.instance()
+	add_child(level)
 	pass
 func on_begin_battle(deployed_units):
 	prepare_player()
-	map = get_node("Level1").get_child(0)
+	
+	map = get_child(0).get_node("Map")
 	astarManager = AStarManager.new(map)
 	
 	var ai = get_child(0).get_node("AIPlayer")
@@ -40,6 +40,7 @@ func on_begin_battle(deployed_units):
 		unit.player = ai
 		unit.connect("action_finished", ai, "on_unit_finished_action")
 	ai.battle_manager = self
+	ai.camera_manager = CameraManager
 	astarManager.update_connections()
 	player_list[turn_count % player_list.size()].begin_turn()
 	pass
@@ -60,7 +61,7 @@ func get_path_from_to(from : Tile, to : Tile):
 func prepare_player():
 	human_player = HumanPlayerScene.instance()
 	human_player.command_window = get_node(command_window)
-	human_player.player_input = get_node(player_input)
+	human_player.camera_manager = CameraManager
 	human_player.battle_manager = self
 	human_player.turn_window = get_node(turn_window)
 	add_child(human_player)

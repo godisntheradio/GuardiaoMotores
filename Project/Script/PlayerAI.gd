@@ -1,5 +1,4 @@
 extends Player
-
 var has_turn : bool = false
 
 var curr_task = null

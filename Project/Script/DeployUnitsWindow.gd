@@ -18,12 +18,12 @@ func _ready():
 	item_list.connect("item_selected",self,"_on_selected_from_list")
 	connect("begin_battle",get_tree().get_root().get_node("Main/BattleManager"),"on_begin_battle")
 	map = get_tree().get_root().get_node("Main/Map")
-	input = get_tree().get_root().get_node("Main/PlayerInput")
+	input = CameraManager
 	# load list
 	item_list.set_same_column_width(true)
 	item_list.set_max_text_lines(50)
 	item_list.set_auto_height(true)
-	for unit in PlayerData.available_units:
+	for unit in GameData.available_units:
 		item_list.add_item(unit.name + "   " )
 	
 func _process(delta):
@@ -44,7 +44,7 @@ func _input(event):
 		if(input.result.size() > 0 && to_be_positioned == null): #checa se o raycast colidiu com algo e se nao tem nada selecionado para posicionar
 			var tile = input.result.collider.get_parent()
 			if(tile is Tile && !tile.is_tile_empty()): #chega se a colisao foi com um tile e se tile possui uma unidade para tirar do campo
-				var i = PlayerData.find_unit_index(tile.occupying_unit)
+				var i = GameData.find_unit_index(tile.occupying_unit)
 				if (i != null):
 					reactivate(i)
 					var index = deployed_units.find(i)
@@ -89,7 +89,7 @@ func deselect():
 	to_be_positioned_index = -1
 func select(index):
 	to_be_positioned_index = index
-	to_be_positioned =  make_unit(PlayerData.available_units[index])
+	to_be_positioned =  make_unit(GameData.available_units[index])
 #funções relacionadas a lista
 func deactivate():
 	item_list.set_item_disabled(to_be_positioned_index, true)

@@ -6,7 +6,7 @@ export var camera_speed : float
 var result
 var dir : Vector3
 var origin : Vector3
-
+var cursor : Vector3
 var allowed_to_cast : bool
 
 func _ready():
@@ -18,6 +18,7 @@ func _process(delta):
 	pass
 func _physics_process(delta):
 	processCameraMovement(delta)
+	updateCamera(cursor)
 	updateRay()
 	pass
 func updateRay():
@@ -44,6 +45,11 @@ func processCameraMovement(delta):
 		var cameraDir = get_node("KinematicBody").transform.basis.z.normalized()
 		cameraDir.y = 0.0
 		var move_result = get_node("KinematicBody").transform.basis.x.normalized() * move.x + cameraDir * move.z
-		var kinematic = get_node("KinematicBody") as KinematicBody
 		var motion = move_result * delta * camera_speed
-		kinematic.move_and_collide(motion)
+		cursor = motion
+		#kinematic.move_and_collide(motion)
+func updateCamera(target : Vector3):
+	var kinematic = get_node("KinematicBody") as KinematicBody
+	if (!kinematic.test_move(kinematic.global_transform,target)):
+		translate(target)
+	cursor = Vector3.ZERO

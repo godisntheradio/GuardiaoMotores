@@ -4,8 +4,8 @@ func _init(fsm).(fsm):
 	pass
 func action():
 	if fsm.input_event is InputEventMouseButton && !fsm.input_event.pressed && fsm.input_event.button_index == BUTTON_LEFT:
-		if(get_fsm_owner().player_input.result.size() > 0):
-			var tile = get_fsm_owner().player_input.result.collider.get_parent()
+		if(get_fsm_owner().camera_manager.result.size() > 0):
+			var tile = get_fsm_owner().camera_manager.result.collider.get_parent()
 			if(tile is Tile):
 				if(get_fsm_owner().is_move_valid(tile)):
 					var path = get_fsm_owner().battle_manager.get_path_from_to(get_fsm_owner().selected_tile, tile)

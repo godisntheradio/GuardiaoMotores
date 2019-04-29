@@ -1,5 +1,5 @@
 extends Player
-class_name Human
+
 
 var turn : bool
 var selected_tile : Tile
@@ -14,7 +14,6 @@ var action_finished : bool
 var has_ended_turn : bool
 
 var command_window
-var player_input
 var turn_window
 
 var last_moved : Unit = null

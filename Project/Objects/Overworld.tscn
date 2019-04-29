@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Script/Overworld.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Stage.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Objects/PlayerInput.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Models/Terrain_test.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.027451, 0.156863, 0.337255, 1 )
@@ -12,16 +12,16 @@ script = ExtResource( 1 )
 battle_path = "res://Objects/Main.tscn"
 
 [node name="Stage" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63975, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.91131, 0.791651, -26.1371 )
 
 [node name="MeshInstance" parent="Stage" index="0"]
 material/0 = SubResource( 1 )
 
-[node name="PlayerInput" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.334, 0, 7.47568 )
-
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.787991, 0.615687, 0, -0.615687, 0.787991, 0, 4.97994, 0 )
+
+[node name="Scene Root" parent="." instance=ExtResource( 3 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -0.636919, 0 )
 
 
 [editable path="Stage"]

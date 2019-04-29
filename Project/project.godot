@@ -39,11 +39,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/HumanStates/ExecutingAction.gd"
 }, {
-"base": "Player",
-"class": "Human",
-"language": "GDScript",
-"path": "res://Script/Human.gd"
-}, {
 "base": "State",
 "class": "HumanTurn",
 "language": "GDScript",
@@ -92,12 +87,12 @@ _global_script_classes=[ {
 "base": "Object",
 "class": "State",
 "language": "GDScript",
-"path": "res://Script/State.gd"
+"path": "res://Script/StateMachine/State.gd"
 }, {
 "base": "Object",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://Script/StateMachine.gd"
+"path": "res://Script/StateMachine/StateMachine.gd"
 }, {
 "base": "Object",
 "class": "Stats",
@@ -117,7 +112,7 @@ _global_script_classes=[ {
 "base": "Object",
 "class": "Transition",
 "language": "GDScript",
-"path": "res://Script/Transition.gd"
+"path": "res://Script/StateMachine/Transition.gd"
 }, {
 "base": "Transition",
 "class": "TurnBegun",
@@ -146,7 +141,6 @@ _global_script_class_icons={
 "EndTurnPressed": "",
 "EnemyTurn": "",
 "ExecutingAction": "",
-"Human": "",
 "HumanTurn": "",
 "Map": "",
 "MoveSelected": "",
@@ -176,7 +170,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-PlayerData="*res://Objects/PlayerData.tscn"
+CameraManager="*res://Objects/CameraManager.tscn"
+GameData="*res://Objects/GameData.tscn"
 
 [input]
 

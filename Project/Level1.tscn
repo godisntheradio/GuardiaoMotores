@@ -3,7 +3,7 @@
 [ext_resource path="res://Script/Map.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Tile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/Unit.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Objects/AIPlayer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/PlayerAI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Props/Tree1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Props/Cabin.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/MapBounds.tscn" type="PackedScene" id=7]
@@ -1066,7 +1066,7 @@ shadow_enabled = true
 shadow_color = Color( 0, 0.254902, 0.0431373, 1 )
 
 [node name="MapBounds" parent="Details" instance=ExtResource( 7 )]
-transform = Transform( 0.373886, 0, 0.463225, 0, 1, 0, -0.373886, 0, 0.463225, 11.7887, 6.16211, 22.6736 )
+transform = Transform( 0.450365, 0, 0.450365, 0, 0.636912, 0, -0.450365, 0, 0.450365, 18.6799, 2.38335, 17.2962 )
 
 
 [editable path="Unit"]

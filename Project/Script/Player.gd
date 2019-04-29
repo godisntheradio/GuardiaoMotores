@@ -2,6 +2,7 @@ extends Spatial
 class_name Player
 var units = []
 var battle_manager
+var camera_manager
 
 func begin_turn():
 	pass
