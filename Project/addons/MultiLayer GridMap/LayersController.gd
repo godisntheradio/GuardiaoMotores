@@ -1,13 +1,7 @@
 tool
 extends Control
 
-class Layer:
-	var name : String = ""
-	var visible_in_game : bool = false
-	var use_meshlib : bool = false
-	var meshlib_path : String = ""
-	var use_as_properties : bool = false
-	var properties : Array = []
+var LayerFileIO = preload("res://addons/MultiLayer GridMap/LayerFileIO.gd").new()
 
 var layers : Array = []
 
@@ -21,7 +15,7 @@ var use_as_properties_check : CheckBox = null
 
 var previous_selected = -1
 
-var properties = null
+var properties : Control = null
 
 func _ready():
 	layer_list = get_node("LayerList")
@@ -36,6 +30,33 @@ func _ready():
 	properties = get_node("Properties")
 	
 	toggle_input_enabled(false)
+
+func load_from_file(path : String):
+	var file = File.new()
+	file.open(path, file.READ)
+	if !file.is_open():
+		printerr("Couldn't open file")
+		return
+	
+	clear_layers()
+	
+	var layer_count = file.get_32()
+	for l in range(layer_count):
+		add_layer(LayerFileIO.read_from_stream(file))
+
+func save_to_file(path : String):
+	var file = File.new()
+	file.open(path, file.WRITE)
+	if !file.is_open():
+		printerr("Couldn't open file")
+		return
+		
+	store_layer_data()
+	properties.store_previous_property_data()
+	
+	file.store_32(layers.size())
+	for l in layers:
+		LayerFileIO.write_to_stream(file, l)
 
 #Set dock settings to received layer
 func set_layer_dock(layer : Layer):
@@ -128,6 +149,12 @@ func remove_layer(idx : int):
 			
 func remove_selected_layer():
 	remove_layer(get_selected_layer_index())
+	
+func clear_layers():
+	previous_selected = -1
+	layers.clear()
+	layer_list.clear()
+	toggle_input_enabled(false)
 
 #Returns the index of currently selected layer or -1 if none
 func get_selected_layer_index() -> int:

@@ -1,12 +1,6 @@
 tool
 extends Control
 
-class Property:
-	var name : String = ""
-	var mesh_colour : Color = Color.white
-	var type : String = ""
-	var value = null
-
 var properties : Array
 
 var property_list : ItemList = null
