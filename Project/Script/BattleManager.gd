@@ -16,10 +16,10 @@ var astarManager
 export var command_window : NodePath
 export var turn_window : NodePath
 func _ready():
+	print("ready do battlemanager")
 	var level_resource = load(GameData.to_load)
 	var level = level_resource.instance()
 	add_child(level)
-	pass
 func on_begin_battle(deployed_units):
 	prepare_player()
 	
@@ -72,4 +72,3 @@ func get_enemy_units(player : Player):
 		if p != player:
 			res = p.units.duplicate()
 	return res
-

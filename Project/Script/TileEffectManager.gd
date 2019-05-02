@@ -18,8 +18,6 @@ func _ready():
 func mouse_entered():
 	hover = true
 	start_blinking(get_parent().hover_color)
-	if(!get_parent().is_tile_empty()):
-		get_parent().show_stats()
 func mouse_exited():
 	hover = false
 	if(!selected):
@@ -28,9 +26,7 @@ func mouse_exited():
 		stop_highlight()
 	else:
 		start_blinking(get_parent().selected_color)
-	if(!get_parent().is_tile_empty()):
-		get_parent().hide_stats()
-		
+	
 func start_blinking(color):
 	material_ref.set_shader_param("blink_color",color)
 	material_ref.set_shader_param("should_blink",true)

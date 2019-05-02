@@ -1,7 +1,7 @@
 tool
 extends ItemList
 
-const FILE_PATH = "res://units"
+const FILE_PATH = "res://units.txt"
 
 class UnitData:
 	var name : String

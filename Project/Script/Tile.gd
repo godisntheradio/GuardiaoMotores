@@ -54,8 +54,12 @@ func deselect():
 	mesh_node.deselect()
 func _on_RigidBody_mouse_exited():
 	mesh_node.mouse_exited()
+	if(!is_tile_empty()):
+		hide_stats()
 func _on_RigidBody_mouse_entered():
 	mesh_node.mouse_entered()
+	if(!is_tile_empty()):
+		show_stats()
 func highlight_movable():
 	mesh_node.highlight_movable()
 func highlight_attackable():

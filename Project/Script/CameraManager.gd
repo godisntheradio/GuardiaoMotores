@@ -27,7 +27,7 @@ func updateRay():
 		var space_state = get_world().direct_space_state
 		dir = camera.project_ray_normal(mouse)
 		origin = camera.project_ray_origin(mouse)
-		result = space_state.intersect_ray(origin, origin + dir * 250 )
+		result = space_state.intersect_ray(origin, origin + dir * 250)
 	else:
 		result.clear()
 	

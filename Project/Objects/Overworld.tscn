@@ -23,5 +23,30 @@ transform = Transform( 1, 0, 0, 0, 0.787991, 0.615687, 0, -0.615687, 0.787991, 0
 [node name="Scene Root" parent="." instance=ExtResource( 3 )]
 transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -0.636919, 0 )
 
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Button" type="Button" parent="Control"]
+margin_left = 9.3308
+margin_top = 538.854
+margin_right = 199.331
+margin_bottom = 586.854
+text = "Save Game"
+
+[node name="Button2" type="Button" parent="Control"]
+margin_left = 222.0
+margin_top = 539.0
+margin_right = 397.0
+margin_bottom = 589.0
+text = "ADD"
+
+[node name="TextEdit" type="TextEdit" parent="Control/Button2"]
+margin_left = 183.0
+margin_top = -2.0
+margin_right = 439.0
+margin_bottom = 44.0
+[connection signal="button_up" from="Control/Button" to="." method="_on_Button_button_up"]
+[connection signal="button_up" from="Control/Button2" to="." method="_on_Button2_button_up"]
 
 [editable path="Stage"]

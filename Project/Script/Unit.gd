@@ -1,38 +1,34 @@
 extends Spatial
 class_name Unit
 
+export var hp : float
 var stats : Stats
-#para criar unidades inimigas atraves do editor abilite editor creator e preencha os stats
+var modifiers_stack : Array = []
+#para criar unidades inimigas atraves do editor habilite editor_created e preecha to_search com o nome da unidade criada no editor de unidades
 export var editor_created : bool
 export var ai_path : NodePath
-export var hit_points : float
-export var unit_name : String
-export var attack : float
-export var defense : float
-export var magicAtk : float
-export var magicDef : float
-export var movement : int
+export var to_search : String
 
-export var movement_speed : float
 
-export var hp : float
-
-var is_attacking : bool
-var is_moving : bool
-
+#estado do turno, só pode atacar e se movimentar uma vez por turno
 var has_attacked : bool = false
 var has_moved : bool = false
-var start_pos : Vector2
 
+#animação do movimento
+var is_attacking : bool
+var is_moving : bool
+var start_pos : Vector2
 var path : PoolVector3Array
 var current_destination : Vector3
 var current_index : int
 var current_start : Vector3
 var clock : float
+#velocidade da animação de movimento
+export var movement_speed : float
 
 var player : Player
 
-
+var skills  : Array = []
 signal action_finished
 
 func _ready():
@@ -42,6 +38,7 @@ func _ready():
 		player = get_node(ai_path)
 		player.units.append(self)
 	current_index = 0
+	
 func _process(delta):
 	if (is_moving):
 		move_animation(delta)
@@ -88,13 +85,8 @@ func move_animation(delta):
 			emit_signal("action_finished")
 			current_index = 0
 func create_from_editor_stats():
-	stats.hit_points = hit_points 
-	stats.name = unit_name
-	stats.attack = attack
-	stats.defense = defense
-	stats.magicAtk = magicAtk
-	stats.magicDef = magicDef 
-	stats.movement = movement 
+	#procura pelo nome na lista de todas as unidades no GameData e carrega
+	pass 
 func reset():
 	has_attacked = false
 	has_moved = false

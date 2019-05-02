@@ -73,11 +73,14 @@ func select_unit(tile):
 	selected_tile = tile
 	selected_tile.select() # muda efeito visual do tile
 	command_window.visible = true #cuida da visibilidade da janela de comandos
-	command_window.move_in()
 	if(selected_tile.occupying_unit.has_attacked):
 		command_window.hide_attack()
+	else:
+		command_window.show_attack()
 	if(selected_tile.occupying_unit.has_moved):
 		command_window.hide_move()
+	else:
+		command_window.show_move()
 func deselect_unit():
 	if selected_tile != null:
 		selected_tile.deselect()

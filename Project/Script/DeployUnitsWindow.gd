@@ -17,14 +17,13 @@ func _ready():
 	item_list = get_node("Panel/ItemList")
 	item_list.connect("item_selected",self,"_on_selected_from_list")
 	connect("begin_battle",get_tree().get_root().get_node("Main/BattleManager"),"on_begin_battle")
-	map = get_tree().get_root().get_node("Main/Map")
 	input = CameraManager
 	# load list
 	item_list.set_same_column_width(true)
 	item_list.set_max_text_lines(50)
 	item_list.set_auto_height(true)
 	for unit in GameData.available_units:
-		item_list.add_item(unit.name + "   " )
+		item_list.add_item(unit)
 	
 func _process(delta):
 	if(to_be_positioned != null):
@@ -44,15 +43,18 @@ func _input(event):
 		if(input.result.size() > 0 && to_be_positioned == null): #checa se o raycast colidiu com algo e se nao tem nada selecionado para posicionar
 			var tile = input.result.collider.get_parent()
 			if(tile is Tile && !tile.is_tile_empty()): #chega se a colisao foi com um tile e se tile possui uma unidade para tirar do campo
-				var i = GameData.find_unit_index(tile.occupying_unit)
-				if (i != null):
-					reactivate(i)
-					var index = deployed_units.find(i)
-					deployed_units.remove(index)
-					instanced_units.remove(index)
+				var i = instanced_units.find(tile.occupying_unit)
+				print(i)
+				if (i != -1):
+					var item_list_i = deployed_units[i]
+					print(item_list_i)
+					reactivate(item_list_i)
+					deployed_units.remove(i)
+					instanced_units.remove(i)
 					positioned_count += -1
-					tile.occupying_unit.queue_free()
+					var a = tile.occupying_unit
 					tile.remove_unit()
+					a.call_deferred("free")
 	
 func position_unit(new_unit : Unit, tile : Tile):
 	if(tile.is_tile_empty() && !tile.blocked):
@@ -89,7 +91,7 @@ func deselect():
 	to_be_positioned_index = -1
 func select(index):
 	to_be_positioned_index = index
-	to_be_positioned =  make_unit(GameData.available_units[index])
+	to_be_positioned =  make_unit(GameData.find_unit(item_list.get_item_text(index)))
 #funções relacionadas a lista
 func deactivate():
 	item_list.set_item_disabled(to_be_positioned_index, true)
@@ -103,5 +105,5 @@ func reactivate(index):
 func _on_Begin_button_up():
 	if (positioned_count > 0):
 		emit_signal("begin_battle",instanced_units)
-		queue_free()
+		call_deferred("free")
 	pass # Replace with function body.
