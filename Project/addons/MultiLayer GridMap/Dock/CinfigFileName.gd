@@ -1,5 +1,5 @@
 tool
-extends LineEdit
+extends Control
 
 var save_button : Button = null
 var save_dialog : FileDialog = null
@@ -17,10 +17,12 @@ func _enter_tree():
 
 func _on_SaveButton_button_up():
 	save_dialog.show()
+	save_dialog.invalidate()
 	save_dialog.rect_global_position = rect_global_position
 
 func _on_LoadButton_button_up():
 	load_dialog.show()
+	load_dialog.invalidate()
 	load_dialog.rect_global_position = rect_global_position
 
 func _on_SaveDialog_file_selected(path):
