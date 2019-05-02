@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/MultiLayer GridMap/CustomNode/Multilayer_GridMap.gd" type="Script" id=1]
+[ext_resource path="res://addons/MultiLayer GridMap/CustomNode/icon.png" type="Texture" id=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="MultiLayer GridMap" type="Spatial" parent="."]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+layer_config = "res://Test.mlgmc"
+dict = {
+"A": false,
+"B": false,
+"C": false
+}
+

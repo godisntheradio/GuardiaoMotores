@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://addons/MultiLayer GridMap/Dock.gd" type="Script" id=1]
-[ext_resource path="res://addons/MultiLayer GridMap/CinfigFileName.gd" type="Script" id=2]
-[ext_resource path="res://addons/MultiLayer GridMap/LayersController.gd" type="Script" id=3]
-[ext_resource path="res://addons/MultiLayer GridMap/UseMeshLibCheck.gd" type="Script" id=4]
-[ext_resource path="res://addons/MultiLayer GridMap/FileDialogButton.gd" type="Script" id=5]
-[ext_resource path="res://addons/MultiLayer GridMap/PropertiesController.gd" type="Script" id=6]
-[ext_resource path="res://addons/MultiLayer GridMap/PropertyType.gd" type="Script" id=7]
-[ext_resource path="res://addons/MultiLayer GridMap/PropertyValue.gd" type="Script" id=8]
+[ext_resource path="res://addons/MultiLayer GridMap/Dock/Dock.gd" type="Script" id=1]
+[ext_resource path="res://addons/MultiLayer GridMap/Dock/CinfigFileName.gd" type="Script" id=2]
+[ext_resource path="res://addons/MultiLayer GridMap/Dock/LayersController.gd" type="Script" id=3]
+[ext_resource path="res://addons/MultiLayer GridMap/Dock/UseMeshLibCheck.gd" type="Script" id=4]
+[ext_resource path="res://addons/MultiLayer GridMap/Dock/FileDialogButton.gd" type="Script" id=5]
+[ext_resource path="res://addons/MultiLayer GridMap/Dock/PropertiesController.gd" type="Script" id=6]
+[ext_resource path="res://addons/MultiLayer GridMap/Dock/PropertyType.gd" type="Script" id=7]
+[ext_resource path="res://addons/MultiLayer GridMap/Dock/PropertyValue.gd" type="Script" id=8]
 
 [node name="Dock" type="Control"]
 anchor_left = 1.0
@@ -17,42 +17,40 @@ margin_left = -1024.0
 margin_right = -789.0
 script = ExtResource( 1 )
 
-[node name="ConfigFileName" type="LineEdit" parent="."]
+[node name="ConfigSaveLoad" type="Control" parent="."]
 anchor_right = 1.0
 margin_left = 9.0
 margin_top = 10.0
 margin_right = -16.0
 margin_bottom = 34.0
-editable = false
 script = ExtResource( 2 )
 
-[node name="SaveButton" type="Button" parent="ConfigFileName"]
+[node name="SaveButton" type="Button" parent="ConfigSaveLoad"]
 margin_left = 1.97512
-margin_top = 30.0
 margin_right = 42.9751
-margin_bottom = 50.0
+margin_bottom = 20.0
 text = "Save"
 
-[node name="SaveDialog" type="FileDialog" parent="ConfigFileName/SaveButton"]
+[node name="SaveDialog" type="FileDialog" parent="ConfigSaveLoad/SaveButton"]
 visible = true
-margin_left = 328.0
-margin_top = -4.0
-margin_right = 847.0
-margin_bottom = 321.0
+margin_left = 872.0
+margin_right = 1356.0
+margin_bottom = 379.0
 resizable = true
 access = 2
 filters = PoolStringArray( "*.mlgmc" )
-current_dir = "C:/Users/willn/Desktop/Lixo/Godot/Projects/Guardiao/Project"
-current_path = "C:/Users/willn/Desktop/Lixo/Godot/Projects/Guardiao/Project/"
+current_dir = "C:/temp/godot/Projects/Guardiao/Project"
+current_path = "C:/temp/godot/Projects/Guardiao/Project/"
 
-[node name="LoadButton" type="Button" parent="ConfigFileName"]
-margin_left = 167.1
-margin_top = 30.0
-margin_right = 209.1
-margin_bottom = 50.0
+[node name="LoadButton" type="Button" parent="ConfigSaveLoad"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -42.9
+margin_right = -0.899994
+margin_bottom = 20.0
 text = "Load"
 
-[node name="LoadDialog" type="FileDialog" parent="ConfigFileName/LoadButton"]
+[node name="LoadDialog" type="FileDialog" parent="ConfigSaveLoad/LoadButton"]
 visible = true
 margin_left = 707.0
 margin_top = 11.0
@@ -63,16 +61,15 @@ resizable = true
 mode = 0
 access = 2
 filters = PoolStringArray( "*.mlgmc" )
-show_hidden_files = true
-current_dir = "C:/Users/willn/Desktop/Lixo/Godot/Projects/Guardiao/Project"
-current_path = "C:/Users/willn/Desktop/Lixo/Godot/Projects/Guardiao/Project/"
+current_dir = "C:/temp/godot/Projects/Guardiao/Project"
+current_path = "C:/temp/godot/Projects/Guardiao/Project/"
 
 [node name="Layers" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 80.0
+margin_top = 50.0
 margin_right = -235.0
-margin_bottom = 80.0
+margin_bottom = 50.0
 rect_pivot_offset = Vector2( 1.44678, 295.678 )
 script = ExtResource( 3 )
 
@@ -213,7 +210,6 @@ margin_bottom = 14.0
 text = "Use As Properties: "
 
 [node name="Properties" type="Control" parent="Layers"]
-visible = false
 anchor_right = 1.0
 margin_top = 350.0
 margin_right = 40.0
@@ -323,14 +319,14 @@ margin_left = 10.0
 margin_top = 644.0
 margin_right = 180.0
 margin_bottom = 750.0
-items = [ "Bool", null, 2, true, false, -1, 0, null, "", false, "Int", null, 2, false, false, -1, 0, null, "", false, "Float", null, 2, false, false, -1, 0, null, "", false, "String", null, 2, false, false, -1, 0, null, "", false, "Colour", null, 2, false, false, -1, 0, null, "", false, "Vector2", null, 2, false, false, -1, 0, null, "", false, "Vector3", null, 2, false, false, -1, 0, null, "", false ]
+items = [ "Bool", null, 2, true, false, -1, 0, null, "", false, "Int", null, 2, false, false, -1, 0, null, "", false, "Float", null, 2, false, false, -1, 0, null, "", false, "String", null, 2, false, false, -1, 0, null, "", false, "Colour", null, 2, false, false, -1, 0, null, "", false, "Vector2", null, 2, false, false, 5, 0, null, "", false, "Vector3", null, 2, false, false, 6, 0, null, "", false ]
 
-[connection signal="load_path_selected" from="ConfigFileName" to="Layers" method="load_from_file"]
-[connection signal="save_path_selected" from="ConfigFileName" to="Layers" method="save_to_file"]
-[connection signal="button_up" from="ConfigFileName/SaveButton" to="ConfigFileName" method="_on_SaveButton_button_up"]
-[connection signal="file_selected" from="ConfigFileName/SaveButton/SaveDialog" to="ConfigFileName" method="_on_SaveDialog_file_selected"]
-[connection signal="button_up" from="ConfigFileName/LoadButton" to="ConfigFileName" method="_on_LoadButton_button_up"]
-[connection signal="file_selected" from="ConfigFileName/LoadButton/LoadDialog" to="ConfigFileName" method="_on_LoadDialog_file_selected"]
+[connection signal="load_path_selected" from="ConfigSaveLoad" to="Layers" method="load_from_file"]
+[connection signal="save_path_selected" from="ConfigSaveLoad" to="Layers" method="save_to_file"]
+[connection signal="button_up" from="ConfigSaveLoad/SaveButton" to="ConfigSaveLoad" method="_on_SaveButton_button_up"]
+[connection signal="file_selected" from="ConfigSaveLoad/SaveButton/SaveDialog" to="ConfigSaveLoad" method="_on_SaveDialog_file_selected"]
+[connection signal="button_up" from="ConfigSaveLoad/LoadButton" to="ConfigSaveLoad" method="_on_LoadButton_button_up"]
+[connection signal="file_selected" from="ConfigSaveLoad/LoadButton/LoadDialog" to="ConfigSaveLoad" method="_on_LoadDialog_file_selected"]
 [connection signal="button_up" from="Layers/AddLayerButton" to="Layers" method="new_layer"]
 [connection signal="button_up" from="Layers/RemoveLayerButton" to="Layers" method="remove_selected_layer"]
 [connection signal="item_selected" from="Layers/LayerList" to="Layers" method="_on_LayerList_item_selected"]
