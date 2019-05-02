@@ -46,6 +46,7 @@ margin_left = 183.0
 margin_top = -2.0
 margin_right = 439.0
 margin_bottom = 44.0
+
 [connection signal="button_up" from="Control/Button" to="." method="_on_Button_button_up"]
 [connection signal="button_up" from="Control/Button2" to="." method="_on_Button2_button_up"]
 

@@ -140,6 +140,7 @@ margin_top = 610.0
 margin_right = 160.0
 margin_bottom = 640.0
 text = "Save"
+
 [connection signal="button_up" from="AddUnit" to="UnitList" method="_on_AddUnit_button_up"]
 [connection signal="button_up" from="RemoveUnit" to="UnitList" method="_on_RemoveUnit_button_up"]
 [connection signal="button_up" from="SaveButton" to="UnitList" method="_on_SaveButton_button_up"]

@@ -18,4 +18,9 @@ func get_available_targets(battle_manager, origin) -> Array:
 		within_reach.append(tile)
 	return within_reach
 func get_aoe_tiles(battle_manager, origin) -> Array:
-	return []
+	var aoe = []
+	aoe.append(origin)
+	if (aoe == 1):
+		return aoe
+	
+	return aoe

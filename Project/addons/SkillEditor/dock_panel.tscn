@@ -1,0 +1,138 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://addons/SkillEditor/skill_list.gd" type="Script" id=1]
+[ext_resource path="res://addons/Dock/info_input.gd" type="Script" id=2]
+[ext_resource path="res://addons/SkillEditor/skill_type_selector.gd" type="Script" id=3]
+[ext_resource path="res://addons/SkillEditor/float_LineEdit.gd" type="Script" id=4]
+[ext_resource path="res://addons/SkillEditor/int_LineEdit.gd" type="Script" id=5]
+[ext_resource path="res://addons/Dock/number_only.gd" type="Script" id=6]
+
+[node name="EditSkill" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AddSkill" type="Button" parent="."]
+margin_left = 131.883
+margin_top = 0.300194
+margin_right = 151.883
+margin_bottom = 20.3002
+text = "+"
+
+[node name="RemoveSkill" type="Button" parent="."]
+margin_left = 153.774
+margin_right = 173.774
+margin_bottom = 20.0
+text = "-"
+
+[node name="SkillList" type="ItemList" parent="."]
+margin_top = 20.0
+margin_right = 175.0
+margin_bottom = 120.0
+script = ExtResource( 1 )
+
+[node name="HSeparator" type="HSeparator" parent="."]
+margin_left = 4.0
+margin_top = 140.0
+margin_right = 164.0
+margin_bottom = 144.0
+rect_scale = Vector2( 1, 2.36 )
+
+[node name="Name" type="Label" parent="."]
+margin_top = 150.0
+margin_right = 107.0
+margin_bottom = 164.0
+text = "Name: "
+
+[node name="LineEdit" type="LineEdit" parent="Name"]
+margin_left = 4.0
+margin_top = 23.0
+margin_right = 161.0
+margin_bottom = 47.0
+script = ExtResource( 2 )
+
+[node name="TypeButton" type="Button" parent="."]
+margin_top = 230.0
+margin_right = 161.0
+margin_bottom = 250.0
+script = ExtResource( 3 )
+menu_path = NodePath("../PopupMenu")
+
+[node name="Type" type="Label" parent="TypeButton"]
+margin_top = -20.0
+margin_right = 40.0
+margin_bottom = -6.0
+text = "Type:"
+
+[node name="Effect" type="Label" parent="."]
+margin_top = 270.0
+margin_right = 44.0
+margin_bottom = 284.0
+text = "Effect:"
+
+[node name="LineEdit2" type="LineEdit" parent="Effect"]
+margin_left = 4.0
+margin_top = 25.0
+margin_right = 91.0
+margin_bottom = 49.0
+max_length = 5
+script = ExtResource( 4 )
+
+[node name="Reach" type="Label" parent="."]
+margin_top = 330.0
+margin_right = 44.0
+margin_bottom = 344.0
+text = "Reach:"
+
+[node name="LineEdit2" type="LineEdit" parent="Reach"]
+margin_left = 4.0
+margin_top = 25.0
+margin_right = 91.0
+margin_bottom = 49.0
+max_length = 5
+script = ExtResource( 5 )
+
+[node name="Area of Effect" type="Label" parent="."]
+margin_top = 390.0
+margin_right = 44.0
+margin_bottom = 404.0
+text = "Area of Effect:"
+
+[node name="LineEdit2" type="LineEdit" parent="Area of Effect"]
+margin_left = 4.0
+margin_top = 25.0
+margin_right = 91.0
+margin_bottom = 49.0
+max_length = 5
+script = ExtResource( 5 )
+
+[node name="Animation" type="Label" parent="."]
+margin_top = 450.0
+margin_right = 98.0
+margin_bottom = 464.0
+text = "Animation:"
+
+[node name="LineEdit2" type="LineEdit" parent="Animation"]
+margin_left = 4.0
+margin_top = 25.0
+margin_right = 91.0
+margin_bottom = 49.0
+max_length = 5
+script = ExtResource( 6 )
+
+[node name="SaveButton" type="Button" parent="."]
+margin_left = 110.0
+margin_top = 610.0
+margin_right = 160.0
+margin_bottom = 640.0
+text = "Save"
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+margin_left = 2.20663
+margin_top = 230.223
+margin_right = 166.207
+margin_bottom = 282.223
+items = [ "Attack", null, 2, false, false, -1, 0, null, "", false, "Heal", null, 2, false, false, -1, 0, null, "", false ]
+
+[connection signal="button_up" from="AddSkill" to="SkillList" method="_on_AddUnit_button_up"]
+[connection signal="button_up" from="RemoveSkill" to="SkillList" method="_on_RemoveUnit_button_up"]
+[connection signal="button_up" from="SaveButton" to="SkillList" method="_on_SaveButton_button_up"]

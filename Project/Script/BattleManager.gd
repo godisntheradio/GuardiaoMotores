@@ -17,7 +17,7 @@ export var command_window : NodePath
 export var turn_window : NodePath
 func _ready():
 	print("ready do battlemanager")
-	var level_resource = load(GameData.to_load)
+	var level_resource = load(.to_load)
 	var level = level_resource.instance()
 	add_child(level)
 func on_begin_battle(deployed_units):
@@ -52,8 +52,8 @@ func on_end_player_turn():
 func get_available_movement(unit : Unit):
 	var mov = astarManager.get_available_movement(map.world_to_map(unit.global_transform.origin), unit.stats.movement)
 	return mov.duplicate()
-func get_available_attack(unit : Unit):
-	var mov = astarManager.get_available_movement(map.world_to_map(unit.global_transform.origin), 1, true)
+func get_available_attack(unit : Unit, skill_range : int = 1):
+	var mov = astarManager.get_available_movement(map.world_to_map(unit.global_transform.origin), skill_range, true)
 	return mov.duplicate()
 func get_path_from_to(from : Tile, to : Tile):
 	return astarManager.get_path(map.world_to_map(from.translation),map.world_to_map(to.translation))
