@@ -94,11 +94,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/Skill.gd"
 }, {
-"base": "Reference",
-"class": "SkillType",
-"language": "GDScript",
-"path": "res://Script/SkillType.gd"
-}, {
 "base": "Object",
 "class": "State",
 "language": "GDScript",
@@ -167,7 +162,6 @@ _global_script_class_icons={
 "SelectingMoveTarget": "",
 "SelectingUnit": "",
 "Skill": "",
-"SkillType": "",
 "State": "",
 "StateMachine": "",
 "Stats": "",

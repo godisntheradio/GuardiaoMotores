@@ -1,7 +1,7 @@
 extends Object
 class_name Skill
-
-var type : SkillType
+var name : String
+var type : int
 var effect : float = 1.0
 var reach : int
 var aoe : int
@@ -24,3 +24,5 @@ func get_aoe_tiles(battle_manager, origin) -> Array:
 		return aoe
 	
 	return aoe
+static func make_from_data(data):
+	pass

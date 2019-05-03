@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://addons/SkillEditor/skill_list.gd" type="Script" id=1]
-[ext_resource path="res://addons/Dock/info_input.gd" type="Script" id=2]
-[ext_resource path="res://addons/SkillEditor/skill_type_selector.gd" type="Script" id=3]
-[ext_resource path="res://addons/SkillEditor/float_LineEdit.gd" type="Script" id=4]
-[ext_resource path="res://addons/SkillEditor/int_LineEdit.gd" type="Script" id=5]
-[ext_resource path="res://addons/Dock/number_only.gd" type="Script" id=6]
+[ext_resource path="res://addons/SkillEditor/Editor_SkillList.gd" type="Script" id=1]
+[ext_resource path="res://addons/SkillEditor/Editor_stringInput.gd" type="Script" id=2]
+[ext_resource path="res://addons/SkillEditor/Editor_SkillTypeSelector.gd" type="Script" id=3]
+[ext_resource path="res://addons/SkillEditor/Editor_floatInput.gd" type="Script" id=4]
+[ext_resource path="res://addons/SkillEditor/Editor_intInput.gd" type="Script" id=5]
+[ext_resource path="res://addons/SkillEditor/Editor_pathInput.gd" type="Script" id=6]
 
 [node name="EditSkill" type="Control"]
 anchor_right = 1.0
@@ -29,6 +29,12 @@ margin_top = 20.0
 margin_right = 175.0
 margin_bottom = 120.0
 script = ExtResource( 1 )
+name_path = NodePath("../Name/LineEdit")
+type_path = NodePath("../TypeButton")
+effect_path = NodePath("../Effect/LineEdit2")
+reach_path = NodePath("../Reach/LineEdit2")
+aoe_path = NodePath("../Aoe/LineEdit2")
+anim_path = NodePath("../Anim")
 
 [node name="HSeparator" type="HSeparator" parent="."]
 margin_left = 4.0
@@ -54,8 +60,8 @@ script = ExtResource( 2 )
 margin_top = 230.0
 margin_right = 161.0
 margin_bottom = 250.0
+text = "<choose type>"
 script = ExtResource( 3 )
-menu_path = NodePath("../PopupMenu")
 
 [node name="Type" type="Label" parent="TypeButton"]
 margin_top = -20.0
@@ -72,7 +78,7 @@ text = "Effect:"
 [node name="LineEdit2" type="LineEdit" parent="Effect"]
 margin_left = 4.0
 margin_top = 25.0
-margin_right = 91.0
+margin_right = 160.0
 margin_bottom = 49.0
 max_length = 5
 script = ExtResource( 4 )
@@ -86,38 +92,45 @@ text = "Reach:"
 [node name="LineEdit2" type="LineEdit" parent="Reach"]
 margin_left = 4.0
 margin_top = 25.0
-margin_right = 91.0
+margin_right = 160.0
 margin_bottom = 49.0
 max_length = 5
 script = ExtResource( 5 )
 
-[node name="Area of Effect" type="Label" parent="."]
+[node name="Aoe" type="Label" parent="."]
 margin_top = 390.0
 margin_right = 44.0
 margin_bottom = 404.0
 text = "Area of Effect:"
 
-[node name="LineEdit2" type="LineEdit" parent="Area of Effect"]
+[node name="LineEdit2" type="LineEdit" parent="Aoe"]
 margin_left = 4.0
 margin_top = 25.0
-margin_right = 91.0
+margin_right = 160.0
 margin_bottom = 49.0
 max_length = 5
 script = ExtResource( 5 )
 
-[node name="Animation" type="Label" parent="."]
-margin_top = 450.0
-margin_right = 98.0
-margin_bottom = 464.0
-text = "Animation:"
-
-[node name="LineEdit2" type="LineEdit" parent="Animation"]
-margin_left = 4.0
-margin_top = 25.0
-margin_right = 91.0
-margin_bottom = 49.0
-max_length = 5
+[node name="Anim" type="Button" parent="."]
+margin_top = 470.0
+margin_right = 160.0
+margin_bottom = 490.0
+text = ".../<find path>"
 script = ExtResource( 6 )
+
+[node name="AnimPath" type="FileDialog" parent="Anim"]
+margin_left = 101.65
+margin_top = -198.55
+margin_right = 501.65
+margin_bottom = 113.45
+window_title = "Open a File"
+mode = 0
+
+[node name="Label" type="Label" parent="Anim"]
+margin_top = -18.0
+margin_right = 90.0
+margin_bottom = -4.0
+text = "Animation:"
 
 [node name="SaveButton" type="Button" parent="."]
 margin_left = 110.0
@@ -127,12 +140,13 @@ margin_bottom = 640.0
 text = "Save"
 
 [node name="PopupMenu" type="PopupMenu" parent="."]
-margin_left = 2.20663
-margin_top = 230.223
-margin_right = 166.207
-margin_bottom = 282.223
+margin_left = 3.49899
+margin_top = 254.778
+margin_right = 167.499
+margin_bottom = 306.778
 items = [ "Attack", null, 2, false, false, -1, 0, null, "", false, "Heal", null, 2, false, false, -1, 0, null, "", false ]
-
-[connection signal="button_up" from="AddSkill" to="SkillList" method="_on_AddUnit_button_up"]
-[connection signal="button_up" from="RemoveSkill" to="SkillList" method="_on_RemoveUnit_button_up"]
+[connection signal="button_up" from="AddSkill" to="SkillList" method="_on_AddSkill_button_up"]
+[connection signal="button_up" from="RemoveSkill" to="SkillList" method="_on_RemoveSkill_button_up"]
+[connection signal="item_selected" from="SkillList" to="SkillList" method="editor_select"]
 [connection signal="button_up" from="SaveButton" to="SkillList" method="_on_SaveButton_button_up"]
+[connection signal="id_pressed" from="PopupMenu" to="TypeButton" method="_on_PopupMenu_id_pressed"]
