@@ -10,6 +10,8 @@
 [node name="EditSkill" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -1.10803
+margin_bottom = -1.10803
 
 [node name="AddSkill" type="Button" parent="."]
 margin_left = 131.883
@@ -31,8 +33,10 @@ margin_bottom = 120.0
 script = ExtResource( 1 )
 name_path = NodePath("../Name/LineEdit")
 type_path = NodePath("../TypeButton")
+range_type_path = NodePath("../TypeButton2")
 effect_path = NodePath("../Effect/LineEdit2")
 reach_path = NodePath("../Reach/LineEdit2")
+ignore_path = NodePath("../IgnoreReach/LineEdit2")
 aoe_path = NodePath("../Aoe/LineEdit2")
 anim_path = NodePath("../Anim")
 
@@ -62,6 +66,7 @@ margin_right = 161.0
 margin_bottom = 250.0
 text = "<choose type>"
 script = ExtResource( 3 )
+menu_path = NodePath("../PopupMenu")
 
 [node name="Type" type="Label" parent="TypeButton"]
 margin_top = -20.0
@@ -69,10 +74,24 @@ margin_right = 40.0
 margin_bottom = -6.0
 text = "Type:"
 
+[node name="TypeButton2" type="Button" parent="."]
+margin_top = 280.0
+margin_right = 161.0
+margin_bottom = 300.0
+text = "<choose type>"
+script = ExtResource( 3 )
+menu_path = NodePath("../rangeTypeMenu")
+
+[node name="Range Type" type="Label" parent="TypeButton2"]
+margin_top = -20.0
+margin_right = 40.0
+margin_bottom = -6.0
+text = "Range Type:"
+
 [node name="Effect" type="Label" parent="."]
-margin_top = 270.0
+margin_top = 311.9
 margin_right = 44.0
-margin_bottom = 284.0
+margin_bottom = 325.9
 text = "Effect:"
 
 [node name="LineEdit2" type="LineEdit" parent="Effect"]
@@ -84,9 +103,9 @@ max_length = 5
 script = ExtResource( 4 )
 
 [node name="Reach" type="Label" parent="."]
-margin_top = 330.0
+margin_top = 371.9
 margin_right = 44.0
-margin_bottom = 344.0
+margin_bottom = 385.9
 text = "Reach:"
 
 [node name="LineEdit2" type="LineEdit" parent="Reach"]
@@ -97,10 +116,25 @@ margin_bottom = 49.0
 max_length = 5
 script = ExtResource( 5 )
 
-[node name="Aoe" type="Label" parent="."]
-margin_top = 390.0
+[node name="IgnoreReach" type="Label" parent="."]
+margin_top = 428.258
 margin_right = 44.0
-margin_bottom = 404.0
+margin_bottom = 442.258
+text = "Ignore Range:"
+
+[node name="LineEdit2" type="LineEdit" parent="IgnoreReach"]
+margin_left = 4.0
+margin_top = 25.0
+margin_right = 160.0
+margin_bottom = 49.0
+max_length = 5
+script = ExtResource( 5 )
+
+[node name="Aoe" type="Label" parent="."]
+margin_left = 1.65012
+margin_top = 481.108
+margin_right = 89.6501
+margin_bottom = 495.108
 text = "Area of Effect:"
 
 [node name="LineEdit2" type="LineEdit" parent="Aoe"]
@@ -112,11 +146,13 @@ max_length = 5
 script = ExtResource( 5 )
 
 [node name="Anim" type="Button" parent="."]
-margin_top = 470.0
-margin_right = 160.0
-margin_bottom = 490.0
-text = ".../<find path>"
+margin_left = 1.65012
+margin_top = 561.108
+margin_right = 161.65
+margin_bottom = 581.108
+text = "<find path>"
 script = ExtResource( 6 )
+file_dialog_path = NodePath("AnimPath")
 
 [node name="AnimPath" type="FileDialog" parent="Anim"]
 margin_left = 101.65
@@ -145,8 +181,18 @@ margin_top = 254.778
 margin_right = 167.499
 margin_bottom = 306.778
 items = [ "Attack", null, 2, false, false, -1, 0, null, "", false, "Heal", null, 2, false, false, -1, 0, null, "", false ]
+
+[node name="rangeTypeMenu" type="PopupMenu" parent="."]
+margin_left = 1.65012
+margin_top = 307.976
+margin_right = 165.65
+margin_bottom = 359.976
+items = [ "Area", null, 2, false, false, -1, 0, null, "", false, "Cross", null, 2, false, false, -1, 0, null, "", false ]
 [connection signal="button_up" from="AddSkill" to="SkillList" method="_on_AddSkill_button_up"]
 [connection signal="button_up" from="RemoveSkill" to="SkillList" method="_on_RemoveSkill_button_up"]
 [connection signal="item_selected" from="SkillList" to="SkillList" method="editor_select"]
+[connection signal="button_up" from="TypeButton" to="TypeButton" method="_on_TypeButton_button_up"]
+[connection signal="button_up" from="TypeButton2" to="TypeButton2" method="_on_TypeButton_button_up"]
+[connection signal="pressed" from="Anim" to="Anim" method="_on_Anim_pressed"]
+[connection signal="file_selected" from="Anim/AnimPath" to="Anim" method="_on_AnimPath_file_selected"]
 [connection signal="button_up" from="SaveButton" to="SkillList" method="_on_SaveButton_button_up"]
-[connection signal="id_pressed" from="PopupMenu" to="TypeButton" method="_on_PopupMenu_id_pressed"]

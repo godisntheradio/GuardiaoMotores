@@ -8,6 +8,8 @@ func _on_text_changed(new_text : String):
 	emit_signal("value_changed")
 func set_value(string):
 	text = string
+func get_value():
+	return text
 func _ready():
 	unit_list = get_parent().get_parent().get_node("SkillList")
 	connect("text_changed", self, "_on_text_changed")

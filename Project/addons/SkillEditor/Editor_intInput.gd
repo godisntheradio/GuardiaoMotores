@@ -14,4 +14,4 @@ func _enter_tree():
 func get_value() -> int:
 	return text.to_int()
 func set_value(string):
-	text = string
+	text = str(string)

@@ -5,10 +5,23 @@ const FILE_PATH = "res://skills.txt"
 class SkillData:
 	var name : String
 	var type : int
+	var range_type : int
 	var effect : float
 	var reach : int
+	var ignore : int
 	var aoe : int
 	var anim : String
+	
+	func init():
+		name = "<unnamed>"
+		type = -1
+		range_type = -1
+		effect = 0
+		reach = 0
+		ignore = 0
+		aoe = 0
+		anim = "<find path>"
+		
 
 var skills : Array = []
 
@@ -17,32 +30,42 @@ var selectedIdx : int
 
 export var name_path : NodePath
 export var type_path : NodePath
+export var range_type_path : NodePath
 export var effect_path : NodePath
 export var reach_path : NodePath
+export var ignore_path : NodePath
 export var aoe_path : NodePath
 export var anim_path : NodePath
 
 var name_node
 var type_node
+var range_type_node
 var effect_node
 var reach_node
+var ignore_node
 var aoe_node
 var anim_node
 
 func _ready():
 	name_node = get_node(name_path)
 	type_node = get_node(type_path)
+	range_type_node = get_node(range_type_path)
 	effect_node = get_node(effect_path)
 	reach_node = get_node(reach_path)
+	ignore_node = get_node(ignore_path)
 	aoe_node = get_node(aoe_path)
 	anim_node = get_node(anim_path)
+	
 	name_node.connect("value_changed", self,"update_skill")
 	type_node.connect("value_changed", self,"update_skill")
+	range_type_node.connect("value_changed", self,"update_skill")
 	effect_node.connect("value_changed", self,"update_skill")
 	reach_node.connect("value_changed", self,"update_skill")
+	ignore_node.connect("value_changed", self,"update_skill")
 	aoe_node.connect("value_changed", self,"update_skill")
 	anim_node.connect("value_changed", self,"update_skill")
-	
+	clear()
+	load_from_file()
 func save_to_file():
 	var file = File.new()
 	file.open(FILE_PATH, file.WRITE)
@@ -51,8 +74,10 @@ func save_to_file():
 	for u in skills:
 		file.store_pascal_string(u.name)
 		file.store_16(u.type)
+		file.store_16(u.range_type)
 		file.store_float(u.effect)
 		file.store_16(u.reach)
+		file.store_16(u.ignore)
 		file.store_16(u.aoe)
 		file.store_pascal_string(u.anim)
 		
@@ -66,8 +91,10 @@ func load_from_file():
 		skills.append(SkillData.new())
 		skills[i].name = file.get_pascal_string()
 		skills[i].type = file.get_16()
+		skills[i].range_type = file.get_16()
 		skills[i].effect = file.get_float()
 		skills[i].reach = file.get_16()
+		skills[i].ignore = file.get_16()
 		skills[i].aoe = file.get_16()
 		skills[i].anim = file.get_pascal_string()
 		add_item(skills[i].name)
@@ -76,8 +103,10 @@ func _on_SaveButton_button_up():
 func update_skill():
 	skills[selectedIdx].name = name_node.get_value()
 	skills[selectedIdx].type = type_node.get_value()
+	skills[selectedIdx].range_type = range_type_node.get_value()
 	skills[selectedIdx].effect = effect_node.get_value()
 	skills[selectedIdx].reach = reach_node.get_value()
+	skills[selectedIdx].ignore = ignore_node.get_value()
 	skills[selectedIdx].aoe = aoe_node.get_value()
 	skills[selectedIdx].anim = anim_node.get_value()
 func display_skill(index):
@@ -85,10 +114,12 @@ func display_skill(index):
 	selectedIdx = index
 	name_node.set_value(skills[index].name) 
 	type_node.set_value(skills[index].type)
-	effect_node._on_text_changed(skills[index].effect)
-	reach_node._on_text_changed(skills[index].reach)
-	aoe_node._on_text_changed(skills[index].aoe)
-	anim_node.set_txt(skills[index].anim)
+	range_type_node.set_value(skills[index].range_type)
+	effect_node.set_value(skills[index].effect)
+	reach_node.set_value(skills[index].reach)
+	ignore_node.set_value(skills[index].ignore)
+	aoe_node.set_value(skills[index].aoe)
+	anim_node.set_value(skills[index].anim)
 	pass
 func _on_AddSkill_button_up():
 	skills.append(SkillData.new())

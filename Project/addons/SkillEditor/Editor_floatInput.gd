@@ -14,4 +14,4 @@ func _enter_tree():
 func get_value() -> float:
 	return text.to_float()
 func set_value(string):
-	text = string
+	text = str(string)

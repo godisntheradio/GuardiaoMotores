@@ -11,6 +11,7 @@ class UnitData:
 	var magic_attack : float
 	var magic_defense : float
 	var movement : int
+	var skill_list : Array
 
 var units : Array = []
 
@@ -38,7 +39,7 @@ func deselect():
 
 func _ready():
 	connect("item_selected", self, "_on_select")
-	remove_item(0)
+	clear()
 	load_from_file()
 	
 func select_connect(fRef : FuncRef):

@@ -186,7 +186,7 @@ GameData="*res://Objects/GameData.tscn"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "SkillEditor" )
+enabled=PoolStringArray( "Dock" )
 
 [input]
 
