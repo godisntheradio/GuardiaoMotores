@@ -72,6 +72,8 @@ func select_unit(tile):
 		selected_tile.deselect()
 	selected_tile = tile
 	selected_tile.select() # muda efeito visual do tile
+	command_window.add_skill_list(selected_tile.occupying_unit.stats.skills)
+	print(selected_tile.occupying_unit.stats.skills.size())
 	command_window.visible = true #cuida da visibilidade da janela de comandos
 	if(selected_tile.occupying_unit.has_attacked):
 		command_window.hide_attack()

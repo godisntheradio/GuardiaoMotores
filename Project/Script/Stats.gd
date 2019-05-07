@@ -1,8 +1,6 @@
 extends Object
 class_name Stats
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 export var hit_points : float
 export var name : String
 export var attack : float
@@ -10,14 +8,11 @@ export var defense : float
 export var magicAtk : float
 export var magicDef : float
 export var movement : int
-export var skills : Array = []
-# Called when the node enters the scene tree for the first time.
+export var skills : Array
+func _init():
+	skills = []
 func _ready():
 	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 func add(other : Stats):
 	var result = get_script().new()
 	result.attack = attack + other.attack

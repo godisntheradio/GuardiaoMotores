@@ -1,7 +1,7 @@
 extends Spatial
 
 var available_units = [] # indexes pro game_units
-var game_units = [] 
+var game_units = [] # guarda unidade em UnitData de gamedataloader, usar funçao da mesma para transformar em stats
 var to_load : String
 
 var GameDataLoader = preload("res://Script/GameDataLoader.gd")

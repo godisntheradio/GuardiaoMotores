@@ -5,7 +5,7 @@ signal attack
 signal move
 
 var speed = 5
-
+export var skill_list_path : NodePath
 var skill_list : ItemList
 #redirecionar os eventos de botão para o Human tratar 
 
@@ -45,11 +45,13 @@ func hide_move():
 	get_node("Panel/Move/AnimationPlayer").play("move_out")
 func _on_CommandWindow_visibility_changed():
 	move_in()
-func add_skill_list(skill):
-	pass
+func add_skill_list(list):
+	clear_skill_list()
+	for i in list:
+		skill_list.add_item(i.name)
 func clear_skill_list():
 	skill_list.clear()
 func _on_SkillList_item_selected(index):
 	move_out()
-	emit_signal("attack", skill_list.get_item_text(index))
+	emit_signal("attack", index)
 	pass # Replace with function body.

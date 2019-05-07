@@ -5,6 +5,8 @@ var UnitClass = preload("res://Objects/Unit.tscn")
 var input
 var map
 
+var GameDataLoader = preload("res://Script/GameDataLoader.gd")
+
 var to_be_positioned
 var to_be_positioned_index
 
@@ -64,7 +66,8 @@ func position_unit(new_unit : Unit, tile : Tile):
 		instanced_units.append(to_be_positioned)
 		deactivate()
 	pass
-func make_unit(stats):
+func make_unit(unit_data):
+	var stats = GameDataLoader.create_unit(unit_data)
 	var instance = UnitClass.instance()
 	get_tree().get_root().get_node("Main").add_child(instance)
 	instance.stats = stats
@@ -91,7 +94,11 @@ func deselect():
 	to_be_positioned_index = -1
 func select(index):
 	to_be_positioned_index = index
-	to_be_positioned =  make_unit(GameData.find_unit(item_list.get_item_text(index)))
+	var found_unit = GameData.find_unit(item_list.get_item_text(index))
+	if (found_unit != null):
+		to_be_positioned =  make_unit(found_unit)
+	else:
+		print("nao achou unidade na lista")
 #funções relacionadas a lista
 func deactivate():
 	item_list.set_item_disabled(to_be_positioned_index, true)

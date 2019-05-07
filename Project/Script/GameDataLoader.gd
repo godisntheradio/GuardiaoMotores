@@ -26,7 +26,7 @@ class SkillData:
 		ignore = 0
 		aoe = 0
 		anim = "<find path>"
-
+enum { Area, Cross}
 static func LoadUnitList(file : File) -> Array:
 	var units = []
 	var unitCount = file.get_16()
@@ -44,6 +44,7 @@ static func LoadUnitList(file : File) -> Array:
 static func LoadSkillList(file : File) -> Array:
 	var skills = []
 	var skillCount = file.get_16()
+	print("total skill count:  "+ str(skillCount))
 	for i in range(skillCount):
 		skills.append(SkillData.new())
 		skills[i].name = file.get_pascal_string()
@@ -57,18 +58,31 @@ static func LoadSkillList(file : File) -> Array:
 	return skills
 static func create_skill(data : SkillData) -> Skill:
 	var skill : Skill
+	match data.range_type:
+		Area:
+			skill = AreaSkill.new()
+		Cross:
+			skill = CrossSkill.new()
+	skill.name = data.name
+	skill.type = data.type
+	skill.effect = data.effect
+	skill.reach = data.reach
+	skill.ignore = data.ignore
+	skill.aoe = data.aoe
+	skill.anim = load(data.anim)
 	return skill
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+static func create_unit(data : UnitData) -> Stats:
+	var stats : Stats = Stats.new()
+	stats.hit_points = data.hp
+	stats.name = data.name
+	stats.attack = data.attack
+	stats.defense = data.defense
+	stats.magicAtk = data.magic_attack
+	stats.magicDef = data.magic_defense
+	stats.movement = data.movement
+	for d in data.skill_list:
+		var s := create_skill(d)
+		stats.skills.append(s)
+	print(stats.name + " skills in skill list: "+str(data.skill_list.size()))
+	print("unit "+ stats.name + " loaded skill count: " + str(stats.skills.size()))
+	return stats

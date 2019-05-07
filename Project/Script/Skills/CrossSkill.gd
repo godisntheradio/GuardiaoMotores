@@ -1,5 +1,5 @@
 extends Skill
-
+class_name CrossSkill
 func get_available_targets(battle_manager, origin) -> Array:
 	var within_reach
 	var within_reach_points = battle_manager.get_available_attack(origin)
