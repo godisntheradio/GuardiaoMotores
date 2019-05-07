@@ -3,21 +3,15 @@ extends ItemList
 
 const FILE_PATH = "res://units.txt"
 
-class UnitData:
-	var name : String
-	var hp : float
-	var attack : float
-	var defense : float
-	var magic_attack : float
-	var magic_defense : float
-	var movement : int
-	var skill_list : Array
+
 
 var units : Array = []
 
 var selectedCallbacks : Array = []
 
-var selected : UnitData = null
+var GameDataLoader = preload("res://Script/GameDataLoader.gd")
+
+var selected #: GameDataLoader.UnitData = null
 var selectedIdx : int
 
 func set_selected_name(n : String):
@@ -37,16 +31,17 @@ func deselect():
 	selected = null
 	selectedIdx = 0
 
-func _ready():
+func _enter_tree():
 	connect("item_selected", self, "_on_select")
 	clear()
 	load_from_file()
-	
+	select(0)
+	_on_select(0)
 func select_connect(fRef : FuncRef):
 	selectedCallbacks.append(fRef)
 
 func _on_AddUnit_button_up():
-	units.append(UnitData.new())
+	units.append(GameDataLoader.UnitData.new())
 	add_item("Unnamed")
 	select(units.size()-1)
 	_on_select(units.size()-1)
@@ -78,23 +73,25 @@ func save_to_file():
 		file.store_float(u.magic_attack)
 		file.store_float(u.magic_defense)
 		file.store_16(u.movement)
+		file.store_16(u.skill_list.size())
+		for skill in u.skill_list:
+			file.store_pascal_string(skill.name)
+			file.store_16(skill.type)
+			file.store_16(skill.range_type)
+			file.store_float(skill.effect)
+			file.store_16(skill.reach) 
+			file.store_16(skill.ignore)
+			file.store_16(skill.aoe) 
+			file.store_pascal_string(skill.anim)
 		
 func load_from_file():
 	var file = File.new()
 	if(!file.file_exists(FILE_PATH)): return
 	file.open(FILE_PATH, file.READ)
 	
-	var unitCount = file.get_16()
-	for i in range(unitCount):
-		units.append(UnitData.new())
-		units[i].name = file.get_pascal_string()
-		units[i].hp = file.get_float()
-		units[i].attack = file.get_float()
-		units[i].defense = file.get_float()
-		units[i].magic_attack = file.get_float()
-		units[i].magic_defense = file.get_float()
-		units[i].movement = file.get_16()
-		add_item(units[i].name)
+	units = GameDataLoader.LoadUnitList(file)
+	for unit in units:
+		add_item(unit.name)
 	
 func _on_SaveButton_button_up():
 	save_to_file()

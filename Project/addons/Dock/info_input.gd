@@ -20,7 +20,7 @@ func _on_item_selected():
 			text = str(unit_list.selected.get(get_parent().name.to_lower()))
 	
 	
-func _ready():
+func _enter_tree():
 	unit_list = get_parent().get_parent().get_node("UnitList")
 	connect("text_changed", self, "_on_text_changed")
 	unit_list.select_connect(funcref(self, "_on_item_selected"))

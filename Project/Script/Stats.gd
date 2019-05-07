@@ -10,6 +10,7 @@ export var defense : float
 export var magicAtk : float
 export var magicDef : float
 export var movement : int
+export var skills : Array = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

@@ -28,6 +28,7 @@ text = "-"
 margin_top = 20.0
 margin_right = 175.0
 margin_bottom = 120.0
+items = [ "Unisinos", null, false, "AAAA", null, false, "T", null, false ]
 script = ExtResource( 1 )
 
 [node name="HSeparator" type="HSeparator" parent="."]
@@ -48,6 +49,7 @@ margin_left = 4.0
 margin_top = 23.0
 margin_right = 161.0
 margin_bottom = 47.0
+text = "Unisinos"
 script = ExtResource( 2 )
 
 [node name="HP" type="Label" parent="."]
@@ -61,6 +63,7 @@ margin_left = 4.0
 margin_top = 24.0
 margin_right = 90.0
 margin_bottom = 48.0
+text = "50"
 max_length = 5
 script = ExtResource( 3 )
 
@@ -75,6 +78,7 @@ margin_left = 4.0
 margin_top = 25.0
 margin_right = 91.0
 margin_bottom = 49.0
+text = "10"
 max_length = 5
 script = ExtResource( 3 )
 
@@ -90,6 +94,7 @@ margin_left = 4.0
 margin_top = 25.0
 margin_right = 91.0
 margin_bottom = 49.0
+text = "100"
 max_length = 5
 script = ExtResource( 3 )
 
@@ -105,6 +110,7 @@ margin_left = 4.0
 margin_top = 25.0
 margin_right = 91.0
 margin_bottom = 49.0
+text = "10"
 max_length = 5
 script = ExtResource( 3 )
 
@@ -120,6 +126,7 @@ margin_left = 4.0
 margin_top = 25.0
 margin_right = 91.0
 margin_bottom = 49.0
+text = "100"
 max_length = 5
 script = ExtResource( 3 )
 
@@ -134,17 +141,18 @@ margin_left = 4.0
 margin_top = 25.0
 margin_right = 91.0
 margin_bottom = 49.0
+text = "5"
 max_length = 5
 script = ExtResource( 3 )
 
 [node name="SaveButton" type="Button" parent="."]
-margin_left = 140.0
-margin_top = 833.953
-margin_right = 190.0
-margin_bottom = 863.953
+margin_left = 126.131
+margin_top = 851.47
+margin_right = 176.131
+margin_bottom = 881.47
 text = "Save"
 
-[node name="Skills" type="Label" parent="."]
+[node name="skill_list" type="Label" parent="."]
 margin_left = 7.0
 margin_top = 569.0
 margin_right = 47.0
@@ -152,36 +160,42 @@ margin_bottom = 600.0
 text = "Skills:
 "
 script = ExtResource( 4 )
+available_list_path = NodePath("../skill_list/UnitSkills2")
+list_path = NodePath("../skill_list/UnitSkills")
 
-[node name="UnitSkills" type="ItemList" parent="Skills"]
+[node name="UnitSkills" type="ItemList" parent="skill_list"]
 margin_top = 20.0
 margin_right = 140.0
 margin_bottom = 195.0
+items = [ "Ranged Attack", null, false ]
 
-[node name="UnitSkills2" type="ItemList" parent="Skills"]
-margin_left = 170.0
+[node name="UnitSkills2" type="ItemList" parent="skill_list"]
+margin_left = 146.774
 margin_top = 20.0
-margin_right = 310.0
+margin_right = 286.774
 margin_bottom = 195.0
+items = [ "Heal", null, false, "Attack", null, false, "Ranged Attack", null, false ]
 
-[node name="Label" type="Label" parent="Skills"]
-margin_left = 170.0
-margin_right = 265.0
+[node name="Label" type="Label" parent="skill_list"]
+margin_left = 168.0
+margin_right = 263.0
 margin_bottom = 14.0
 text = "Available Skills"
 
-[node name="RemoveSkills" type="Button" parent="Skills"]
+[node name="RemoveSkills" type="Button" parent="skill_list"]
 margin_top = 199.265
 margin_right = 140.0
 margin_bottom = 219.265
 text = "Remove Selected"
 
-[node name="AddSkills" type="Button" parent="Skills"]
-margin_left = 170.0
+[node name="AddSkills" type="Button" parent="skill_list"]
+margin_left = 146.774
 margin_top = 200.0
-margin_right = 310.0
+margin_right = 286.774
 margin_bottom = 220.0
 text = "Add Selected"
 [connection signal="button_up" from="AddUnit" to="UnitList" method="_on_AddUnit_button_up"]
 [connection signal="button_up" from="RemoveUnit" to="UnitList" method="_on_RemoveUnit_button_up"]
 [connection signal="button_up" from="SaveButton" to="UnitList" method="_on_SaveButton_button_up"]
+[connection signal="pressed" from="skill_list/RemoveSkills" to="skill_list" method="_on_RemoveSkills_pressed"]
+[connection signal="pressed" from="skill_list/AddSkills" to="skill_list" method="_on_AddSkills_pressed"]

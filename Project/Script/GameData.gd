@@ -4,6 +4,7 @@ var available_units = [] # indexes pro game_units
 var game_units = [] 
 var to_load : String
 
+var GameDataLoader = preload("res://Script/GameDataLoader.gd")
 
 const FILE_PATH = "res://units.txt"
 const SAVE_PATH = "res://save"
@@ -15,17 +16,7 @@ func _ready():
 	var file : File = File.new()
 	if file.file_exists(FILE_PATH):
 		file.open(FILE_PATH, file.READ)
-		var unitCount = file.get_16()
-		for i in range(unitCount):
-			var unit = Stats.new()
-			unit.name = file.get_pascal_string()
-			unit.hit_points = file.get_float()
-			unit.attack = file.get_float()
-			unit.defense = file.get_float()
-			unit.magicAtk = file.get_float()
-			unit.magicDef = file.get_float()
-			unit.movement = file.get_16()
-			game_units.append(unit)
+		game_units = GameDataLoader.LoadUnitList(file)
 	load_game()
 func find_unit_index(to_find):
 	for i in available_units.size():

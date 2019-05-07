@@ -15,3 +15,7 @@ func _on_Button_button_up():
 func _on_Button2_button_up():
 	if(get_node("Control/Button2/TextEdit").text != ''):
 		GameData.available_units.append(get_node("Control/Button2/TextEdit").text)
+
+
+func _on_Button3_button_up():
+	GameData.available_units.clear()

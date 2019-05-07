@@ -17,7 +17,7 @@ export var command_window : NodePath
 export var turn_window : NodePath
 func _ready():
 	print("ready do battlemanager")
-	var level_resource = load(.to_load)
+	var level_resource = load(GameData.to_load)
 	var level = level_resource.instance()
 	add_child(level)
 func on_begin_battle(deployed_units):

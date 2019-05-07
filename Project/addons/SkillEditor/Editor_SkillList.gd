@@ -2,30 +2,11 @@ tool
 extends ItemList
 
 const FILE_PATH = "res://skills.txt"
-class SkillData:
-	var name : String
-	var type : int
-	var range_type : int
-	var effect : float
-	var reach : int
-	var ignore : int
-	var aoe : int
-	var anim : String
-	
-	func init():
-		name = "<unnamed>"
-		type = -1
-		range_type = -1
-		effect = 0
-		reach = 0
-		ignore = 0
-		aoe = 0
-		anim = "<find path>"
-		
 
 var skills : Array = []
+var GameDataLoader = preload("res://Script/GameDataLoader.gd")
 
-var selected : SkillData = null
+var selected = null
 var selectedIdx : int
 
 export var name_path : NodePath
@@ -85,19 +66,9 @@ func load_from_file():
 	var file = File.new()
 	if(!file.file_exists(FILE_PATH)): return
 	file.open(FILE_PATH, file.READ)
-	
-	var skillCount = file.get_16()
-	for i in range(skillCount):
-		skills.append(SkillData.new())
-		skills[i].name = file.get_pascal_string()
-		skills[i].type = file.get_16()
-		skills[i].range_type = file.get_16()
-		skills[i].effect = file.get_float()
-		skills[i].reach = file.get_16()
-		skills[i].ignore = file.get_16()
-		skills[i].aoe = file.get_16()
-		skills[i].anim = file.get_pascal_string()
-		add_item(skills[i].name)
+	skills = GameDataLoader.LoadSkillList(file)
+	for skill in skills:
+		add_item(skill.name)
 func _on_SaveButton_button_up():
 	save_to_file()
 func update_skill():
@@ -122,7 +93,7 @@ func display_skill(index):
 	anim_node.set_value(skills[index].anim)
 	pass
 func _on_AddSkill_button_up():
-	skills.append(SkillData.new())
+	skills.append(GameDataLoader.SkillData.new())
 	add_item("<unnamed>")
 	select(skills.size()-1)
 	display_skill(skills.size()-1)

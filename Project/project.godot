@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/BattleManager.gd"
 }, {
+"base": "Label",
+"class": "Editor_unitSkills",
+"language": "GDScript",
+"path": "res://addons/Dock/editor_unitSkills.gd"
+}, {
 "base": "Transition",
 "class": "EndTurnPressed",
 "language": "GDScript",
@@ -92,7 +97,7 @@ _global_script_classes=[ {
 "base": "Object",
 "class": "Skill",
 "language": "GDScript",
-"path": "res://Script/Skill.gd"
+"path": "res://Script/Skills/Skill.gd"
 }, {
 "base": "Object",
 "class": "State",
@@ -148,6 +153,7 @@ _global_script_class_icons={
 "ActionFinished": "",
 "AttackSelected": "",
 "BattleManager": "",
+"Editor_unitSkills": "",
 "EndTurnPressed": "",
 "EnemyTurn": "",
 "ExecutingAction": "",
@@ -177,16 +183,17 @@ _global_script_class_icons={
 [application]
 
 config/name="Guardiao"
-run/main_scene="res://Objects/Overworld.tscn"
+run/main_scene="res://Maps/Overworld.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 GameData="*res://Objects/GameData.tscn"
+CameraManager="*res://Objects/CameraManager.tscn"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "Dock" )
+enabled=PoolStringArray( "SkillEditor" )
 
 [input]
 

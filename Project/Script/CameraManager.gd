@@ -9,8 +9,11 @@ var origin : Vector3
 var cursor : Vector3
 var allowed_to_cast : bool
 
+export var labelref :NodePath
+var label
 func _ready():
 	camera  = get_node(camera_path)
+	label = get_node(labelref)
 	allowed_to_cast = true
 	result = null
 	pass
@@ -52,4 +55,5 @@ func updateCamera(target : Vector3):
 	var kinematic = get_node("KinematicBody") as KinematicBody
 	if (!kinematic.test_move(kinematic.global_transform,target)):
 		translate(target)
+		label.text = str( translation)
 	cursor = Vector3.ZERO

@@ -13,6 +13,7 @@ battle_path = "res://Objects/Main.tscn"
 
 [node name="Stage" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.91131, 0.791651, -26.1371 )
+to_load = "res://Maps/Level1.tscn"
 
 [node name="MeshInstance" parent="Stage" index="0"]
 material/0 = SubResource( 1 )
@@ -47,7 +48,14 @@ margin_top = -2.0
 margin_right = 439.0
 margin_bottom = 44.0
 
+[node name="Button3" type="Button" parent="Control"]
+margin_left = 221.0
+margin_top = 470.864
+margin_right = 399.0
+margin_bottom = 529.864
+text = "Clear"
 [connection signal="button_up" from="Control/Button" to="." method="_on_Button_button_up"]
 [connection signal="button_up" from="Control/Button2" to="." method="_on_Button2_button_up"]
+[connection signal="button_up" from="Control/Button3" to="." method="_on_Button3_button_up"]
 
 [editable path="Stage"]
