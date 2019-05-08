@@ -72,22 +72,12 @@ func select_unit(tile):
 		selected_tile.deselect()
 	selected_tile = tile
 	selected_tile.select() # muda efeito visual do tile
-	command_window.add_skill_list(selected_tile.occupying_unit.stats.skills)
-	print(selected_tile.occupying_unit.stats.skills.size())
-	command_window.visible = true #cuida da visibilidade da janela de comandos
-	if(selected_tile.occupying_unit.has_attacked):
-		command_window.hide_attack()
-	else:
-		command_window.show_attack()
-	if(selected_tile.occupying_unit.has_moved):
-		command_window.hide_move()
-	else:
-		command_window.show_move()
+	command_window.show_commands(selected_tile.occupying_unit)
 func deselect_unit():
 	if selected_tile != null:
 		selected_tile.deselect()
 		selected_tile = null
-		command_window.visible = false
+		command_window.hide_commands()
 func deselect_action():
 	is_attacking = false
 	is_moving = false

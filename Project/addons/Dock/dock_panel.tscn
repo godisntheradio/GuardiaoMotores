@@ -28,7 +28,7 @@ text = "-"
 margin_top = 20.0
 margin_right = 175.0
 margin_bottom = 120.0
-items = [ "Unisinos", null, false, "AAAA", null, false, "T", null, false ]
+items = [ "unisinos", null, false, "Uni", null, false, "T", null, false, "Soldado 1", null, false ]
 script = ExtResource( 1 )
 
 [node name="HSeparator" type="HSeparator" parent="."]

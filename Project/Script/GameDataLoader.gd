@@ -6,7 +6,9 @@ class UnitData:
 	var magic_attack : float
 	var magic_defense : float
 	var movement : int
-	var skill_list : Array = []
+	var skill_list : Array
+	func _init():
+		skill_list = []
 class SkillData:
 	var name : String
 	var type : int

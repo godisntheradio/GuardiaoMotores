@@ -42,19 +42,19 @@ margin_top = 290.0
 margin_right = 990.0
 margin_bottom = 395.0
 
-[node name="Attack" type="Control" parent="Panel"]
+[node name="Skill" type="Control" parent="Panel"]
 margin_left = 7.62939e-006
 margin_top = 0.777778
 margin_right = 200.0
 margin_bottom = 35.7778
 
-[node name="AttackButton" type="Button" parent="Panel/Attack"]
+[node name="SkillButton" type="Button" parent="Panel/Skill"]
 margin_right = 200.0
 margin_bottom = 35.0
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 text = "Attack"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/Attack"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/Skill"]
 anims/move_out = SubResource( 1 )
 
 [node name="Move" type="Control" parent="Panel"]
@@ -81,11 +81,11 @@ custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 text = "Return"
 
 [node name="SkillList" type="ItemList" parent="Panel"]
-margin_left = -207.1
-margin_top = -15.4
-margin_right = -7.10016
-margin_bottom = 124.6
-[connection signal="button_up" from="Panel/Attack/AttackButton" to="." method="_on_AttackButton_button_up"]
-[connection signal="button_up" from="Panel/Move/MoveButton" to="." method="_on_MoveButton_button_up"]
-[connection signal="button_up" from="Panel/ReturnButton" to="." method="_on_ReturnButton_button_up"]
+margin_left = -204.25
+margin_top = -55.25
+margin_right = -4.25037
+margin_bottom = 72.75
+[connection signal="button_up" from="Panel/Skill/SkillButton" to="." method="_on_AttackButton_button_up"]
+[connection signal="pressed" from="Panel/Move/MoveButton" to="." method="_on_MoveButton_button_up"]
+[connection signal="pressed" from="Panel/ReturnButton" to="." method="_on_ReturnButton_button_up"]
 [connection signal="item_selected" from="Panel/SkillList" to="." method="_on_SkillList_item_selected"]
