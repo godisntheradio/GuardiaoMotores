@@ -19,6 +19,10 @@ export var hover_color : Color
 export var selected_color : Color
 export var within_reach_color : Color
 export var can_attack_color : Color
+export var can_cure_color : Color
+export var blocked_color : Color
+export var aoe_color : Color
+
 func _ready():
 	hover = false
 	selected = false
@@ -57,12 +61,23 @@ func _on_RigidBody_mouse_exited():
 	if(!is_tile_empty()):
 		hide_stats()
 func _on_RigidBody_mouse_entered():
-	mesh_node.mouse_entered()
+	if(!blocked):
+		mesh_node.mouse_entered(hover_color)
+	else:
+		mesh_node.mouse_entered(blocked_color)
 	if(!is_tile_empty()):
 		show_stats()
+		
+func aoe_blink_enter():
+	mesh_node.mouse_entered(aoe_color)
+func aoe_blink_exit():
+	mesh_node.mouse_exited()
+	
 func highlight_movable():
-	mesh_node.highlight_movable()
+	mesh_node.start_highlight(within_reach_color)
 func highlight_attackable():
-	mesh_node.highlight_attackable()
+	mesh_node.start_highlight(can_attack_color)
+func highlight_curable():
+	mesh_node.start_highlight(can_cure_color)
 func stop_highlight():
 	mesh_node.stop_highlight()

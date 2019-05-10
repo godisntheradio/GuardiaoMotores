@@ -26,7 +26,6 @@ func _on_item_selected():
 		list.clear()
 		unit_skills.clear()
 		# verificar se está carregando corretamente as skills
-		print(unit_list.selected.name)
 		for skill in unit_list.selected.skill_list:
 			unit_skills.append(skill)
 			list.add_item(skill.name)
@@ -44,9 +43,7 @@ func _on_AddSkills_pressed():
 		return
 	var id = selected_indexes[0]
 	unit_skills.append(skills[id])
-	print(unit_skills.size())
 	unit_list.selected.set(name.to_lower(), unit_skills.duplicate())
-	print(unit_list.selected.skill_list.size())
 	list.add_item(skills[id].name)
 
 func _on_RemoveSkills_pressed():

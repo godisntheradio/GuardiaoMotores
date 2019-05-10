@@ -51,7 +51,6 @@ func save_to_file():
 	var file = File.new()
 	file.open(FILE_PATH, file.WRITE)
 	file.store_16(skills.size())
-	print(skills.size())
 	for u in skills:
 		file.store_pascal_string(u.name)
 		file.store_16(u.type)

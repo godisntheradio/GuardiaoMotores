@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/BattleManager.gd"
 }, {
+"base": "Transition",
+"class": "BattleStarted",
+"language": "GDScript",
+"path": "res://Script/HumanTrasitions/BattleStarted.gd"
+}, {
 "base": "Skill",
 "class": "CrossSkill",
 "language": "GDScript",
@@ -158,12 +163,18 @@ _global_script_classes=[ {
 "class": "UnitStatsDisplay",
 "language": "GDScript",
 "path": "res://Script/UnitStatsDisplay.gd"
+}, {
+"base": "State",
+"class": "WaitingBattleStart",
+"language": "GDScript",
+"path": "res://Script/HumanStates/WaitingBattleStart.gd"
 } ]
 _global_script_class_icons={
 "ActionFinished": "",
 "AreaSkill": "",
 "AttackSelected": "",
 "BattleManager": "",
+"BattleStarted": "",
 "CrossSkill": "",
 "Editor_unitSkills": "",
 "EndTurnPressed": "",
@@ -189,7 +200,8 @@ _global_script_class_icons={
 "TurnBegun": "",
 "Unit": "",
 "UnitSelected": "",
-"UnitStatsDisplay": ""
+"UnitStatsDisplay": "",
+"WaitingBattleStart": ""
 }
 
 [application]

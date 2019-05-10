@@ -46,10 +46,8 @@ func _input(event):
 			var tile = input.result.collider.get_parent()
 			if(tile is Tile && !tile.is_tile_empty()): #chega se a colisao foi com um tile e se tile possui uma unidade para tirar do campo
 				var i = instanced_units.find(tile.occupying_unit)
-				print(i)
 				if (i != -1):
 					var item_list_i = deployed_units[i]
-					print(item_list_i)
 					reactivate(item_list_i)
 					deployed_units.remove(i)
 					instanced_units.remove(i)

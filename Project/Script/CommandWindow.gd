@@ -16,9 +16,6 @@ func _ready():
 	skill_animator.playback_speed = speed
 	move_animator.playback_speed = speed
 	skill_list = get_node("Panel/SkillList")
-
-func _on_AttackButton_button_up():
-	pass # Replace with function body.
 func _on_MoveButton_button_up():
 	move_out()
 	emit_signal("move")

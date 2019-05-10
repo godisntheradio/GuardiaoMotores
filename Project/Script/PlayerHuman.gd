@@ -3,6 +3,7 @@ extends Player
 
 var turn : bool
 var selected_tile : Tile
+var selected_skill : Skill
 var within_reach = [] # tiles within reach
 
 var is_attacking : bool
@@ -86,15 +87,20 @@ func deselect_action():
 	within_reach = []
 
 # eventos
-func on_attack():
+func on_attack(skill_id):
+	deselect_action()
 	within_reach.clear()
-	var within_reach_points = battle_manager.get_available_attack(selected_tile.occupying_unit)
-	for point in within_reach_points:
-		var tile : Tile = battle_manager.map.get_tile(Vector2(point.x, point.y))
-		tile.highlight_attackable()
-		within_reach.append(tile)
+	selected_skill = selected_tile.occupying_unit.stats.skills[skill_id]
+	within_reach = selected_skill.get_available_targets(battle_manager, selected_tile)
+	for tile in within_reach:
+		match (selected_skill.type):
+			Skill.Attack:
+				tile.highlight_attackable()
+			Skill.Heal:
+				tile.highlight_curable()
 	is_attacking = true
 func on_move():
+	deselect_action()
 	within_reach.clear()
 	var within_reach_points = battle_manager.get_available_movement(selected_tile.occupying_unit)
 	for point in within_reach_points:

@@ -16,11 +16,15 @@ func _init():
 func get_available_targets(battle_manager, origin) -> Array:
 	return []
 func get_aoe_tiles(battle_manager, origin) -> Array:
-	var aoe = []
-	aoe.append(origin)
-	if (aoe == 1):
-		return aoe
-	return aoe
+	var aoe_tiles = []
+	aoe_tiles.append(origin)
+	if (aoe <= 1):
+		return aoe_tiles
+	var points = battle_manager.get_neighbors(origin, aoe)
+	for point in points:
+		var tile : Tile = battle_manager.map.get_tile(Vector2(point.x, point.y))
+		aoe_tiles.append(tile)
+	return aoe_tiles
 func calculate_effect(stats):
 	match type:
 		Heal:

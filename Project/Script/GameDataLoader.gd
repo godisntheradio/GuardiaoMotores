@@ -46,7 +46,6 @@ static func LoadUnitList(file : File) -> Array:
 static func LoadSkillList(file : File) -> Array:
 	var skills = []
 	var skillCount = file.get_16()
-	print("total skill count:  "+ str(skillCount))
 	for i in range(skillCount):
 		skills.append(SkillData.new())
 		skills[i].name = file.get_pascal_string()
@@ -85,6 +84,4 @@ static func create_unit(data : UnitData) -> Stats:
 	for d in data.skill_list:
 		var s := create_skill(d)
 		stats.skills.append(s)
-	print(stats.name + " skills in skill list: "+str(data.skill_list.size()))
-	print("unit "+ stats.name + " loaded skill count: " + str(stats.skills.size()))
 	return stats
