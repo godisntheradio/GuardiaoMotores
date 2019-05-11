@@ -1,10 +1,13 @@
 extends Spatial
 
 export var battle_path : String
-
+var control_camera = true
 func _ready():
 	get_node("Stage").connect("selected",self,"load_stage")
 	pass
+func _process(delta):
+	if (control_camera):
+		CameraManager.processCameraMovement(delta)
 func load_stage(stage : String):
 	GameData.to_load = stage
 	get_tree().change_scene(battle_path)

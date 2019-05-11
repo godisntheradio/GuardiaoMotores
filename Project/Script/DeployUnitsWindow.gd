@@ -28,6 +28,7 @@ func _ready():
 		item_list.add_item(unit)
 	
 func _process(delta):
+	CameraManager.processCameraMovement(delta)
 	if(to_be_positioned != null):
 		if(input.result.size() > 0):
 			var tile = input.result.collider.get_parent()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Script/Overworld.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Stage.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Models/Terrain_test.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/UI/StageDescWindow.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.027451, 0.156863, 0.337255, 1 )
@@ -54,6 +55,8 @@ margin_top = 470.864
 margin_right = 399.0
 margin_bottom = 529.864
 text = "Clear"
+
+[node name="StageDescWindow" parent="Control" instance=ExtResource( 4 )]
 [connection signal="button_up" from="Control/Button" to="." method="_on_Button_button_up"]
 [connection signal="button_up" from="Control/Button2" to="." method="_on_Button2_button_up"]
 [connection signal="button_up" from="Control/Button3" to="." method="_on_Button3_button_up"]

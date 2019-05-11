@@ -1,6 +1,9 @@
 extends Spatial
+class_name Stage
 export var to_load : String
-
+export var stage_name : String
+export var difficulty : int
+export(String, MULTILINE) var description : String
 signal selected
 func _ready():
 	pass 
