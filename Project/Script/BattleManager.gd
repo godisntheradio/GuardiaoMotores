@@ -18,6 +18,7 @@ var astarManager
 export var command_window : NodePath
 export var turn_window : NodePath
 func _ready():
+	has_started = false
 	var level_resource = load(GameData.to_load)
 	var level = level_resource.instance()
 	add_child(level)

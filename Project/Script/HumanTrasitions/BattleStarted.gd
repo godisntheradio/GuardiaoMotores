@@ -5,6 +5,7 @@ func _init(fsm).(fsm):
 func entry_action():
 	pass
 func exit_action():
+	print("battle started")
 	pass
 func is_triggered():
-	pass
+	return get_fsm_owner().battle_manager.has_started

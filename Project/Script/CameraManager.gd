@@ -8,10 +8,12 @@ var dir : Vector3
 var origin : Vector3
 var cursor : Vector3
 var allowed_to_cast : bool
+var kinematic : KinematicBody
 
 export var labelref :NodePath
 var label
 func _ready():
+	kinematic = get_node("KinematicBody")
 	camera  = get_node(camera_path)
 	label = get_node(labelref)
 	allowed_to_cast = true
@@ -52,8 +54,9 @@ func processCameraMovement(delta):
 		cursor = motion
 		#kinematic.move_and_collide(motion)
 func updateCamera(target : Vector3):
-	var kinematic = get_node("KinematicBody") as KinematicBody
 	if (!kinematic.test_move(kinematic.global_transform,target)):
 		translate(target)
 		label.text = str( translation)
 	cursor = Vector3.ZERO
+func relocate(pos : Vector3):
+	global_translate(pos - global_transform.origin)

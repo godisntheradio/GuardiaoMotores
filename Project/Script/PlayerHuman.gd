@@ -26,6 +26,7 @@ func initialize_state_machine():
 	
 	var human_turn_s = HumanTurn.new(state_machine)
 	var enemy_turn_s = EnemyTurn.new(state_machine)
+	var waiting_battle_s = WaitingBattleStart.new(state_machine)
 	
 	var endturn_pressed_t = EndTurnPressed.new(state_machine)
 	endturn_pressed_t.target_state = enemy_turn_s
@@ -35,9 +36,14 @@ func initialize_state_machine():
 	turnBegun_t.target_state = human_turn_s
 	enemy_turn_s.add_transition(turnBegun_t)
 	
+	var battleStarted_t = BattleStarted.new(state_machine)
+	battleStarted_t.target_state = human_turn_s
+	waiting_battle_s.add_transition(battleStarted_t)
+	
 	state_machine.add_state(human_turn_s)
 	state_machine.add_state(enemy_turn_s)
-	state_machine.initial_state = human_turn_s
+	state_machine.add_state(waiting_battle_s)
+	state_machine.initial_state = waiting_battle_s
 	
 	state_machine.start()
 func _ready():
@@ -54,11 +60,9 @@ func _ready():
 	action_finished = false
 	has_ended_turn = false
 func _input(event):
-	if turn:
-		state_machine.update_input(event)
+	state_machine.update_input(event)
 func _process(delta):
-	if turn:
-		state_machine.update()
+	state_machine.update()
 func begin_turn():
 	turn_window.visible = true
 	turn = true

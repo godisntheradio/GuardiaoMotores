@@ -8,6 +8,7 @@ export var mapTiles = []
 export var width : int # cresce para x+ 
 export var height : int # cresce para z+
 export var procedural : bool
+export var starting_camera_position : Vector3
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if (procedural):
@@ -23,6 +24,7 @@ func _ready():
 		var tiles = get_children()
 		for t in tiles:
 			mapTiles.append(t)
+	CameraManager.relocate(starting_camera_position)
 
 func world_to_map(p : Vector3):
 	p -= translation
