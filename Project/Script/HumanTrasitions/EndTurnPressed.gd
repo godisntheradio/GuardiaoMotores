@@ -7,6 +7,5 @@ func entry_action():
 func exit_action():
 	get_fsm_owner().has_ended_turn = false
 	get_fsm_owner().turn = false
-	pass
 func is_triggered():
 	return get_fsm_owner().has_ended_turn

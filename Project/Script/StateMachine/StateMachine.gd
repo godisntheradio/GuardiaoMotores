@@ -1,6 +1,6 @@
 extends Object
 class_name StateMachine
-var state_list : Array  = []
+var state_list : Array
 var owner : Node
 
 var initial_state : State
@@ -10,12 +10,12 @@ var input_event
 
 func _init(owner : Node):
 	self.owner = owner
-	
+	state_list  = []
 func start():
 	current_state = initial_state
 	current_state.entry_action()
 	pass
-func update():
+func update(delta):
 	if (current_state != null):
 		var triggered_transition = null
 		for transition in current_state.transitions:
@@ -29,7 +29,7 @@ func update():
 			target_state.entry_action()
 			current_state = target_state
 		else:
-			current_state.action()
+			current_state.action(delta)
 	pass
 func add_state(state : State):
 	state_list.append(state)

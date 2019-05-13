@@ -10,6 +10,7 @@ var HumanPlayerScene = preload("res://Objects/PlayerHuman.tscn")
 var AIPlayerScene = preload("res://Objects/PlayerAI.tscn")
 var AStarManager = load("res://Script/AStarManager.gd")
 
+var GameDataLoader = preload("res://Script/GameDataLoader.gd")
 
 var human_player
 var astarManager
@@ -22,6 +23,19 @@ func _ready():
 	var level_resource = load(GameData.to_load)
 	var level = level_resource.instance()
 	add_child(level)
+	#init AI
+	var ai = get_child(0).get_node("AIPlayer")
+	player_list.append(ai)
+	for unit in ai.units:
+		unit.player = ai
+		unit.connect("action_finished", ai, "on_unit_finished_action")
+		if(unit.to_search != ""):
+			unit.stats = GameDataLoader.create_unit(GameData.find_unit(unit.to_search))
+		else:
+			print("couldn't create '"+ unit.to_search +"' unit. name not has not been set properly")
+		unit.hp = unit.stats.hit_points
+	ai.battle_manager = self
+	ai.camera_manager = CameraManager
 func on_begin_battle(deployed_units):
 	prepare_player()
 	#init map
@@ -29,20 +43,13 @@ func on_begin_battle(deployed_units):
 	astarManager = AStarManager.new(map)
 	
 	#Init player
-	player_list.append(human_player)
+	player_list.push_front(human_player)
 	human_player.units = deployed_units
 	human_player.initialize_state_machine()
 	for unit in human_player.units:
 		unit.player = human_player
 		unit.connect("action_finished", human_player, "on_unit_finished_action")
-	#init AI
-	var ai = get_child(0).get_node("AIPlayer")
-	player_list.append(ai)
-	for unit in ai.units:
-		unit.player = ai
-		unit.connect("action_finished", ai, "on_unit_finished_action")
-	ai.battle_manager = self
-	ai.camera_manager = CameraManager
+	
 	
 	astarManager.update_connections()
 	
@@ -54,7 +61,6 @@ func on_end_player_turn():
 	player_list[turn_count % player_list.size()].end_turn()
 	turn_count += 1
 	player_list[turn_count % player_list.size()].begin_turn()
-	pass
 func get_available_movement(unit : Unit):
 	var mov = astarManager.get_available_movement(map.world_to_map(unit.global_transform.origin), unit.stats.movement)
 	return mov.duplicate()

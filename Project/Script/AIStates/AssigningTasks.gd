@@ -1,5 +1,5 @@
 extends State
-class_name WaitingBattleStart
+class_name AssigningTasks
 func _init(fsm).(fsm):
 	pass
 func action(delta):
@@ -9,4 +9,4 @@ func entry_action():
 func exit_action():
 	pass
 static func get_name():
-	return "Waiting For Battle To Start"
+	pass

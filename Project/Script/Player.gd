@@ -3,6 +3,7 @@ class_name Player
 var units = []
 var battle_manager
 var camera_manager
+var turn : bool
 
 func begin_turn():
 	pass

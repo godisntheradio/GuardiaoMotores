@@ -2,7 +2,7 @@ extends State
 class_name SelectingAction
 func _init(fsm).(fsm):
 	pass
-func action():
+func action(delta):
 	if fsm.input_event is InputEventMouseButton && !fsm.input_event.pressed && fsm.input_event.button_index == BUTTON_LEFT:
 		if(get_fsm_owner().camera_manager.result.size() > 0):
 			var tile = get_fsm_owner().camera_manager.result.collider.get_parent()

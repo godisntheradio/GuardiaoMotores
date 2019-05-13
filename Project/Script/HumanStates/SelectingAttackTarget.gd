@@ -3,7 +3,7 @@ class_name SelectingAttackTarget
 var aoe_tiles = []
 func _init(fsm).(fsm):
 	pass
-func action():
+func action(delta):
 	var tile
 	for t in aoe_tiles:
 		t.aoe_blink_exit()
@@ -33,4 +33,4 @@ func exit_action():
 		t._on_RigidBody_mouse_exited()
 	pass
 static func get_name():
-	pass
+	return "Selecting Attack Target"

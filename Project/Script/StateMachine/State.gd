@@ -1,13 +1,14 @@
 extends Object
 class_name State
 var fsm
-var transitions : Array = []
+var transitions : Array 
 
 var state_name : String
 
 func _init(fsm):
 	self.fsm = fsm
-func action():
+	transitions = []
+func action(delta):
 	pass
 func entry_action():
 	pass

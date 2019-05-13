@@ -1,7 +1,6 @@
 extends Player
 
 
-var turn : bool
 var selected_tile : Tile
 var selected_skill : Skill
 var within_reach = [] # tiles within reach
@@ -62,7 +61,7 @@ func _ready():
 func _input(event):
 	state_machine.update_input(event)
 func _process(delta):
-	state_machine.update()
+	state_machine.update(delta)
 func begin_turn():
 	turn_window.visible = true
 	turn = true
