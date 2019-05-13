@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Script/Map.gd" type="Script" id=1]
-[ext_resource path="res://Objects/PlayerAI.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Objects/MapBounds.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/MapExperimental.gd" type="Script" id=1]
+[ext_resource path="res://addons/MultiLayer GridMap/CustomNode/Multilayer_GridMap.gd" type="Script" id=2]
+[ext_resource path="res://addons/MultiLayer GridMap/CustomNode/icon.png" type="Texture" id=3]
+[ext_resource path="res://Objects/PlayerAI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/MapBounds.tscn" type="PackedScene" id=5]
 
 [node name="LevelBase" type="Node"]
 
@@ -13,11 +15,15 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
-width = 18
-height = 18
-procedural = false
 
-[node name="AIPlayer" parent="Level1" instance=ExtResource( 2 )]
+[node name="MultiLayer GridMap" type="Spatial" parent="Level1/Map"]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+layer_config = "res://guardiao_layer.mlgmc"
+
+[node name="AIPlayer" parent="Level1" instance=ExtResource( 4 )]
 
 [node name="Details" type="Spatial" parent="Level1"]
 
@@ -27,6 +33,5 @@ light_indirect_energy = 1.94
 shadow_enabled = true
 shadow_color = Color( 0, 0.254902, 0.0431373, 1 )
 
-[node name="MapBounds" parent="Level1/Details" instance=ExtResource( 3 )]
+[node name="MapBounds" parent="Level1/Details" instance=ExtResource( 5 )]
 transform = Transform( 0.373886, 0, 0.463225, 0, 1, 0, -0.373886, 0, 0.463225, 11.7887, 6.16211, 22.6736 )
-
