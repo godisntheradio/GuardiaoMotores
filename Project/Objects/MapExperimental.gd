@@ -19,6 +19,7 @@ func _ready():
 		if(property["blocked"] != null):
 			tile.blocked = true
 			tile._on_RigidBody_mouse_entered()
+	mlg.queue_free()
 func world_to_map(p : Vector3):
 	p -= translation
 	var tSize = mapTiles[0].get_node("MeshInstance").mesh.size.x
