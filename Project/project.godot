@@ -79,6 +79,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/HumanStates/HumanTurn.gd"
 }, {
+"base": "Object",
+"class": "Layer",
+"language": "GDScript",
+"path": "res://addons/MultiLayer GridMap/Layer.gd"
+}, {
+"base": "EditorProperty",
+"class": "LayerSelection",
+"language": "GDScript",
+"path": "res://addons/MultiLayer GridMap/CustomNode/LayerSelection.gd"
+}, {
+"base": "EditorProperty",
+"class": "LayerVisibility",
+"language": "GDScript",
+"path": "res://addons/MultiLayer GridMap/CustomNode/LayerVisibility.gd"
+}, {
 "base": "Spatial",
 "class": "Map",
 "language": "GDScript",
@@ -90,9 +105,19 @@ _global_script_classes=[ {
 "path": "res://Script/HumanTrasitions/MoveSelected.gd"
 }, {
 "base": "Spatial",
+"class": "MultiLayerGridMap",
+"language": "GDScript",
+"path": "res://addons/MultiLayer GridMap/CustomNode/Multilayer_GridMap.gd"
+}, {
+"base": "Spatial",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Script/Player.gd"
+}, {
+"base": "Object",
+"class": "Property",
+"language": "GDScript",
+"path": "res://addons/MultiLayer GridMap/Property.gd"
 }, {
 "base": "Transition",
 "class": "ReturnPressed",
@@ -209,9 +234,14 @@ _global_script_class_icons={
 "ExecutingAction": "",
 "HasTaskAssigned": "",
 "HumanTurn": "",
+"Layer": "",
+"LayerSelection": "",
+"LayerVisibility": "",
 "Map": "",
 "MoveSelected": "",
+"MultiLayerGridMap": "",
 "Player": "",
+"Property": "",
 "ReturnPressed": "",
 "SavedGameData": "",
 "SelectingAction": "",
