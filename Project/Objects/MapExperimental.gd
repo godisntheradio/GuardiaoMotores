@@ -10,7 +10,7 @@ var mlg
 func _ready():
 	mlg = get_node("MultiLayer GridMap")
 	var maps = []
-	maps = mlg.gridmaps[0].get_used_cells()
+	maps = mlg.gridmaps[1].get_used_cells()
 	for t in maps:
 		var tile = TileClass.instance()
 		add_child(tile)
