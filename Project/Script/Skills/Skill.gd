@@ -22,8 +22,7 @@ func get_aoe_tiles(battle_manager, origin) -> Array:
 		return aoe_tiles
 	var points = battle_manager.get_neighbors(origin, aoe)
 	for point in points:
-		var tile : Tile = battle_manager.map.get_tile(Vector2(point.x, point.y))
-		aoe_tiles.append(tile)
+		aoe_tiles.append(point)
 	return aoe_tiles
 func calculate_effect(stats):
 	match type:

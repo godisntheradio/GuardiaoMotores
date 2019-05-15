@@ -36,6 +36,7 @@ func _ready():
 		unit.hp = unit.stats.hit_points
 	ai.battle_manager = self
 	ai.camera_manager = CameraManager
+	ai.initialize_state_machine()
 func on_begin_battle(deployed_units):
 	prepare_player()
 	#init map
@@ -69,10 +70,15 @@ func get_available_attack(unit : Unit, skill_range : int = 1):
 	return mov.duplicate()
 func get_neighbors(tile :Tile, reach : int =1):
 	var mov = astarManager.get_available_movement(map.world_to_map(tile.global_transform.origin), reach, true)
-	return mov.duplicate()
+	var tiles = []
+	for point in mov:
+		var t : Tile = map.get_tile(Vector2(point.x, point.y))
+		tiles.append(t)
+	return tiles.duplicate()
 func get_path_from_to(from : Tile, to : Tile):
 	return astarManager.get_path(map.world_to_map(from.translation),map.world_to_map(to.translation))
-	
+func get_tile_from_unit(unit:Unit) -> Tile:
+	return map.get_tile(map.world_to_map(unit.global_transform.origin))
 func prepare_player():
 	human_player = HumanPlayerScene.instance()
 	human_player.command_window = get_node(command_window)

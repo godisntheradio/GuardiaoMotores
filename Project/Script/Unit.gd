@@ -60,9 +60,8 @@ func undo_move(world_pos : Vector3):
 		has_moved = false
 		global_transform.origin = Vector3(world_pos.x, global_transform.origin.y, world_pos.z)
 
-func take_damage():
+func take_damage(dmg : int):
 	death()
-	pass
 func death():
 	player.remove_unit(self)
 	queue_free()

@@ -27,21 +27,13 @@ visible = false
 visible = false
 battle_manager_path = NodePath("../../BattleManager")
 
-[node name="Label" type="Label" parent="Control"]
-margin_left = 16.0
-margin_top = 561.0
-margin_right = 246.0
-margin_bottom = 588.0
-text = "Pressione a tecla U para reiniciar o jogo."
-valign = 1
-
 [node name="Label2" type="Label" parent="Control"]
 margin_left = 730.0
 margin_top = 10.0
 margin_right = 1017.0
 margin_bottom = 37.0
 custom_colors/font_color = Color( 1, 1, 1, 0.270588 )
-text = "protótipo versão 1.0 \"o guardião da floresta\""
+text = "alpha 1.0 \"o guardião da floresta\""
 align = 2
 valign = 1
 [connection signal="visibility_changed" from="Control/CommandWindow" to="Control/CommandWindow" method="_on_CommandWindow_visibility_changed"]

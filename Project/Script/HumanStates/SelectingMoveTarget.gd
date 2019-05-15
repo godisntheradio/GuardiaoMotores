@@ -10,7 +10,6 @@ func action(delta):
 				if(get_fsm_owner().is_move_valid(tile)):
 					var path = get_fsm_owner().battle_manager.get_path_from_to(get_fsm_owner().selected_tile, tile)
 					var world_path : PoolVector3Array
-					var tileSize = get_fsm_owner().selected_tile.get_node("MeshInstance").mesh.size.x
 					for point in path:
 						world_path.append(get_fsm_owner().battle_manager.map.get_tile(Vector2(point.x,point.y)).translation)
 					get_fsm_owner().selected_tile.occupying_unit.move(tile, world_path)

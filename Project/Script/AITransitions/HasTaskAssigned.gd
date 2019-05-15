@@ -7,4 +7,4 @@ func entry_action():
 func exit_action():
 	pass
 func is_triggered():
-	pass
+	return get_fsm_owner().task_list.size() > 0

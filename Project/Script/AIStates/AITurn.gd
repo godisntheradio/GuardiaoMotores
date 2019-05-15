@@ -22,13 +22,13 @@ func _init(fsm).(fsm):
 	sub_fsm.add_state(exe_s)
 	
 	sub_fsm.initial_state = assigning_s
-	sub_fsm.start()
 	
 func action(delta):
 	sub_fsm.update_input(fsm.input_event)
 	sub_fsm.update(delta)
 func entry_action():
-	pass
+	get_fsm_owner().task_list = []
+	sub_fsm.start()
 func exit_action():
 	pass
 static func get_name():

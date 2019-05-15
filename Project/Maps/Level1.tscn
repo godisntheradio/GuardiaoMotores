@@ -21,9 +21,6 @@ albedo_color = Color( 0, 0.788235, 1, 1 )
 [node name="Map" type="Spatial" parent="."]
 editor/display_folded = true
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 width = 18
 height = 18
 procedural = false

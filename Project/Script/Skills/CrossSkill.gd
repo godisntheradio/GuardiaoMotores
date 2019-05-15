@@ -12,8 +12,7 @@ func get_available_targets(battle_manager, origin) -> Array:
 		ignore_points = battle_manager.get_available_attack(origin.occupying_unit, ignore)
 		for point in ignore_points:
 			var tile : Tile = battle_manager.map.get_tile(Vector2(point.x, point.y))
-			var index = within_reach.find(tile)
-			if(index != -1):
-				print(index)
+			while(within_reach.find(tile) != -1):
+				var index = within_reach.find(tile)
 				within_reach.remove(index)
 	return within_reach
