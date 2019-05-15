@@ -1,7 +1,7 @@
 extends State
 class_name AITurn
 var sub_fsm : StateMachine
-
+var follow_speed = 10
 func _init(fsm).(fsm):
 	self.fsm = fsm
 	sub_fsm = StateMachine.new(get_fsm_owner())
@@ -24,6 +24,8 @@ func _init(fsm).(fsm):
 	sub_fsm.initial_state = assigning_s
 	
 func action(delta):
+	if (get_fsm_owner().choosen_agent != null):
+		CameraManager.relocate(lerp(CameraManager.global_transform.origin, get_fsm_owner().choosen_agent.global_transform.origin, delta * follow_speed))
 	sub_fsm.update_input(fsm.input_event)
 	sub_fsm.update(delta)
 func entry_action():
