@@ -37,12 +37,12 @@ func _process(delta):
 		else:
 			to_be_positioned.global_transform.origin = input.dir.normalized() * 2
 func _input(event):
-	if event is InputEventMouseButton && !event.pressed && event.button_index == BUTTON_LEFT: # clique esquerdo posiciona uma unidade selecionada na lista no campo
+	if event is InputEventMouseButton && event.pressed && event.button_index == BUTTON_LEFT: # clique esquerdo posiciona uma unidade selecionada na lista no campo
 		if(input.result.size() > 0 && to_be_positioned != null):#checa se o raycast colidiu com algo e se há uma unidade selecionada para posicionar
 			var tile = input.result.collider.get_parent()
 			if(tile is Tile):
 				position_unit(to_be_positioned, tile)
-	if event is InputEventMouseButton && !event.pressed && event.button_index == BUTTON_RIGHT: # clique direito tira uma unidade do campo e retorna para a lista caso deseje reposicionar
+	if event is InputEventMouseButton && event.pressed && event.button_index == BUTTON_RIGHT: # clique direito tira uma unidade do campo e retorna para a lista caso deseje reposicionar
 		if(input.result.size() > 0 && to_be_positioned == null): #checa se o raycast colidiu com algo e se nao tem nada selecionado para posicionar
 			var tile = input.result.collider.get_parent()
 			if(tile is Tile && !tile.is_tile_empty()): #chega se a colisao foi com um tile e se tile possui uma unidade para tirar do campo

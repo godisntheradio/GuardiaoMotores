@@ -23,6 +23,8 @@ export var can_cure_color : Color
 export var blocked_color : Color
 export var aoe_color : Color
 
+var map_coord : Vector2
+
 func _ready():
 	hover = false
 	selected = false

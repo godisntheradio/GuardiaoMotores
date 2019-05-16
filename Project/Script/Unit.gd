@@ -68,6 +68,8 @@ func death():
 	pass
 func update_destination():
 	clock = 0
+	if (path.size() == 0):
+		return
 	current_destination = path[current_index] + Vector3(0,2.0,0)
 	current_start = translation
 func move_animation(delta):

@@ -16,7 +16,7 @@ func action(delta):
 				aoe_tiles = get_fsm_owner().selected_skill.get_aoe_tiles(get_fsm_owner().battle_manager, tile)
 				for t in aoe_tiles:
 					t.aoe_blink_enter()
-	if fsm.input_event is InputEventMouseButton && !fsm.input_event.pressed && fsm.input_event.button_index == BUTTON_LEFT:
+	if fsm.input_event is InputEventMouseButton && fsm.input_event.pressed && fsm.input_event.button_index == BUTTON_LEFT:
 		if(tile is Tile):
 			if(get_fsm_owner().is_attack_valid(tile)):
 				for t in aoe_tiles:
