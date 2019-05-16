@@ -70,6 +70,7 @@ func end_turn():
 	reset_units()
 	last_moved = null
 	has_ended_turn = true
+	command_window.hide_commands()
 	
 func select_unit(tile):
 	if(selected_tile != null):

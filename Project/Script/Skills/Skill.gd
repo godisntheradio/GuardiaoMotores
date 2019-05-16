@@ -27,9 +27,9 @@ func get_aoe_tiles(battle_manager, origin) -> Array:
 func calculate_effect(stats):
 	match type:
 		Heal:
-			heal(stats)
+			return heal(stats)
 		Attack:
-			attack(stats)
+			return attack(stats)
 func heal(stats):
 	return 10
 func attack(stats):

@@ -1,7 +1,7 @@
 extends Task
 class_name TaskAttack
-var agent_skill : Skill
-func _init(agent_:Unit, target_:Tile, manager_, skill_ : Skill).(agent_,target_,manager_):
+var agent_skill
+func _init(agent_, target_:Tile, manager_, skill_).(agent_,target_,manager_):
 	agent_skill = skill_
 func calculate_score() -> int:
 	score += target_in_range()
@@ -10,7 +10,7 @@ func calculate_score() -> int:
 	return score
 	
 func execute_task():
-	agent.attack(target)
+	agent.attack(target, agent_skill)
 func target_in_range() -> int:
 	var max_score = 100
 	if(!in_range_for_attack(agent,target)):

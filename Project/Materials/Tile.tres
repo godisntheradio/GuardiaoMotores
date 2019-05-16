@@ -88,3 +88,4 @@ shader_param/texture_albedo = SubResource( 2 )
 shader_param/texture_metallic = SubResource( 3 )
 shader_param/texture_roughness = SubResource( 5 )
 shader_param/texture_normal = SubResource( 4 )
+
