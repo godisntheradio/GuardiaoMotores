@@ -13,7 +13,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 7.62939e-006, 0.777778 ), Vector2( 243, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 243, 0 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -52,25 +52,27 @@ margin_bottom = 35.7778
 margin_right = 200.0
 margin_bottom = 35.0
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
-text = "Attack"
+text = "Skills"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/Skill"]
+root_node = NodePath("../SkillButton")
 anims/move_out = SubResource( 1 )
 
 [node name="Move" type="Control" parent="Panel"]
+margin_top = 35.0
+margin_right = 200.0
+margin_bottom = 70.0001
+
+[node name="MoveButton" type="Button" parent="Panel/Move"]
 margin_left = 7.62939e-006
 margin_top = 0.777778
 margin_right = 200.0
 margin_bottom = 35.7778
-
-[node name="MoveButton" type="Button" parent="Panel/Move"]
-margin_top = 35.0
-margin_right = 200.0
-margin_bottom = 70.0
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 text = "Move"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/Move"]
+root_node = NodePath("../MoveButton")
 anims/move_out = SubResource( 2 )
 
 [node name="ReturnButton" type="Button" parent="Panel"]
@@ -81,11 +83,12 @@ custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 text = "Return"
 
 [node name="SkillList" type="ItemList" parent="Panel"]
-margin_left = -204.25
-margin_top = -55.25
-margin_right = -4.25037
-margin_bottom = 72.75
-[connection signal="button_up" from="Panel/Skill/SkillButton" to="." method="_on_AttackButton_button_up"]
+visible = false
+margin_left = -205.0
+margin_top = -1.0
+margin_right = -5.0
+margin_bottom = 110.0
+[connection signal="pressed" from="Panel/Skill/SkillButton" to="." method="_on_SkillButton_pressed"]
 [connection signal="pressed" from="Panel/Move/MoveButton" to="." method="_on_MoveButton_button_up"]
 [connection signal="pressed" from="Panel/ReturnButton" to="." method="_on_ReturnButton_button_up"]
 [connection signal="item_selected" from="Panel/SkillList" to="." method="_on_SkillList_item_selected"]

@@ -20,16 +20,15 @@ func _on_MoveButton_button_up():
 	move_out()
 	emit_signal("move")
 func _on_ReturnButton_button_up():
-	move_in()
 	emit_signal("returning")
 	
 func show_commands(unit):
 	add_skill_list(unit.stats.skills)
 	visible = true #cuida da visibilidade da janela de comandos
 	if(unit.has_attacked):
-		hide_attack()
+		hide_skill()
 	else:
-		show_attack()
+		show_skill()
 	if(unit.has_moved):
 		hide_move()
 	else:
@@ -38,16 +37,17 @@ func show_commands(unit):
 func hide_commands():
 	visible = false
 func move_out():
-	hide_attack()
+	hide_skill()
 	hide_move()
 func move_in():
-	show_attack()
+	show_skill()
 	show_move()
-func show_attack():
+func show_skill():
 	skill_animator.play_backwards("move_out")
 func show_move():
 	move_animator.play_backwards("move_out")
-func hide_attack():
+func hide_skill():
+	skill_list.visible = false
 	skill_animator.play("move_out")
 func hide_move():
 	move_animator.play("move_out")
@@ -62,3 +62,8 @@ func clear_skill_list():
 func _on_SkillList_item_selected(index):
 	move_out()
 	emit_signal("attack", index)
+	
+func _on_SkillButton_pressed():
+	move_out()
+	skill_list.visible = true
+	pass # Replace with function body.
