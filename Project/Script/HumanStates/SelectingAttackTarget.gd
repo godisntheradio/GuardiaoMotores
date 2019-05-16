@@ -21,7 +21,7 @@ func action(delta):
 			if(get_fsm_owner().is_attack_valid(tile)):
 				for t in aoe_tiles:
 					if(t.occupying_unit != null && t.occupying_unit):
-						get_fsm_owner().selected_tile.occupying_unit.attack(t)
+						get_fsm_owner().selected_tile.occupying_unit.attack(t,get_fsm_owner().selected_skill)
 				get_fsm_owner().target_selected = true
 				get_fsm_owner().after_move()
 	

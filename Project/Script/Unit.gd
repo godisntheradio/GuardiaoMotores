@@ -42,10 +42,9 @@ func _ready():
 func _process(delta):
 	if (is_moving):
 		move_animation(delta)
-func attack(pos : Tile):
-#	pos.occupying_unit.hp += - stats.attack
+func attack(pos : Tile, skill : Skill):
+	pos.occupying_unit.take_damage(skill.calculate_effect(stats))
 	has_attacked = true
-	pos.occupying_unit.death()
 	pos.occupying_unit = null
 	emit_signal("action_finished")
 func move(pos : Tile, points : PoolVector3Array):
@@ -61,7 +60,10 @@ func undo_move(world_pos : Vector3):
 		global_transform.origin = Vector3(world_pos.x, global_transform.origin.y, world_pos.z)
 
 func take_damage(dmg : int):
-	death()
+	hp += dmg
+	hp = max(hp, stats.hit_points)
+	if (hp < 1):
+		death()
 func death():
 	player.remove_unit(self)
 	queue_free()

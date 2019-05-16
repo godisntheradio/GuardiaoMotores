@@ -45,7 +45,11 @@ func create_tasks():
 					tasks.append(t)
 			Skill.Attack:
 				for e in enemies:
-					var t = TaskAttack.new(get_fsm_owner().choosen_agent, get_fsm_owner().battle_manager.get_tile_from_unit(e),get_fsm_owner().battle_manager,skill)
+					var l = get_fsm_owner().battle_manager.get_tile_from_unit(e)
+					print(l)
+					if(l.occupying_unit == null):
+						print("erro")
+					var t = TaskAttack.new(get_fsm_owner().choosen_agent, l, get_fsm_owner().battle_manager,skill)
 					t.in_reach = t.in_reach(skill)
 					t.calculate_score()
 					tasks.append(t)
