@@ -3,7 +3,6 @@ class_name TaskAttack
 var agent_skill : Skill
 func _init(agent_:Unit, target_:Tile, manager_, skill_ : Skill).(agent_,target_,manager_):
 	agent_skill = skill_
-	pass
 func calculate_score() -> int:
 	score += target_in_range()
 	score += low_hp_target()

@@ -21,6 +21,8 @@ func _process(delta):
 	state_machine.update(delta)
 func end_turn():
 	turn = false
+	has_ended_turn = true
+	reset_units()
 func initialize_state_machine():
 	state_machine = StateMachine.new(self)
 	

@@ -4,7 +4,12 @@
 
 [resource]
 script = ExtResource( 1 )
-game_version = "0.1.0"
+game_version = "0.0.1"
 data = {
-"player_units": [ "Uni", "T", "unisinos" ]
+"agua": 0,
+"c_pos": Vector3( -76.3094, 0, 67.3521 ),
+"escuridao": 0,
+"luz": 0,
+"player_units": [ "Uni", "T", "unisinos" ],
+"terra": 0
 }

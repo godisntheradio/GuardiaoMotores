@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Script/StateDescWindow.gd" type="Script" id=1]
+[ext_resource path="res://Textures/Gold_Star.png" type="Texture" id=2]
 
 [node name="StageDescWindow" type="Control"]
 anchor_right = 1.0
@@ -9,12 +10,13 @@ script = ExtResource( 1 )
 s_name_path = NodePath("Panel/StageName")
 s_desc_path = NodePath("Panel/PanelContainer/StageDescription")
 s_difficulty_path = NodePath("Panel/Label/Difficulty")
+difficulty_icon = ExtResource( 2 )
 
 [node name="Panel" type="Panel" parent="."]
 margin_left = 701.228
-margin_top = 100.0
+margin_top = 98.5681
 margin_right = 981.228
-margin_bottom = 500.0
+margin_bottom = 498.568
 
 [node name="StageName" type="Label" parent="Panel"]
 margin_left = 70.0
@@ -50,3 +52,22 @@ margin_left = -3.0
 margin_top = 24.9109
 margin_right = 223.0
 margin_bottom = 60.9109
+
+[node name="Button" type="Button" parent="."]
+margin_left = 701.228
+margin_top = 510.0
+margin_right = 981.228
+margin_bottom = 550.0
+text = "Begin"
+
+[node name="Close" type="Button" parent="."]
+margin_left = 950.0
+margin_top = 100.0
+margin_right = 980.0
+margin_bottom = 130.0
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "X"
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]

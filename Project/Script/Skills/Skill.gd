@@ -13,7 +13,7 @@ var anim : Animation
 
 func _init():
 	pass
-func get_available_targets(battle_manager, origin) -> Array:
+func get_available_targets(battle_manager, origin) -> Array: #origin is a tile
 	return []
 func get_aoe_tiles(battle_manager, origin) -> Array:
 	var aoe_tiles = []
