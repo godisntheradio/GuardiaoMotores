@@ -51,9 +51,11 @@ func _init(fsm).(fsm):
 	
 	sub_fsm.initial_state = unit_s
 	sub_fsm.start()
-func action():
+func action(delta):
+	CameraManager.processCameraMovement(delta)
 	sub_fsm.update_input(fsm.input_event)
-	sub_fsm.update()
+	sub_fsm.update(delta)
+	
 func entry_action():
 	pass
 func exit_action():

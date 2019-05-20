@@ -5,6 +5,8 @@ var UnitClass = preload("res://Objects/Unit.tscn")
 var input
 var map
 
+var GameDataLoader = preload("res://Script/GameDataLoader.gd")
+
 var to_be_positioned
 var to_be_positioned_index
 
@@ -17,16 +19,16 @@ func _ready():
 	item_list = get_node("Panel/ItemList")
 	item_list.connect("item_selected",self,"_on_selected_from_list")
 	connect("begin_battle",get_tree().get_root().get_node("Main/BattleManager"),"on_begin_battle")
-	map = get_tree().get_root().get_node("Main/Map")
-	input = get_tree().get_root().get_node("Main/PlayerInput")
+	input = CameraManager
 	# load list
 	item_list.set_same_column_width(true)
 	item_list.set_max_text_lines(50)
 	item_list.set_auto_height(true)
-	for unit in PlayerData.available_units:
-		item_list.add_item(unit.name + "   " )
+	for unit in GameData.available_units:
+		item_list.add_item(unit)
 	
 func _process(delta):
+	CameraManager.processCameraMovement(delta)
 	if(to_be_positioned != null):
 		if(input.result.size() > 0):
 			var tile = input.result.collider.get_parent()
@@ -35,24 +37,25 @@ func _process(delta):
 		else:
 			to_be_positioned.global_transform.origin = input.dir.normalized() * 2
 func _input(event):
-	if event is InputEventMouseButton && !event.pressed && event.button_index == BUTTON_LEFT: # clique esquerdo posiciona uma unidade selecionada na lista no campo
+	if event is InputEventMouseButton && event.pressed && event.button_index == BUTTON_LEFT: # clique esquerdo posiciona uma unidade selecionada na lista no campo
 		if(input.result.size() > 0 && to_be_positioned != null):#checa se o raycast colidiu com algo e se há uma unidade selecionada para posicionar
 			var tile = input.result.collider.get_parent()
 			if(tile is Tile):
 				position_unit(to_be_positioned, tile)
-	if event is InputEventMouseButton && !event.pressed && event.button_index == BUTTON_RIGHT: # clique direito tira uma unidade do campo e retorna para a lista caso deseje reposicionar
+	if event is InputEventMouseButton && event.pressed && event.button_index == BUTTON_RIGHT: # clique direito tira uma unidade do campo e retorna para a lista caso deseje reposicionar
 		if(input.result.size() > 0 && to_be_positioned == null): #checa se o raycast colidiu com algo e se nao tem nada selecionado para posicionar
 			var tile = input.result.collider.get_parent()
 			if(tile is Tile && !tile.is_tile_empty()): #chega se a colisao foi com um tile e se tile possui uma unidade para tirar do campo
-				var i = PlayerData.find_unit_index(tile.occupying_unit)
-				if (i != null):
-					reactivate(i)
-					var index = deployed_units.find(i)
-					deployed_units.remove(index)
-					instanced_units.remove(index)
+				var i = instanced_units.find(tile.occupying_unit)
+				if (i != -1):
+					var item_list_i = deployed_units[i]
+					reactivate(item_list_i)
+					deployed_units.remove(i)
+					instanced_units.remove(i)
 					positioned_count += -1
-					tile.occupying_unit.queue_free()
+					var a = tile.occupying_unit
 					tile.remove_unit()
+					a.call_deferred("free")
 	
 func position_unit(new_unit : Unit, tile : Tile):
 	if(tile.is_tile_empty() && !tile.blocked):
@@ -62,7 +65,8 @@ func position_unit(new_unit : Unit, tile : Tile):
 		instanced_units.append(to_be_positioned)
 		deactivate()
 	pass
-func make_unit(stats):
+func make_unit(unit_data):
+	var stats = GameDataLoader.create_unit(unit_data)
 	var instance = UnitClass.instance()
 	get_tree().get_root().get_node("Main").add_child(instance)
 	instance.stats = stats
@@ -89,7 +93,11 @@ func deselect():
 	to_be_positioned_index = -1
 func select(index):
 	to_be_positioned_index = index
-	to_be_positioned =  make_unit(PlayerData.available_units[index])
+	var found_unit = GameData.find_unit(item_list.get_item_text(index))
+	if (found_unit != null):
+		to_be_positioned =  make_unit(found_unit)
+	else:
+		print("nao achou unidade na lista")
 #funções relacionadas a lista
 func deactivate():
 	item_list.set_item_disabled(to_be_positioned_index, true)
@@ -103,5 +111,5 @@ func reactivate(index):
 func _on_Begin_button_up():
 	if (positioned_count > 0):
 		emit_signal("begin_battle",instanced_units)
-		queue_free()
+		call_deferred("free")
 	pass # Replace with function body.

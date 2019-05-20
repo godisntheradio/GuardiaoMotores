@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Script/SavedGameData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+game_version = "0.0.1"
+data = {
+"agua": 0,
+"c_pos": Vector3( -71.3081, 0, 65.4854 ),
+"escuridao": 0,
+"luz": 0,
+"player_units": [ "Uni", "T", "unisinos" ],
+"terra": 0
+}
+

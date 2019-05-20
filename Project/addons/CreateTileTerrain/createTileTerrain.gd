@@ -11,5 +11,4 @@ func _exit_tree():
 	remove_control_from_docks(dock)
 	
 func on_scene_change(node : Node):
-	print(node.name)
 	pass

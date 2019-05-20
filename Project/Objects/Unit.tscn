@@ -18,8 +18,9 @@ mesh = SubResource( 1 )
 material/0 = null
 
 [node name="RigidBody" type="RigidBody" parent="."]
+collision_layer = 0
+mode = 1
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
 transform = Transform( 0.8, 0, 0, 0, -3.49691e-008, -0.8, 0, 0.8, -3.49691e-008, 0, 0, 0 )
 shape = SubResource( 2 )
-

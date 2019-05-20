@@ -1,0 +1,198 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://addons/SkillEditor/Editor_SkillList.gd" type="Script" id=1]
+[ext_resource path="res://addons/SkillEditor/Editor_stringInput.gd" type="Script" id=2]
+[ext_resource path="res://addons/SkillEditor/Editor_SkillTypeSelector.gd" type="Script" id=3]
+[ext_resource path="res://addons/SkillEditor/Editor_floatInput.gd" type="Script" id=4]
+[ext_resource path="res://addons/SkillEditor/Editor_intInput.gd" type="Script" id=5]
+[ext_resource path="res://addons/SkillEditor/Editor_pathInput.gd" type="Script" id=6]
+
+[node name="EditSkill" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.10803
+margin_bottom = -1.10803
+
+[node name="AddSkill" type="Button" parent="."]
+margin_left = 131.883
+margin_top = 0.300194
+margin_right = 151.883
+margin_bottom = 20.3002
+text = "+"
+
+[node name="RemoveSkill" type="Button" parent="."]
+margin_left = 153.774
+margin_right = 173.774
+margin_bottom = 20.0
+text = "-"
+
+[node name="SkillList" type="ItemList" parent="."]
+margin_top = 20.0
+margin_right = 175.0
+margin_bottom = 120.0
+script = ExtResource( 1 )
+name_path = NodePath("../Name/LineEdit")
+type_path = NodePath("../TypeButton")
+range_type_path = NodePath("../TypeButton2")
+effect_path = NodePath("../Effect/LineEdit2")
+reach_path = NodePath("../Reach/LineEdit2")
+ignore_path = NodePath("../IgnoreReach/LineEdit2")
+aoe_path = NodePath("../Aoe/LineEdit2")
+anim_path = NodePath("../Anim")
+
+[node name="HSeparator" type="HSeparator" parent="."]
+margin_left = 4.0
+margin_top = 140.0
+margin_right = 164.0
+margin_bottom = 144.0
+rect_scale = Vector2( 1, 2.36 )
+
+[node name="Name" type="Label" parent="."]
+margin_top = 150.0
+margin_right = 107.0
+margin_bottom = 164.0
+text = "Name: "
+
+[node name="LineEdit" type="LineEdit" parent="Name"]
+margin_left = 4.0
+margin_top = 23.0
+margin_right = 161.0
+margin_bottom = 47.0
+script = ExtResource( 2 )
+
+[node name="TypeButton" type="Button" parent="."]
+margin_top = 230.0
+margin_right = 161.0
+margin_bottom = 250.0
+text = "<choose type>"
+script = ExtResource( 3 )
+menu_path = NodePath("../PopupMenu")
+
+[node name="Type" type="Label" parent="TypeButton"]
+margin_top = -20.0
+margin_right = 40.0
+margin_bottom = -6.0
+text = "Type:"
+
+[node name="TypeButton2" type="Button" parent="."]
+margin_top = 280.0
+margin_right = 161.0
+margin_bottom = 300.0
+text = "<choose type>"
+script = ExtResource( 3 )
+menu_path = NodePath("../rangeTypeMenu")
+
+[node name="Range Type" type="Label" parent="TypeButton2"]
+margin_top = -20.0
+margin_right = 40.0
+margin_bottom = -6.0
+text = "Range Type:"
+
+[node name="Effect" type="Label" parent="."]
+margin_top = 311.9
+margin_right = 44.0
+margin_bottom = 325.9
+text = "Effect:"
+
+[node name="LineEdit2" type="LineEdit" parent="Effect"]
+margin_left = 4.0
+margin_top = 25.0
+margin_right = 160.0
+margin_bottom = 49.0
+max_length = 5
+script = ExtResource( 4 )
+
+[node name="Reach" type="Label" parent="."]
+margin_top = 371.9
+margin_right = 44.0
+margin_bottom = 385.9
+text = "Reach:"
+
+[node name="LineEdit2" type="LineEdit" parent="Reach"]
+margin_left = 4.0
+margin_top = 25.0
+margin_right = 160.0
+margin_bottom = 49.0
+max_length = 5
+script = ExtResource( 5 )
+
+[node name="IgnoreReach" type="Label" parent="."]
+margin_top = 428.258
+margin_right = 44.0
+margin_bottom = 442.258
+text = "Ignore Range:"
+
+[node name="LineEdit2" type="LineEdit" parent="IgnoreReach"]
+margin_left = 4.0
+margin_top = 25.0
+margin_right = 160.0
+margin_bottom = 49.0
+max_length = 5
+script = ExtResource( 5 )
+
+[node name="Aoe" type="Label" parent="."]
+margin_left = 1.65012
+margin_top = 481.108
+margin_right = 89.6501
+margin_bottom = 495.108
+text = "Area of Effect:"
+
+[node name="LineEdit2" type="LineEdit" parent="Aoe"]
+margin_left = 4.0
+margin_top = 25.0
+margin_right = 160.0
+margin_bottom = 49.0
+max_length = 5
+script = ExtResource( 5 )
+
+[node name="Anim" type="Button" parent="."]
+margin_left = 1.65012
+margin_top = 561.108
+margin_right = 161.65
+margin_bottom = 581.108
+text = "<find path>"
+script = ExtResource( 6 )
+file_dialog_path = NodePath("AnimPath")
+
+[node name="AnimPath" type="FileDialog" parent="Anim"]
+margin_left = 101.65
+margin_top = -198.55
+margin_right = 501.65
+margin_bottom = 113.45
+window_title = "Open a File"
+mode = 0
+
+[node name="Label" type="Label" parent="Anim"]
+margin_top = -18.0
+margin_right = 90.0
+margin_bottom = -4.0
+text = "Animation:"
+
+[node name="SaveButton" type="Button" parent="."]
+margin_left = 110.0
+margin_top = 610.0
+margin_right = 160.0
+margin_bottom = 640.0
+text = "Save"
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+margin_left = 3.49899
+margin_top = 254.778
+margin_right = 167.499
+margin_bottom = 306.778
+items = [ "Attack", null, 2, false, false, -1, 0, null, "", false, "Heal", null, 2, false, false, -1, 0, null, "", false ]
+
+[node name="rangeTypeMenu" type="PopupMenu" parent="."]
+margin_left = 1.65012
+margin_top = 307.976
+margin_right = 165.65
+margin_bottom = 359.976
+items = [ "Area", null, 2, false, false, -1, 0, null, "", false, "Cross", null, 2, false, false, -1, 0, null, "", false ]
+[connection signal="button_up" from="AddSkill" to="SkillList" method="_on_AddSkill_button_up"]
+[connection signal="button_up" from="RemoveSkill" to="SkillList" method="_on_RemoveSkill_button_up"]
+[connection signal="item_selected" from="SkillList" to="SkillList" method="editor_select"]
+[connection signal="button_up" from="TypeButton" to="TypeButton" method="_on_TypeButton_button_up"]
+[connection signal="button_up" from="TypeButton2" to="TypeButton2" method="_on_TypeButton_button_up"]
+[connection signal="pressed" from="Anim" to="Anim" method="_on_Anim_pressed"]
+[connection signal="file_selected" from="Anim/AnimPath" to="Anim" method="_on_AnimPath_file_selected"]
+[connection signal="button_up" from="SaveButton" to="SkillList" method="_on_SaveButton_button_up"]

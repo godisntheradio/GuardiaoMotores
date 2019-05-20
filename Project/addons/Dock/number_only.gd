@@ -9,5 +9,5 @@ func _on_text_changed(new_text : String):
 			append_at_cursor(c)
 	._on_text_changed(text)
 	
-func _ready():
+func _enter_tree():
 	pass

@@ -36,7 +36,6 @@ margin_top = 368.0
 margin_right = 259.0
 margin_bottom = 397.0
 text = "Begin Battle"
-
 [connection signal="mouse_entered" from="Panel/ItemList" to="." method="_on_ItemList_mouse_entered"]
 [connection signal="mouse_exited" from="Panel/ItemList" to="." method="_on_ItemList_mouse_exited"]
 [connection signal="button_up" from="Panel/Begin" to="." method="_on_Begin_button_up"]

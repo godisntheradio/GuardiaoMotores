@@ -6,8 +6,6 @@ var hover : bool
 var selected : bool
 var highlighted : bool
 
-export var color : Color
-
 func _ready():
 	hover = false
 	selected = false
@@ -15,11 +13,9 @@ func _ready():
 	material_ref = get_surface_material(0)
 	pass
 	
-func mouse_entered():
+func mouse_entered(color):
 	hover = true
-	start_blinking(get_parent().hover_color)
-	if(!get_parent().is_tile_empty()):
-		get_parent().show_stats()
+	start_blinking(color)
 func mouse_exited():
 	hover = false
 	if(!selected):
@@ -28,9 +24,6 @@ func mouse_exited():
 		stop_highlight()
 	else:
 		start_blinking(get_parent().selected_color)
-	if(!get_parent().is_tile_empty()):
-		get_parent().hide_stats()
-		
 func start_blinking(color):
 	material_ref.set_shader_param("blink_color",color)
 	material_ref.set_shader_param("should_blink",true)
@@ -46,12 +39,9 @@ func deselect():
 	stop_blinking()
 	selected = false
 	
-func highlight_movable():
+func start_highlight(color):
 	highlighted = true
-	material_ref.set_shader_param("tint_color",get_parent().within_reach_color)
-func highlight_attackable():
-	highlighted = true
-	material_ref.set_shader_param("tint_color",get_parent().can_attack_color)
+	material_ref.set_shader_param("tint_color",color)
 func stop_highlight():
 	highlighted = false
 	material_ref.set_shader_param("tint_color",Color(0,0,0,1))

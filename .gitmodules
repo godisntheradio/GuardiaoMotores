@@ -1,0 +1,3 @@
+[submodule "Godot-MultiLayer-GridMap"]
+	path = Godot-MultiLayer-GridMap
+	url = https://github.com/williambt/Godot-MultiLayer-GridMap.git

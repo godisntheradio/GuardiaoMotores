@@ -9,10 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "State",
+"class": "AITurn",
+"language": "GDScript",
+"path": "res://Script/AIStates/AITurn.gd"
+}, {
 "base": "Transition",
 "class": "ActionFinished",
 "language": "GDScript",
 "path": "res://Script/HumanTrasitions/ActionFinished.gd"
+}, {
+"base": "Skill",
+"class": "AreaSkill",
+"language": "GDScript",
+"path": "res://Script/Skills/AreaSkill.gd"
+}, {
+"base": "State",
+"class": "AssigningTasks",
+"language": "GDScript",
+"path": "res://Script/AIStates/AssigningTasks.gd"
 }, {
 "base": "Transition",
 "class": "AttackSelected",
@@ -23,6 +38,21 @@ _global_script_classes=[ {
 "class": "BattleManager",
 "language": "GDScript",
 "path": "res://Script/BattleManager.gd"
+}, {
+"base": "Transition",
+"class": "BattleStarted",
+"language": "GDScript",
+"path": "res://Script/HumanTrasitions/BattleStarted.gd"
+}, {
+"base": "Skill",
+"class": "CrossSkill",
+"language": "GDScript",
+"path": "res://Script/Skills/CrossSkill.gd"
+}, {
+"base": "Label",
+"class": "Editor_unitSkills",
+"language": "GDScript",
+"path": "res://addons/Dock/editor_unitSkills.gd"
 }, {
 "base": "Transition",
 "class": "EndTurnPressed",
@@ -39,15 +69,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/HumanStates/ExecutingAction.gd"
 }, {
-"base": "Player",
-"class": "Human",
+"base": "Transition",
+"class": "HasTaskAssigned",
 "language": "GDScript",
-"path": "res://Script/Human.gd"
+"path": "res://Script/AITransitions/HasTaskAssigned.gd"
 }, {
 "base": "State",
 "class": "HumanTurn",
 "language": "GDScript",
 "path": "res://Script/HumanStates/HumanTurn.gd"
+}, {
+"base": "Object",
+"class": "Layer",
+"language": "GDScript",
+"path": "res://addons/MultiLayer GridMap/Layer.gd"
+}, {
+"base": "EditorProperty",
+"class": "LayerSelection",
+"language": "GDScript",
+"path": "res://addons/MultiLayer GridMap/CustomNode/LayerSelection.gd"
+}, {
+"base": "EditorProperty",
+"class": "LayerVisibility",
+"language": "GDScript",
+"path": "res://addons/MultiLayer GridMap/CustomNode/LayerVisibility.gd"
 }, {
 "base": "Spatial",
 "class": "Map",
@@ -60,14 +105,29 @@ _global_script_classes=[ {
 "path": "res://Script/HumanTrasitions/MoveSelected.gd"
 }, {
 "base": "Spatial",
+"class": "MultiLayerGridMap",
+"language": "GDScript",
+"path": "res://addons/MultiLayer GridMap/CustomNode/Multilayer_GridMap.gd"
+}, {
+"base": "Spatial",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Script/Player.gd"
+}, {
+"base": "Object",
+"class": "Property",
+"language": "GDScript",
+"path": "res://addons/MultiLayer GridMap/Property.gd"
 }, {
 "base": "Transition",
 "class": "ReturnPressed",
 "language": "GDScript",
 "path": "res://Script/HumanTrasitions/ReturnPressed.gd"
+}, {
+"base": "Resource",
+"class": "SavedGameData",
+"language": "GDScript",
+"path": "res://Script/SavedGameData.gd"
 }, {
 "base": "State",
 "class": "SelectingAction",
@@ -90,14 +150,24 @@ _global_script_classes=[ {
 "path": "res://Script/HumanStates/SelectingUnit.gd"
 }, {
 "base": "Object",
+"class": "Skill",
+"language": "GDScript",
+"path": "res://Script/Skills/Skill.gd"
+}, {
+"base": "Spatial",
+"class": "Stage",
+"language": "GDScript",
+"path": "res://Script/Stage.gd"
+}, {
+"base": "Object",
 "class": "State",
 "language": "GDScript",
-"path": "res://Script/State.gd"
+"path": "res://Script/StateMachine/State.gd"
 }, {
 "base": "Object",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://Script/StateMachine.gd"
+"path": "res://Script/StateMachine/StateMachine.gd"
 }, {
 "base": "Object",
 "class": "Stats",
@@ -109,6 +179,26 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/HumanTrasitions/TargetSelected.gd"
 }, {
+"base": "Object",
+"class": "Task",
+"language": "GDScript",
+"path": "res://Script/Tasks/Task.gd"
+}, {
+"base": "Task",
+"class": "TaskAttack",
+"language": "GDScript",
+"path": "res://Script/Tasks/TaskAttack.gd"
+}, {
+"base": "Task",
+"class": "TaskCure",
+"language": "GDScript",
+"path": "res://Script/Tasks/TaskCure.gd"
+}, {
+"base": "Task",
+"class": "TaskMove",
+"language": "GDScript",
+"path": "res://Script/Tasks/TaskMove.gd"
+}, {
 "base": "Spatial",
 "class": "Tile",
 "language": "GDScript",
@@ -117,7 +207,7 @@ _global_script_classes=[ {
 "base": "Object",
 "class": "Transition",
 "language": "GDScript",
-"path": "res://Script/Transition.gd"
+"path": "res://Script/StateMachine/Transition.gd"
 }, {
 "base": "Transition",
 "class": "TurnBegun",
@@ -138,45 +228,75 @@ _global_script_classes=[ {
 "class": "UnitStatsDisplay",
 "language": "GDScript",
 "path": "res://Script/UnitStatsDisplay.gd"
+}, {
+"base": "State",
+"class": "WaitingBattleStart",
+"language": "GDScript",
+"path": "res://Script/HumanStates/WaitingBattleStart.gd"
 } ]
 _global_script_class_icons={
+"AITurn": "",
 "ActionFinished": "",
+"AreaSkill": "",
+"AssigningTasks": "",
 "AttackSelected": "",
 "BattleManager": "",
+"BattleStarted": "",
+"CrossSkill": "",
+"Editor_unitSkills": "",
 "EndTurnPressed": "",
 "EnemyTurn": "",
 "ExecutingAction": "",
-"Human": "",
+"HasTaskAssigned": "",
 "HumanTurn": "",
+"Layer": "",
+"LayerSelection": "",
+"LayerVisibility": "",
 "Map": "",
 "MoveSelected": "",
+"MultiLayerGridMap": "",
 "Player": "",
+"Property": "",
 "ReturnPressed": "",
+"SavedGameData": "",
 "SelectingAction": "",
 "SelectingAttackTarget": "",
 "SelectingMoveTarget": "",
 "SelectingUnit": "",
+"Skill": "",
+"Stage": "",
 "State": "",
 "StateMachine": "",
 "Stats": "",
 "TargetSelected": "",
+"Task": "",
+"TaskAttack": "",
+"TaskCure": "",
+"TaskMove": "",
 "Tile": "",
 "Transition": "",
 "TurnBegun": "",
 "Unit": "",
 "UnitSelected": "",
-"UnitStatsDisplay": ""
+"UnitStatsDisplay": "",
+"WaitingBattleStart": ""
 }
 
 [application]
 
 config/name="Guardiao"
-run/main_scene="res://Objects/Overworld.tscn"
+run/main_scene="res://Maps/Overworld.tscn"
 config/icon="res://icon.png"
+config/Version="0.0.1"
 
 [autoload]
 
-PlayerData="*res://Objects/PlayerData.tscn"
+GameData="*res://Objects/GameData.tscn"
+CameraManager="*res://Objects/CameraManager.tscn"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "MultiLayer GridMap" )
 
 [input]
 
@@ -213,6 +333,11 @@ right_click={
 restart={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":85,"unicode":0,"echo":false,"script":null)
+ ]
+}
+open_debug_window={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777349,"unicode":0,"echo":false,"script":null)
  ]
 }
 

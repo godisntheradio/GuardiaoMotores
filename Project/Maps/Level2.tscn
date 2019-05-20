@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Script/Map.gd" type="Script" id=1]
+[ext_resource path="res://addons/MultiLayer GridMap/CustomNode/Multilayer_GridMap.gd" type="Script" id=2]
+[ext_resource path="res://addons/MultiLayer GridMap/CustomNode/icon.png" type="Texture" id=3]
+[ext_resource path="res://Objects/PlayerAI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/MapBounds.tscn" type="PackedScene" id=5]
+
+[node name="Level1" type="Spatial"]
+
+[node name="Map" type="Spatial" parent="."]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+width = 18
+height = 18
+
+[node name="MultiLayer GridMap" type="Spatial" parent="Map"]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+layer_config = "res://config.mlgmc"
+Layers = [  ]
+Layer_Visibility = [  ]
+cell_size = Vector3( 2, 2, 2 )
+cell_scale = 1.0
+
+[node name="AIPlayer" parent="." instance=ExtResource( 4 )]
+
+[node name="Details" type="Spatial" parent="."]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Details"]
+transform = Transform( 1, 0, 0, 0, -0.789111, 0.61425, 0, -0.61425, -0.789111, 11.5453, 8.4656, 0 )
+light_indirect_energy = 1.94
+shadow_enabled = true
+shadow_color = Color( 0, 0.254902, 0.0431373, 1 )
+
+[node name="MapBounds" parent="Details" instance=ExtResource( 5 )]
+transform = Transform( 0.373886, 0, 0.463225, 0, 1, 0, -0.373886, 0, 0.463225, 11.7887, 6.16211, 22.6736 )

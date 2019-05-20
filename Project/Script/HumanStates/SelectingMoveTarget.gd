@@ -2,15 +2,14 @@ extends State
 class_name SelectingMoveTarget
 func _init(fsm).(fsm):
 	pass
-func action():
-	if fsm.input_event is InputEventMouseButton && !fsm.input_event.pressed && fsm.input_event.button_index == BUTTON_LEFT:
-		if(get_fsm_owner().player_input.result.size() > 0):
-			var tile = get_fsm_owner().player_input.result.collider.get_parent()
+func action(delta):
+	if fsm.input_event is InputEventMouseButton && fsm.input_event.pressed && fsm.input_event.button_index == BUTTON_LEFT:
+		if(get_fsm_owner().camera_manager.result.size() > 0):
+			var tile = get_fsm_owner().camera_manager.result.collider.get_parent()
 			if(tile is Tile):
 				if(get_fsm_owner().is_move_valid(tile)):
 					var path = get_fsm_owner().battle_manager.get_path_from_to(get_fsm_owner().selected_tile, tile)
 					var world_path : PoolVector3Array
-					var tileSize = get_fsm_owner().selected_tile.get_node("MeshInstance").mesh.size.x
 					for point in path:
 						world_path.append(get_fsm_owner().battle_manager.map.get_tile(Vector2(point.x,point.y)).translation)
 					get_fsm_owner().selected_tile.occupying_unit.move(tile, world_path)
@@ -24,4 +23,4 @@ func entry_action():
 func exit_action():
 	pass
 static func get_name():
-	pass
+	return "Selecting Move Target"
