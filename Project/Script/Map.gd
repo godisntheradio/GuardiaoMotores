@@ -13,17 +13,15 @@ var mlgm : MultiLayerGridMap = null
 
 class Sorter:
 	static func sort(a, b):
-		if(a.translation.x < b.translation.x):
-			return true
-		elif(a.translation.x > b.translation.x):
-			return false
-		elif(a.translation.z < b.translation.z):
+		if(a.translation.z < b.translation.z):
 			return true
 		elif(a.translation.z > b.translation.z):
 			return false
-		
+		elif(a.translation.x < b.translation.x):
+			return true
+		elif(a.translation.x > b.translation.x):
+			return false
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	mlgm = get_node("MultiLayer GridMap")
 	
@@ -33,7 +31,7 @@ func _ready():
 		if(c.x < minPos.x):
 			minPos.x = c.x
 		if(c.z < minPos.y):
-			minPos.y = c.z	
+			minPos.y = c.z
 	global_transform.origin = mlgm.map_to_world(Vector3(minPos.x, 0, minPos.y))
 	
 	for c in cells:
@@ -52,7 +50,7 @@ func _ready():
 	width = last_pos.x + 1
 	height = last_pos.y + 1
 	
-	
+	mlgm.queue_free()
 	CameraManager.relocate(starting_camera_position)
 	
 
@@ -62,4 +60,4 @@ func world_to_map(p : Vector3):
 	return Vector2(floor(p.x / tSize), floor(p.z / tSize))
 
 func get_tile(pos : Vector2):
-	return mapTiles[pos.y * width + pos.x]
+	return mapTiles[(pos.y * width + pos.x) - 1]

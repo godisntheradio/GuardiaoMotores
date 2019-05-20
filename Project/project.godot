@@ -296,7 +296,7 @@ CameraManager="*res://Objects/CameraManager.tscn"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "Dock", "MultiLayer GridMap", "SkillEditor" )
+enabled=PoolStringArray( "MultiLayer GridMap" )
 
 [input]
 

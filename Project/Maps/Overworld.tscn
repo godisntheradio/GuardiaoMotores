@@ -21,6 +21,7 @@ transform = Transform( 1.148, 0, 0, 0, 4.836, 0, 0, 0, 1.215, -41.3929, -5.455, 
 transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
 
 [node name="Stage" parent="." instance=ExtResource( 4 )]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -73.172, 0.412269, 60.0545 )
 to_load = "res://Maps/Level1.tscn"
 stage_name = "Teste"
@@ -36,6 +37,13 @@ to_load = "res://Maps/Level2.tscn"
 stage_name = "Testa"
 difficulty = 10
 description = "Muito fácil"
+
+[node name="Stage3" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.0416, 0.412269, 74.2398 )
+to_load = "res://Maps/Level3.tscn"
+stage_name = "Teste de ordenação"
+difficulty = 4
+description = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.870791, 0.491654, 0, -0.491654, 0.870791, 0, 0, 0 )
@@ -84,7 +92,6 @@ margin_bottom = 40.0
 
 [node name="StageDescWindow" parent="UI" instance=ExtResource( 6 )]
 visible = false
-
 [connection signal="button_up" from="DebugWindow/Button" to="." method="_on_Button_button_up"]
 [connection signal="button_up" from="DebugWindow/Button2" to="." method="_on_Button2_button_up"]
 [connection signal="button_up" from="DebugWindow/Button3" to="." method="_on_Button3_button_up"]

@@ -113,7 +113,6 @@ func on_move():
 		within_reach.append(tile)
 	is_moving = true
 func on_return():
-	command_window.show_commands(selected_tile.occupying_unit)
 	return_pressed = true
 	
 func on_unit_finished_action():

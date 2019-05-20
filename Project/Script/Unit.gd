@@ -34,7 +34,6 @@ signal action_finished
 func _ready():
 	stats = Stats.new()
 	if(editor_created):
-		create_from_editor_stats()
 		player = get_node(ai_path)
 		player.units.append(self)
 	current_index = 0
@@ -72,7 +71,9 @@ func update_destination():
 	clock = 0
 	if (path.size() == 0):
 		return
-	current_destination = path[current_index] + Vector3(0,2.0,0)
+	print(player.battle_manager.map.to_global(path[current_index]))
+	print(path[current_index])
+	current_destination =path[current_index] + Vector3(0,2.0,0)
 	current_start = translation
 func move_animation(delta):
 	clock += delta * movement_speed
@@ -87,9 +88,6 @@ func move_animation(delta):
 			is_moving = false
 			emit_signal("action_finished")
 			current_index = 0
-func create_from_editor_stats():
-	#procura pelo nome na lista de todas as unidades no GameData e carrega
-	pass 
 func reset():
 	has_attacked = false
 	has_moved = false

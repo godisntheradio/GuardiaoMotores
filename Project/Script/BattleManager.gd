@@ -16,15 +16,18 @@ var human_player
 var astarManager
 
 
+var debug : Label
+
 export var command_window : NodePath
 export var turn_window : NodePath
 func _ready():
+	debug = get_node("Label")
 	has_started = false
 	var level_resource = load(GameData.to_load)
 	var level = level_resource.instance()
 	add_child(level)
 	#init AI
-	var ai = get_child(0).get_node("AIPlayer")
+	var ai = get_child(1).get_node("AIPlayer")
 	player_list.append(ai)
 	for unit in ai.units:
 		unit.player = ai
@@ -40,7 +43,7 @@ func _ready():
 func on_begin_battle(deployed_units):
 	prepare_player()
 	#init map
-	map = get_child(0).get_node("Map")
+	map = get_child(1).get_node("Map")
 	astarManager = AStarManager.new(map)
 	
 	#Init player
@@ -63,8 +66,14 @@ func on_end_player_turn():
 	turn_count += 1
 	player_list[turn_count % player_list.size()].begin_turn()
 func get_available_movement(unit : Unit):
+	debug.text = ""
+	var from = map.world_to_map(unit.global_transform.origin)
 	var mov = astarManager.get_available_movement(map.world_to_map(unit.global_transform.origin), unit.stats.movement)
-	return mov.duplicate()
+	var r = mov.duplicate()
+	debug.text += str(from)
+	for pos in r:
+		debug.text += "/n" + str(pos)
+	return r
 func get_available_attack(unit : Unit, skill_range : int = 1):
 	var mov = astarManager.get_available_movement(map.world_to_map(unit.global_transform.origin), skill_range, true)
 	return mov.duplicate()
