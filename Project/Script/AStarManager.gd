@@ -27,7 +27,8 @@ func update_connections():
 	var count = 0
 	for pIdx in points:
 		var p = astar.get_point_position(pIdx)
-		print(p)
+		if(get_point_id(Vector2(p.x, p.y)) == pIdx):
+			print(p)
 		var neighbours = PoolVector2Array([
 			Vector2(p.x + 1, p.y),
 			Vector2(p.x - 1, p.y),
@@ -44,11 +45,6 @@ func update_connections():
 			if map.get_tile(n).blocked:
 				continue
 			astar.connect_points(pIdx, get_point_id(n), false)
-			print("connect to "+str(n))
-			count = count +1
-	print(astar.get_points().size())
-	print(count)
-	
 func clear_connections(tileId : int):
 	var con = astar.get_point_connections(tileId)
 	for c in con:

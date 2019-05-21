@@ -3,7 +3,6 @@ extends Spatial
 export var battle_path : String
 var control_camera = true
 func _ready():
-	get_node("Stage").connect("selected",self,"load_stage")
 	pass
 func _process(delta):
 	if (control_camera):

@@ -6,6 +6,7 @@ class UnitData:
 	var magic_attack : float
 	var magic_defense : float
 	var movement : int
+	var model : String
 	var skill_list : Array
 	func _init():
 		skill_list = []
@@ -41,6 +42,7 @@ static func LoadUnitList(file : File) -> Array:
 		units[i].magic_attack = file.get_float()
 		units[i].magic_defense = file.get_float()
 		units[i].movement = file.get_16()
+		units[i].model = file.get_pascal_string()
 		units[i].skill_list = LoadSkillList(file)
 	return units
 static func LoadSkillList(file : File) -> Array:
@@ -85,3 +87,5 @@ static func create_unit(data : UnitData) -> Stats:
 		var s := create_skill(d)
 		stats.skills.append(s)
 	return stats
+static func load_unit_model(unit : Unit, data : UnitData):
+	pass

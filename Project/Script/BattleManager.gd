@@ -85,7 +85,9 @@ func get_neighbors(tile :Tile, reach : int =1):
 		tiles.append(t)
 	return tiles.duplicate()
 func get_path_from_to(from : Tile, to : Tile):
-	return astarManager.get_path(map.world_to_map(from.translation),map.world_to_map(to.translation))
+	var vecfrom= Vector2(from.translation.x, from.translation.z) / 2
+	var vecto = Vector2(to.translation.x, to.translation.z) / 2
+	return astarManager.get_path(vecfrom,vecto)
 func get_tile_from_unit(unit:Unit) -> Tile:
 	return map.get_tile(map.world_to_map(unit.global_transform.origin))
 func prepare_player():

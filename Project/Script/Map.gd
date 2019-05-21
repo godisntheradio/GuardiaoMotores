@@ -24,33 +24,36 @@ class Sorter:
 
 func _ready():
 	mlgm = get_node("MultiLayer GridMap")
-	
-	var cells = mlgm.gridmaps[0].get_used_cells()
-	var minPos : Vector2 = Vector2(1e+100, 1e+100)
-	for c in cells:
-		if(c.x < minPos.x):
-			minPos.x = c.x
-		if(c.z < minPos.y):
-			minPos.y = c.z
-	global_transform.origin = mlgm.map_to_world(Vector3(minPos.x, 0, minPos.y))
-	
-	for c in cells:
-		var tileProps = mlgm.get_tile(c)
-		var tileInst = TileClass.instance()
-		mapTiles.append(tileInst)
-		add_child(tileInst)
-		tileInst.translation = mlgm.cell_size / 2 + mlgm.cell_size * (c - Vector3(minPos.x, 0, minPos.y))
-		if(tileProps["blocked"] != null):
-			tileInst.blocked = tileProps["blocked"]
-		if(tileProps["initial_pos"] != null):
-			tileInst.starting_position = tileProps["initial_pos"]
-	
-	mapTiles.sort_custom(Sorter, "sort")
-	var last_pos = world_to_map(mapTiles.back().global_transform.origin)
-	width = last_pos.x + 1
-	height = last_pos.y + 1
-	
-	mlgm.queue_free()
+	if mlgm:
+		var cells = mlgm.gridmaps[0].get_used_cells()
+		var minPos : Vector2 = Vector2(1e+100, 1e+100)
+		for c in cells:
+			if(c.x < minPos.x):
+				minPos.x = c.x
+			if(c.z < minPos.y):
+				minPos.y = c.z
+		global_transform.origin = mlgm.map_to_world(Vector3(minPos.x, 0, minPos.y))
+		
+		for c in cells:
+			var tileProps = mlgm.get_tile(c)
+			var tileInst = TileClass.instance()
+			mapTiles.append(tileInst)
+			add_child(tileInst)
+			tileInst.translation = mlgm.cell_size / 2 + mlgm.cell_size * (c - Vector3(minPos.x, 0, minPos.y))
+			if(tileProps["blocked"] != null):
+				tileInst.blocked = tileProps["blocked"]
+			if(tileProps["initial_pos"] != null):
+				tileInst.starting_position = tileProps["initial_pos"]
+		
+		mapTiles.sort_custom(Sorter, "sort")
+		var last_pos = world_to_map(mapTiles.back().global_transform.origin)
+		width = last_pos.x + 1
+		height = last_pos.y + 1
+		
+		mlgm.queue_free()
+	else:
+		for c in get_children():
+			mapTiles.append(c)
 	CameraManager.relocate(starting_camera_position)
 	
 
@@ -60,4 +63,4 @@ func world_to_map(p : Vector3):
 	return Vector2(floor(p.x / tSize), floor(p.z / tSize))
 
 func get_tile(pos : Vector2):
-	return mapTiles[(pos.y * width + pos.x) - 1]
+	return mapTiles[(pos.y * width + pos.x)]

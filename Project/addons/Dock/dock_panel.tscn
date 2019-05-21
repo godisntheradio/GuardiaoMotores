@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://addons/Dock/unit_list.gd" type="Script" id=1]
 [ext_resource path="res://addons/Dock/info_input.gd" type="Script" id=2]
 [ext_resource path="res://addons/Dock/number_only.gd" type="Script" id=3]
-[ext_resource path="res://addons/Dock/editor_unitSkills.gd" type="Script" id=4]
+[ext_resource path="res://addons/Dock/path_only.gd" type="Script" id=4]
+[ext_resource path="res://addons/Dock/editor_unitSkills.gd" type="Script" id=5]
 
 [node name="EditUnit" type="Control"]
 anchor_right = 1.0
@@ -28,7 +29,7 @@ text = "-"
 margin_top = 20.0
 margin_right = 175.0
 margin_bottom = 120.0
-items = [ "unisinos", null, false, "Uni", null, false, "T", null, false, "Soldado 1", null, false ]
+items = [ "unisinos", null, false, "Uni", null, false, "T", null, false, "Soldado 1", null, false, "Lenhador 1", null, false ]
 script = ExtResource( 1 )
 
 [node name="HSeparator" type="HSeparator" parent="."]
@@ -152,14 +153,29 @@ margin_right = 176.131
 margin_bottom = 881.47
 text = "Save"
 
+[node name="model" type="Button" parent="."]
+margin_left = 7.0
+margin_top = 593.0
+margin_right = 290.0
+margin_bottom = 613.0
+script = ExtResource( 4 )
+file_dialog_path = NodePath("../model_dialog")
+
+[node name="Label" type="Label" parent="model"]
+margin_left = -7.0
+margin_top = -23.0
+margin_right = 96.0
+margin_bottom = -9.0
+text = "Model:"
+
 [node name="skill_list" type="Label" parent="."]
 margin_left = 7.0
-margin_top = 569.0
+margin_top = 621.47
 margin_right = 47.0
-margin_bottom = 600.0
+margin_bottom = 652.47
 text = "Skills:
 "
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 available_list_path = NodePath("../skill_list/UnitSkills2")
 list_path = NodePath("../skill_list/UnitSkills")
 
@@ -174,7 +190,7 @@ margin_left = 146.774
 margin_top = 20.0
 margin_right = 286.774
 margin_bottom = 195.0
-items = [ "Heal", null, false, "Attack", null, false, "Ranged Attack", null, false ]
+items = [ "Heal", null, false, "Attack", null, false, "Ranged Attack", null, false, "Molotov", null, false ]
 
 [node name="Label" type="Label" parent="skill_list"]
 margin_left = 168.0
@@ -194,8 +210,18 @@ margin_top = 200.0
 margin_right = 286.774
 margin_bottom = 220.0
 text = "Add Selected"
+
+[node name="model_dialog" type="FileDialog" parent="."]
+margin_left = 100.0
+margin_top = 92.0
+margin_right = 740.0
+margin_bottom = 422.0
+window_title = "Open a File"
+mode = 0
 [connection signal="button_up" from="AddUnit" to="UnitList" method="_on_AddUnit_button_up"]
 [connection signal="button_up" from="RemoveUnit" to="UnitList" method="_on_RemoveUnit_button_up"]
 [connection signal="button_up" from="SaveButton" to="UnitList" method="_on_SaveButton_button_up"]
+[connection signal="pressed" from="model" to="model" method="_on_model_pressed"]
 [connection signal="pressed" from="skill_list/RemoveSkills" to="skill_list" method="_on_RemoveSkills_pressed"]
 [connection signal="pressed" from="skill_list/AddSkills" to="skill_list" method="_on_AddSkills_pressed"]
+[connection signal="file_selected" from="model_dialog" to="model" method="_on_model_dialog_file_selected"]

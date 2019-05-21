@@ -294,9 +294,13 @@ config/Version="0.0.1"
 GameData="*res://Objects/GameData.tscn"
 CameraManager="*res://Objects/CameraManager.tscn"
 
+[debug]
+
+gdscript/warnings/enable=false
+
 [editor_plugins]
 
-enabled=PoolStringArray( "MultiLayer GridMap" )
+enabled=PoolStringArray( "Dock", "MultiLayer GridMap" )
 
 [input]
 

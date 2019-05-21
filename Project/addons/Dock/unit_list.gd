@@ -73,6 +73,7 @@ func save_to_file():
 		file.store_float(u.magic_attack)
 		file.store_float(u.magic_defense)
 		file.store_16(u.movement)
+		file.store_pascal_string(u.model)
 		file.store_16(u.skill_list.size())
 		for skill in u.skill_list:
 			file.store_pascal_string(skill.name)
