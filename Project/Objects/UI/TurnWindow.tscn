@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Script/TurnWindow.gd" type="Script" id=1]
+[ext_resource path="res://UI/main_theme.tres" type="Theme" id=2]
 
 [node name="TurnWindow" type="Control"]
 anchor_right = 1.0
@@ -12,5 +13,6 @@ margin_left = 770.0
 margin_top = 520.0
 margin_right = 970.0
 margin_bottom = 570.0
+theme = ExtResource( 2 )
 text = "End Turn"
 

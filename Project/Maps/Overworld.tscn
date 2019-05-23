@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Script/Overworld.gd" type="Script" id=1]
 [ext_resource path="res://Objects/MapBounds.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Objects/Stage.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Maps/OverworldDebugWindow.gd" type="Script" id=5]
 [ext_resource path="res://Objects/UI/StageDescWindow.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/UI/PlayerStats.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.027451, 0.156863, 0.337255, 1 )
@@ -92,6 +93,9 @@ margin_bottom = 40.0
 
 [node name="StageDescWindow" parent="UI" instance=ExtResource( 6 )]
 visible = false
+
+[node name="PlayerStats" parent="UI" instance=ExtResource( 7 )]
+
 [connection signal="button_up" from="DebugWindow/Button" to="." method="_on_Button_button_up"]
 [connection signal="button_up" from="DebugWindow/Button2" to="." method="_on_Button2_button_up"]
 [connection signal="button_up" from="DebugWindow/Button3" to="." method="_on_Button3_button_up"]
