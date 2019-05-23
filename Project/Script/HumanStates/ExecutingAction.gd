@@ -8,6 +8,7 @@ func entry_action():
 	pass
 func exit_action():
 	get_fsm_owner().action_finished = false
+	get_fsm_owner().battle_manager.check_game_over()
 	print("aqui")
 static func get_name():
 	return "Executing Action"

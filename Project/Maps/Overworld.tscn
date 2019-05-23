@@ -92,6 +92,7 @@ margin_bottom = 40.0
 
 [node name="StageDescWindow" parent="UI" instance=ExtResource( 6 )]
 visible = false
+
 [connection signal="button_up" from="DebugWindow/Button" to="." method="_on_Button_button_up"]
 [connection signal="button_up" from="DebugWindow/Button2" to="." method="_on_Button2_button_up"]
 [connection signal="button_up" from="DebugWindow/Button3" to="." method="_on_Button3_button_up"]

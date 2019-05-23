@@ -11,7 +11,7 @@ func action(delta):
 					var path = get_fsm_owner().battle_manager.get_path_from_to(get_fsm_owner().selected_tile, tile)
 					var world_path : PoolVector3Array
 					for point in path:
-						world_path.append(get_fsm_owner().battle_manager.map.get_tile(Vector2(point.x,point.y)).translation)
+						world_path.append(get_fsm_owner().battle_manager.map.get_tile(Vector2(point.x,point.y)).global_transform.origin)
 					get_fsm_owner().selected_tile.occupying_unit.move(tile, world_path)
 					get_fsm_owner().selected_tile.remove_unit()
 					get_fsm_owner().after_move()

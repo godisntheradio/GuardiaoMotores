@@ -71,7 +71,11 @@ func make_unit(unit_data):
 	get_tree().get_root().get_node("Main").add_child(instance)
 	instance.stats = stats
 	instance.hp = stats.hit_points
-	instance.get_node("MeshInstance").mesh = load(unit_data.model)
+	var model = load(unit_data.model)
+	if(model):
+		instance.get_node("MeshInstance").mesh = model
+	else:
+		instance.get_node("MeshInstance").mesh = CapsuleMesh.new()
 	return instance
 func _on_selected_from_list(index):
 	if(!item_list.is_item_disabled(index)):

@@ -74,17 +74,17 @@ func update_destination():
 	print(player.battle_manager.map.to_global(path[current_index]))
 	print(path[current_index])
 	current_destination =path[current_index] + Vector3(0,2.0,0)
-	current_start = translation
+	current_start = global_transform.origin
 func move_animation(delta):
 	clock += delta * movement_speed
 	if(clock <= 1):
-		translation = lerp(current_start, current_destination, clock)
+		global_transform.origin = lerp(current_start, current_destination, clock)
 	else:
 		if(current_index < path.size() - 1):
 			current_index += 1
 			update_destination()
 		else:
-			translation = path[current_index] + Vector3(0, 2.0, 0)
+			global_transform.origin = path[current_index] + Vector3(0, 2.0, 0)
 			is_moving = false
 			emit_signal("action_finished")
 			current_index = 0

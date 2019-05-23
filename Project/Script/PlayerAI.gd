@@ -28,6 +28,7 @@ func initialize_state_machine():
 	
 	var enemy_turn_s = EnemyTurn.new(state_machine)
 	var waiting_battle_s = WaitingBattleStart.new(state_machine)
+	var game_over_s = WaitingBattleStart.new(state_machine)
 	var ai_turn_s = AITurn.new(state_machine)
 	
 	var battleStarted_t = BattleStarted.new(state_machine)
@@ -42,6 +43,11 @@ func initialize_state_machine():
 	
 	enemy_turn_s.add_transition(turnBegun_t)
 	turnBegun_t.target_state = ai_turn_s
+	
+	var game_over_t = GameOverTransition.new(state_machine)
+	game_over_t.target_state = game_over_s
+	enemy_turn_s.add_transition(game_over_t)
+	ai_turn_s.add_transition(game_over_t)
 	
 	state_machine.add_state(waiting_battle_s)
 	state_machine.add_state(ai_turn_s)

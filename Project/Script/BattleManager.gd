@@ -15,8 +15,9 @@ var GameDataLoader = preload("res://Script/GameDataLoader.gd")
 var human_player
 var astarManager
 
-
 var debug : Label
+
+var winner = -1
 
 export var command_window : NodePath
 export var turn_window : NodePath
@@ -85,8 +86,8 @@ func get_neighbors(tile :Tile, reach : int =1):
 		tiles.append(t)
 	return tiles.duplicate()
 func get_path_from_to(from : Tile, to : Tile):
-	var vecfrom= Vector2(from.translation.x, from.translation.z) / 2
-	var vecto = Vector2(to.translation.x, to.translation.z) / 2
+	var vecfrom = map.world_to_map(from.global_transform.origin)
+	var vecto = map.world_to_map(to.global_transform.origin)
 	return astarManager.get_path(vecfrom,vecto)
 func get_tile_from_unit(unit:Unit) -> Tile:
 	return map.get_tile(map.world_to_map(unit.global_transform.origin))
@@ -104,3 +105,13 @@ func get_enemy_units(player : Player):
 		if p != player:
 			res = p.units.duplicate()
 	return res
+
+func check_game_over():
+	for p in range(player_list.size()):
+		if (player_list[p].units.size() == 0):
+			winner = p
+	if (winner >= 0):
+		get_node("../Control/GameOver").visible = true
+
+func _on_GameOverBack_pressed():
+	get_tree().change_scene("res://Maps/Overworld.tscn")

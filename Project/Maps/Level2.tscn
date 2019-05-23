@@ -22,10 +22,6 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 layer_config = "res://config.mlgmc"
-Layers = [  ]
-Layer_Visibility = [  ]
-cell_size = Vector3( 2, 2, 2 )
-cell_scale = 1.0
 
 [node name="AIPlayer" parent="." instance=ExtResource( 4 )]
 
@@ -39,3 +35,4 @@ shadow_color = Color( 0, 0.254902, 0.0431373, 1 )
 
 [node name="MapBounds" parent="Details" instance=ExtResource( 5 )]
 transform = Transform( 0.373886, 0, 0.463225, 0, 1, 0, -0.373886, 0, 0.463225, 11.7887, 6.16211, 22.6736 )
+

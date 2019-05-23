@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Script/UI/Menu.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.188235, 0.188235, 0.188235, 1 )
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+overworld_scene = "res://Maps/Overworld.tscn"
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -121.0
+margin_top = -159.0
+margin_right = 122.0
+margin_bottom = 154.0
+
+[node name="Panel" type="Panel" parent="Panel"]
+anchor_right = 1.0
+margin_bottom = 34.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Label" type="Label" parent="Panel/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -7.0
+margin_right = 20.0
+margin_bottom = 7.0
+text = "MENU"
+
+[node name="GiveUp" type="Button" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -93.0
+margin_top = -19.0
+margin_right = 93.0
+margin_bottom = 19.0
+text = "Give Up"
+
+[connection signal="pressed" from="Panel/GiveUp" to="." method="_on_GiveUp_pressed"]

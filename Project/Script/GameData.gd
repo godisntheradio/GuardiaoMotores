@@ -46,8 +46,9 @@ func find_unit(name):
 			return unit
 	return null
 func _process(delta):
-	if (Input.is_action_just_released("restart")):
-		get_tree().change_scene("res://Objects/Main.tscn")
+	#if (Input.is_action_just_released("restart")):
+	#	get_tree().change_scene("res://Objects/Main.tscn")
+	pass
 func save_game(id : int = 0):
 	var saved : SavedGameData = SavedGameData.new()
 	saved.game_version = ProjectSettings.get_setting("application/config/Version")

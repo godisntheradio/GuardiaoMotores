@@ -18,6 +18,8 @@ var turn_window
 
 var last_moved : Unit = null
 
+var menu = preload("res://Objects/UI/Menu.tscn")
+var menu_instance : Control = null
 
 var state_machine : StateMachine
 func initialize_state_machine():
@@ -26,6 +28,7 @@ func initialize_state_machine():
 	var human_turn_s = HumanTurn.new(state_machine)
 	var enemy_turn_s = EnemyTurn.new(state_machine)
 	var waiting_battle_s = WaitingBattleStart.new(state_machine)
+	var game_over_s = WaitingBattleStart.new(state_machine)
 	
 	var endturn_pressed_t = EndTurnPressed.new(state_machine)
 	endturn_pressed_t.target_state = enemy_turn_s
@@ -39,12 +42,19 @@ func initialize_state_machine():
 	battleStarted_t.target_state = human_turn_s
 	waiting_battle_s.add_transition(battleStarted_t)
 	
+	var game_over_t = GameOverTransition.new(state_machine)
+	game_over_t.target_state = game_over_s
+	enemy_turn_s.add_transition(game_over_t)
+	human_turn_s.add_transition(game_over_t)
+	
 	state_machine.add_state(human_turn_s)
 	state_machine.add_state(enemy_turn_s)
 	state_machine.add_state(waiting_battle_s)
+	state_machine.add_state(game_over_s)
 	state_machine.initial_state = waiting_battle_s
 	
 	state_machine.start()
+	
 func _ready():
 	turn = false
 	command_window.connect("returning",self,"on_return")
@@ -60,6 +70,14 @@ func _ready():
 	has_ended_turn = false
 func _input(event):
 	state_machine.update_input(event)
+	if (event is InputEventKey && event.pressed == true && event.scancode == KEY_ESCAPE):
+		if(menu_instance == null):
+			menu_instance = menu.instance()
+			battle_manager.add_child(menu_instance)
+		else:
+			menu_instance.queue_free()
+			menu_instance = null
+		
 func _process(delta):
 	state_machine.update(delta)
 func begin_turn():
@@ -117,7 +135,6 @@ func on_return():
 	
 func on_unit_finished_action():
 	action_finished = true
-	
 
 func after_move():
 	deselect_unit()
@@ -146,21 +163,4 @@ func undo_move():
 		battle_manager.map.get_tile(last_moved.start_pos).occupying_unit = last_moved
 		last_moved.undo_move(battle_manager.map.get_tile(last_moved.start_pos).global_transform.origin)
 		battle_manager.astarManager.update_connections()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

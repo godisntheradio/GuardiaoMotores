@@ -4,7 +4,7 @@ class_name Map
 # var a = 2
 # var b = "text"
 var TileClass = preload("res://Objects/Tile.tscn")
-export var mapTiles = []
+var mapTiles
 export var width : int # cresce para x+ 
 export var height : int # cresce para z+
 export var starting_camera_position : Vector3
@@ -23,6 +23,7 @@ class Sorter:
 			return false
 
 func _ready():
+	mapTiles = []
 	mlgm = get_node("MultiLayer GridMap")
 	if mlgm:
 		var cells = mlgm.gridmaps[0].get_used_cells()

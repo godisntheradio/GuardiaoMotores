@@ -1,6 +1,6 @@
 extends Spatial
 
-export var battle_path : String
+export(String, FILE, "*.tscn, *.scn") var battle_path : String
 var control_camera = true
 func _ready():
 	pass
@@ -15,8 +15,8 @@ func _on_Button_button_up():
 
 
 func _on_Button2_button_up():
-	if(get_node("Control/Button2/TextEdit").text != ''):
-		GameData.available_units.append(get_node("Control/Button2/TextEdit").text)
+	if(get_node("DebugWindow/Button2/TextEdit").text != ''):
+		GameData.available_units.append(get_node("DebugWindow/Button2/TextEdit").text)
 
 
 func _on_Button3_button_up():
