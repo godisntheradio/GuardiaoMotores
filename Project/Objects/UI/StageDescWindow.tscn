@@ -1,16 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Script/StateDescWindow.gd" type="Script" id=1]
-[ext_resource path="res://Textures/Gold_Star.png" type="Texture" id=2]
+[ext_resource path="res://UI/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Script/StateDescWindow.gd" type="Script" id=2]
+[ext_resource path="res://Textures/Gold_Star.png" type="Texture" id=3]
+[ext_resource path="res://Audio/SFX/action_confirm.wav" type="AudioStream" id=4]
 
 [node name="StageDescWindow" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
 s_name_path = NodePath("Panel/StageName")
 s_desc_path = NodePath("Panel/PanelContainer/StageDescription")
 s_difficulty_path = NodePath("Panel/Label/Difficulty")
-difficulty_icon = ExtResource( 2 )
+difficulty_icon = ExtResource( 3 )
+audio_player_path = NodePath("Click")
 
 [node name="Panel" type="Panel" parent="."]
 margin_left = 701.228
@@ -69,5 +73,10 @@ custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "X"
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+bus = "MenuSFX"
+
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]

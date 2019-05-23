@@ -4,6 +4,8 @@ export var s_name_path : NodePath
 export var s_desc_path : NodePath
 export var s_difficulty_path : NodePath
 export var difficulty_icon : Texture
+export var audio_player_path : NodePath
+var audio_player : AudioStreamPlayer2D
 var s_name : Label
 var s_desc : RichTextLabel
 var s_difficulty : BoxContainer
@@ -12,6 +14,7 @@ func _ready():
 	s_name = get_node(s_name_path)
 	s_desc = get_node(s_desc_path)
 	s_difficulty = get_node(s_difficulty_path)
+	audio_player = get_node(audio_player_path)
 func set_desc_window(stage):
 	for n in s_difficulty.get_children():
 		n.queue_free()
@@ -30,9 +33,7 @@ func show_desc(stage):
 	selected = stage
 func _on_Button_pressed():
 	get_parent().get_parent().load_stage(selected.to_load)
-
-
 func _on_Close_pressed():
+	audio_player.play()
 	visible = false
 	selected = null
-	pass # Replace with function body.

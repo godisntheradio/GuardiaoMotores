@@ -7,17 +7,22 @@ signal move
 var speed = 5
 export var skill_list_path : NodePath
 var skill_list : ItemList
+export var audio_player_path : NodePath
+var audio_player : AudioStreamPlayer2D
+export var confirm : AudioStream
 #redirecionar os eventos de botão para o Human tratar 
 var skill_animator : AnimationPlayer
 var move_animator: AnimationPlayer
 func _ready():
 	skill_animator = get_node("Panel/Skill/AnimationPlayer")
 	move_animator = get_node("Panel/Move/AnimationPlayer")
+	audio_player = get_node(audio_player_path)
 	skill_animator.playback_speed = speed
 	move_animator.playback_speed = speed
 	skill_list = get_node("Panel/SkillList")
 func _on_MoveButton_button_up():
 	move_out()
+	play_confirm()
 	emit_signal("move")
 func _on_ReturnButton_button_up():
 	emit_signal("returning")
@@ -61,9 +66,13 @@ func clear_skill_list():
 	skill_list.clear()
 func _on_SkillList_item_selected(index):
 	move_out()
+	play_confirm()
 	emit_signal("attack", index)
 	
 func _on_SkillButton_pressed():
 	move_out()
 	skill_list.visible = true
 	pass # Replace with function body.
+func play_confirm():
+	audio_player.stream = confirm
+	audio_player.play()
