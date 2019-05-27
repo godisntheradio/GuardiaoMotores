@@ -54,13 +54,15 @@ func choose_task():
 				best = t
 		if(best.in_reach):
 			get_fsm_owner().task_list.push_back(best)
-		elif(!best.in_reach && best.in_range):
+		elif(!best.in_reach && best.in_range && !get_fsm_owner().choosen_agent.has_moved):
 			var move_task = create_move_task(best)
 			get_fsm_owner().task_list.push_front(move_task)
 			get_fsm_owner().task_list.push_back(best)
-		else:
+		elif(!get_fsm_owner().choosen_agent.has_moved):
 			var move_task = create_move_task(best)
 			get_fsm_owner().task_list.push_front(move_task)
+		else:
+			get_fsm_owner().choosen_agent.has_attacked = true
 func create_move_task(target_task) -> Task:
 	var available_neighbors = target_task.agent_skill.get_available_targets(get_fsm_owner().battle_manager,target_task.target)
 	var available_movement = get_fsm_owner().battle_manager.get_available_movement(target_task.agent)
@@ -74,7 +76,7 @@ func create_move_task(target_task) -> Task:
 		for n in available_neighbors:
 			if (t == n):
 				intersection.append(t)
-		var current = get_fsm_owner().battle_manager.get_path_from_to(t,target_task.target).size()
+		var current = get_fsm_owner().battle_manager.get_distance_from_to(t,target_task.target)
 		print("distance from " + target_task.agent.stats.name + " to " + target_task.target.occupying_unit.stats.name)
 		print(current)
 		if( current < dist):

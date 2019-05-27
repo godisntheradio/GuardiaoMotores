@@ -56,14 +56,7 @@ func is_outside_bounds(p : Vector2):
 
 #recebe posição na matriz
 func get_path(from : Vector2, to : Vector2):
-	var f = astar.get_closest_point(Vector3(from.x,from.y,0))
-	var t = astar.get_closest_point(Vector3(to.x,to.y,0))
-	if astar.get_point_connections (f).size() == 0:
-		print("erro: não achou ponto")
-	else:
-		print("tudo certo")
-	return astar.get_point_path(f, t)
-	
+	return astar.get_point_path(get_point_id(from), get_point_id(to))
 func get_neighbour_positions(p : Vector2):
 	var neighbour_positions = PoolVector2Array([
 		Vector2(p.x + 1, p.y),

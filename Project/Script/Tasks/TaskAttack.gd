@@ -37,9 +37,7 @@ func units_in_aoe() -> int:
 func in_range() -> bool:
 	var attack_range = agent.stats.movement + agent_skill.reach
 	var user_tile = manager.map.get_tile(manager.map.world_to_map(agent.global_transform.origin))
-	user_tile.aoe_blink_enter()
-	target.aoe_blink_enter()
-	var points = manager.get_path_from_to(user_tile, target)
-	if(points.size() - 1 < attack_range):
+	var dist = manager.get_distance_from_to(user_tile, target)
+	if(dist < attack_range):
 		return true
 	return false
