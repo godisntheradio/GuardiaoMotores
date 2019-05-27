@@ -15,10 +15,15 @@ var deployed_units = []
 var instanced_units = []
 signal begin_battle
 
+export var battle_manager_path : NodePath
+var bm
+
+
 func _ready():
+	bm = get_node(battle_manager_path)
 	item_list = get_node("Panel/ItemList")
 	item_list.connect("item_selected",self,"_on_selected_from_list")
-	connect("begin_battle",get_tree().get_root().get_node("Main/BattleManager"),"on_begin_battle")
+	connect("begin_battle",bm,"on_begin_battle")
 	input = CameraManager
 	# load list
 	item_list.set_same_column_width(true)
@@ -68,7 +73,7 @@ func position_unit(new_unit : Unit, tile : Tile):
 func make_unit(unit_data):
 	var stats = GameDataLoader.create_unit(unit_data)
 	var instance = UnitClass.instance()
-	get_tree().get_root().get_node("Main").add_child(instance)
+	bm.get_child(0).add_child(instance)
 	instance.stats = stats
 	instance.hp = stats.hit_points
 	var model = load(unit_data.model)

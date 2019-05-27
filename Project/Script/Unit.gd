@@ -44,7 +44,6 @@ func _process(delta):
 func attack(pos : Tile, skill : Skill):
 	pos.occupying_unit.take_damage(skill.calculate_effect(stats))
 	has_attacked = true
-	pos.occupying_unit = null
 	emit_signal("action_finished")
 func move(pos : Tile, points : PoolVector3Array):
 	has_moved = true
@@ -60,7 +59,6 @@ func undo_move(world_pos : Vector3):
 
 func take_damage(dmg : int):
 	hp += dmg
-	hp = max(hp, stats.hit_points)
 	if (hp < 1):
 		death()
 func death():
@@ -71,8 +69,6 @@ func update_destination():
 	clock = 0
 	if (path.size() == 0):
 		return
-	print(player.battle_manager.map.to_global(path[current_index]))
-	print(path[current_index])
 	current_destination =path[current_index] + Vector3(0,2.0,0)
 	current_start = global_transform.origin
 func move_animation(delta):

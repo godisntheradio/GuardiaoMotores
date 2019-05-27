@@ -59,3 +59,5 @@ func updateCamera(target : Vector3):
 	cursor = Vector3.ZERO
 func relocate(pos : Vector3):
 	global_translate(pos - global_transform.origin)
+func add_to_debug(s : String):
+	label.text = label.text + "\n "+str(s)

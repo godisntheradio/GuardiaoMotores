@@ -9,6 +9,7 @@ func _process(delta):
 		CameraManager.processCameraMovement(delta)
 func load_stage(stage : String):
 	GameData.to_load = stage
+	GameData.world_map_camera_pos = CameraManager.translation
 	get_tree().change_scene(battle_path)
 func _on_Button_button_up():
 	GameData.save_game()
