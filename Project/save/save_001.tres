@@ -7,7 +7,7 @@ script = ExtResource( 1 )
 game_version = "0.0.1"
 data = {
 "agua": 0,
-"c_pos": Vector3( -78.2468, 0, 63.9444 ),
+"c_pos": Vector3( 3.75117, 0, 57.3942 ),
 "date": {
 "day": 29,
 "dst": false,
@@ -18,6 +18,6 @@ data = {
 "escuridao": 0,
 "luz": 0,
 "player_units": [ "Uni", "T", "unisinos", "Unit" ],
-"playtime": 2291.69,
+"playtime": 2346.96,
 "terra": 0
 }

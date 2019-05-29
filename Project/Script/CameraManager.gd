@@ -20,7 +20,9 @@ func _ready():
 	result = null
 	pass
 func _process(delta):
-	pass
+	var minutes = GameData.playtime / 60
+	var hours = minutes / 60.0
+	add_to_debug(str(int(hours)) + ":"+str(int(minutes)))
 func _physics_process(delta):
 	updateCamera(cursor)
 	updateRay()

@@ -232,7 +232,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "UnitStatsDisplay",
 "language": "GDScript",
-"path": "res://Script/UnitStatsDisplay.gd"
+"path": "res://Script/UI/UnitStatsDisplay.gd"
 }, {
 "base": "State",
 "class": "WaitingBattleStart",
@@ -348,6 +348,11 @@ restart={
 open_debug_window={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777349,"unicode":0,"echo":false,"script":null)
+ ]
+}
+open_overworld_menu={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"unicode":0,"echo":false,"script":null)
  ]
 }
 

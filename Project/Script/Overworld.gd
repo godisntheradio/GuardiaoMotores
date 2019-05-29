@@ -2,11 +2,18 @@ extends Spatial
 
 export(String, FILE, "*.tscn, *.scn") var battle_path : String
 var control_camera = true
+export var stages_path : NodePath
+var stages : Array 
+export var menu_path : NodePath
+var menu 
 func _ready():
-	pass
+	stages = get_node(stages_path).get_children()
+	menu = get_node(menu_path)
 func _process(delta):
 	if (control_camera):
 		CameraManager.processCameraMovement(delta)
+	if (Input.is_action_just_released("open_overworld_menu")):
+		menu.visible = true
 func load_stage(stage : String):
 	GameData.to_load = stage
 	GameData.world_map_camera_pos = CameraManager.translation
@@ -22,3 +29,5 @@ func _on_Button2_button_up():
 
 func _on_Button3_button_up():
 	GameData.available_units.clear()
+func refresh(): # update each stage according to save file
+	pass 

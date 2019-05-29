@@ -1,8 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/main_theme.tres" type="Theme" id=1]
-[ext_resource path="res://Script/CommandWindow.gd" type="Script" id=2]
+[ext_resource path="res://Script/UI/CommandWindow.gd" type="Script" id=2]
 [ext_resource path="res://Audio/SFX/action_confirm.wav" type="AudioStream" id=3]
+
 
 [sub_resource type="Animation" id=1]
 tracks/0/type = "value"
