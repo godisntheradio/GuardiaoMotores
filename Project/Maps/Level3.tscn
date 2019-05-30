@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Script/Map.gd" type="Script" id=1]
 [ext_resource path="res://addons/MultiLayer GridMap/CustomNode/Multilayer_GridMap.gd" type="Script" id=2]
 [ext_resource path="res://addons/MultiLayer GridMap/CustomNode/icon.png" type="Texture" id=3]
 [ext_resource path="res://Objects/PlayerAI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/MapBounds.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/Unit.tscn" type="PackedScene" id=6]
+
+[sub_resource type="SpatialMaterial" id=1]
+resource_local_to_scene = true
+albedo_color = Color( 1, 0.505882, 0.0235294, 1 )
 
 [node name="Level1" type="Spatial"]
 
@@ -23,17 +28,12 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 layer_config = "res://config.mlgmc"
-Layers = [  ]
-Layer_Visibility = [  ]
 cell_size = Vector3( 2, 1, 2 )
-cell_scale = 1.0
-
-[node name="Spatial" type="Spatial" parent="Map"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.64578, 2.34145, 3.12904 )
 
 [node name="AIPlayer" parent="." instance=ExtResource( 4 )]
 
 [node name="Details" type="Spatial" parent="."]
+editor/display_folded = true
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Details"]
 transform = Transform( -4.37114e-008, 0.984808, -0.173648, 0, 0.173648, 0.984808, 1, 4.30473e-008, -7.5904e-009, 2, 2.5, 17 )
@@ -43,3 +43,14 @@ shadow_color = Color( 0, 0.254902, 0.0431373, 1 )
 
 [node name="MapBounds" parent="Details" instance=ExtResource( 5 )]
 transform = Transform( 0.373886, 0, 0.463225, 0, 1, 0, -0.373886, 0, 0.463225, 11.7887, 6.16211, 22.6736 )
+
+[node name="Unit" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.72273, 3.13018, 17.801 )
+editor_created = true
+ai_path = NodePath("../AIPlayer")
+to_search = "Soldado 1"
+
+[node name="MeshInstance" parent="Unit" index="0"]
+material_override = SubResource( 1 )
+
+[editable path="Unit"]

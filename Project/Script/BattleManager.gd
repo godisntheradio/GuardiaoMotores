@@ -27,6 +27,7 @@ func _ready():
 	add_child(level)
 	#init AI
 	var ai = get_child(0).get_node("AIPlayer")
+	map = get_child(0).get_node("Map")
 	player_list.append(ai)
 	for unit in ai.units:
 		unit.player = ai
@@ -36,13 +37,14 @@ func _ready():
 		else:
 			print("couldn't create '"+ unit.to_search +"' unit. name not has not been set properly")
 		unit.hp = unit.stats.hit_points
+		var t : Tile= get_tile_from_unit(unit)
+		t.occupying_unit = unit
 	ai.battle_manager = self
 	ai.camera_manager = CameraManager
 	ai.initialize_state_machine()
 func on_begin_battle(deployed_units):
 	prepare_player()
 	#init map
-	map = get_child(0).get_node("Map")
 	astarManager = AStarManager.new(map)
 	
 	#Init player
@@ -52,7 +54,6 @@ func on_begin_battle(deployed_units):
 	for unit in human_player.units:
 		unit.player = human_player
 		unit.connect("action_finished", human_player, "on_unit_finished_action")
-	
 	
 	astarManager.update_connections()
 	

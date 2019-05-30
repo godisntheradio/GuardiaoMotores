@@ -1013,6 +1013,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1, 35 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 1, 35 )
 
 [node name="Unit" parent="." instance=ExtResource( 3 )]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 3, 11 )
 hp = 10.0
 editor_created = true

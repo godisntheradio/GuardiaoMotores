@@ -10,7 +10,7 @@ func execute_task():
 	var path = manager.get_path_from_to(agent_tile, target)
 	var world_path : PoolVector3Array
 	for point in path:
-		world_path.append(manager.map.get_tile(Vector2(point.x,point.y)).translation)
+		world_path.append(manager.map.get_tile(Vector2(point.x,point.y)).global_transform.origin)
 	agent.move(target, world_path)
 	agent_tile.remove_unit()
 	manager.astarManager.update_connections()

@@ -1,8 +1,5 @@
 extends Spatial
 class_name Map
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var TileClass = preload("res://Objects/Tile.tscn")
 var mapTiles
 export var width : int # cresce para x+ 
@@ -33,7 +30,7 @@ func _ready():
 				minPos.x = c.x
 			if(c.z < minPos.y):
 				minPos.y = c.z
-		global_transform.origin = mlgm.map_to_world(Vector3(minPos.x, 0, minPos.y))
+		global_transform.origin = mlgm.to_global(mlgm.map_to_world(Vector3(minPos.x, 0, minPos.y))) - mlgm.cell_size / 2
 		
 		for c in cells:
 			var tileProps = mlgm.get_tile(c)
@@ -50,7 +47,8 @@ func _ready():
 		var last_pos = world_to_map(mapTiles.back().global_transform.origin)
 		width = last_pos.x + 1
 		height = last_pos.y + 1
-		
+		print(str(minPos))
+		print(global_transform.origin)
 		mlgm.queue_free()
 	else:
 		for c in get_children():

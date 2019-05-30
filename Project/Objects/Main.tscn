@@ -24,6 +24,7 @@ margin_right = -1011.0
 margin_bottom = -584.0
 
 [node name="UnitStatsDisplay" parent="Control" instance=ExtResource( 2 )]
+visible = false
 
 [node name="DeployUnitsWindow" parent="Control" instance=ExtResource( 3 )]
 battle_manager_path = NodePath("../../BattleManager")
