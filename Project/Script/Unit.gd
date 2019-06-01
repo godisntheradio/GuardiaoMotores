@@ -59,6 +59,10 @@ func undo_move(world_pos : Vector3):
 
 func take_damage(dmg : int):
 	hp += dmg
+	var txt_pos = CameraManager.camera.unproject_position(global_transform.origin + Vector3(0, 1, 0))
+	var dmg_txt = preload("res://Objects/UI/DamageText.tscn").instance()
+	get_tree().root.add_child(dmg_txt)
+	dmg_txt.begin(dmg, txt_pos)
 	if (hp < 1):
 		death()
 func death():
