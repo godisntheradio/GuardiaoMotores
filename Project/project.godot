@@ -234,6 +234,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/UI/UnitStatsDisplay.gd"
 }, {
+"base": "Control",
+"class": "UnitSummary",
+"language": "GDScript",
+"path": "res://Script/UI/UnitSummary.gd"
+}, {
 "base": "State",
 "class": "WaitingBattleStart",
 "language": "GDScript",
@@ -285,6 +290,7 @@ _global_script_class_icons={
 "Unit": "",
 "UnitSelected": "",
 "UnitStatsDisplay": "",
+"UnitSummary": "",
 "WaitingBattleStart": ""
 }
 
@@ -306,7 +312,7 @@ gdscript/warnings/enable=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "MultiLayer GridMap" )
+enabled=PoolStringArray( "Dock", "MultiLayer GridMap" )
 
 [input]
 

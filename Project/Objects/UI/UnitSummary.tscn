@@ -1,0 +1,240 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://UI/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Script/UI/UnitSummary.gd" type="Script" id=2]
+[ext_resource path="res://Textures/water-drop.png" type="Texture" id=3]
+[ext_resource path="res://Textures/sprout.png" type="Texture" id=4]
+[ext_resource path="res://Textures/sun-shining.png" type="Texture" id=5]
+[ext_resource path="res://Textures/cloudy.png" type="Texture" id=6]
+
+
+[node name="UnitSummary" type="Control"]
+anchor_right = 0.215
+anchor_bottom = 0.267
+margin_right = -0.160004
+margin_bottom = -0.200012
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+name_path = NodePath("UnitName")
+hp_path = NodePath("HPBar")
+hp_text = NodePath("Label")
+attack_path = NodePath("AttackL/Value")
+defense_path = NodePath("DefenseL/Value")
+mag_atk_path = NodePath("MagicAtkL/Value")
+mag_def_path = NodePath("MagicDefL/Value")
+mov_path = NodePath("Movement/Value")
+agua_path = NodePath("Agua/Value")
+terra_path = NodePath("Terra/Value")
+luz_path = NodePath("Luz/Value")
+escuro_path = NodePath("Escuridão/Value")
+invalid_color = Color( 0.403922, 0.00784314, 0.00784314, 1 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 151.0
+margin_bottom = 160.0
+
+[node name="UnitName" type="Label" parent="."]
+margin_left = 1.05023
+margin_top = 9.0
+margin_right = 151.05
+margin_bottom = 30.0
+text = "Unit Name"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HPBar" type="ProgressBar" parent="."]
+margin_left = 1.05023
+margin_top = 28.6159
+margin_right = 149.05
+margin_bottom = 48.1059
+custom_colors/font_color = Color( 0.898039, 0.160784, 0.160784, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+value = 49.99
+percent_visible = false
+
+[node name="Label" type="Label" parent="."]
+margin_left = 40.0
+margin_top = 31.602
+margin_right = 110.0
+margin_bottom = 48.6021
+text = "0/0"
+align = 1
+valign = 1
+
+[node name="AttackL" type="Label" parent="."]
+editor/display_folded = true
+margin_left = 4.92021
+margin_top = 51.8513
+margin_right = 82.9202
+margin_bottom = 65.8513
+text = "Attack:"
+align = 2
+valign = 1
+
+[node name="Value" type="Label" parent="AttackL"]
+margin_left = 78.0
+margin_top = 1.0
+margin_right = 153.0
+margin_bottom = 15.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="DefenseL" type="Label" parent="."]
+editor/display_folded = true
+margin_left = 4.92021
+margin_top = 73.0566
+margin_right = 82.9202
+margin_bottom = 87.057
+text = "Defense:"
+align = 2
+valign = 1
+
+[node name="Value" type="Label" parent="DefenseL"]
+margin_left = 78.0
+margin_top = 1.0
+margin_right = 153.0
+margin_bottom = 15.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="MagicAtkL" type="Label" parent="."]
+editor/display_folded = true
+margin_left = 4.92021
+margin_top = 93.057
+margin_right = 82.9202
+margin_bottom = 107.057
+text = "Magic ATK:"
+align = 2
+valign = 1
+
+[node name="Value" type="Label" parent="MagicAtkL"]
+margin_left = 78.0
+margin_top = 1.0
+margin_right = 153.0
+margin_bottom = 15.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="MagicDefL" type="Label" parent="."]
+editor/display_folded = true
+margin_left = 4.92021
+margin_top = 113.057
+margin_right = 82.9202
+margin_bottom = 127.057
+text = "Magic DEF:"
+align = 2
+valign = 1
+
+[node name="Value" type="Label" parent="MagicDefL"]
+margin_left = 78.0
+margin_top = 1.0
+margin_right = 153.0
+margin_bottom = 15.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="Movement" type="Label" parent="."]
+editor/display_folded = true
+margin_left = 4.92021
+margin_top = 133.646
+margin_right = 82.9202
+margin_bottom = 147.646
+text = "Movement:"
+align = 2
+valign = 1
+
+[node name="Value" type="Label" parent="Movement"]
+margin_left = 78.0
+margin_top = 1.0
+margin_right = 153.0
+margin_bottom = 15.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="Agua" type="TextureRect" parent="."]
+margin_left = 157.92
+margin_top = 10.3585
+margin_right = 189.92
+margin_bottom = 42.3585
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Value" type="Label" parent="Agua"]
+margin_left = 32.0
+margin_right = 62.0
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.101961, 0.623529, 0.160784, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Terra" type="TextureRect" parent="."]
+margin_left = 158.0
+margin_top = 48.1059
+margin_right = 190.0
+margin_bottom = 80.1059
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Value" type="Label" parent="Terra"]
+margin_left = 31.92
+margin_right = 61.92
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.101961, 0.623529, 0.160784, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Luz" type="TextureRect" parent="."]
+margin_left = 158.0
+margin_top = 84.0
+margin_right = 190.0
+margin_bottom = 116.0
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Value" type="Label" parent="Luz"]
+margin_left = 31.92
+margin_right = 61.92
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.101961, 0.623529, 0.160784, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Escuridão" type="TextureRect" parent="."]
+margin_left = 158.0
+margin_top = 120.0
+margin_right = 190.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 6 )
+expand = true
+
+[node name="Value" type="Label" parent="Escuridão"]
+margin_left = 31.92
+margin_right = 61.92
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.101961, 0.623529, 0.160784, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1

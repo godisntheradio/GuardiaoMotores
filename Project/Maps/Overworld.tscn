@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Script/Overworld.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Stage.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Objects/UI/StageDescWindow.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/UI/PlayerStats.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Objects/UI/OverworldMenu.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Objects/UI/UnitUnlockScreen.tscn" type="PackedScene" id=9]
 
 [node name="Overworld" type="Spatial"]
 script = ExtResource( 1 )
@@ -98,6 +99,10 @@ visible = false
 
 [node name="OverworldMenu" parent="UI" instance=ExtResource( 8 )]
 visible = false
+
+[node name="UnitUnlockScreen" parent="UI" instance=ExtResource( 9 )]
+margin_right = 990.0
+margin_bottom = 560.0
 [connection signal="button_up" from="DebugWindow/Button" to="." method="_on_Button_button_up"]
 [connection signal="button_up" from="DebugWindow/Button2" to="." method="_on_Button2_button_up"]
 [connection signal="button_up" from="DebugWindow/Button3" to="." method="_on_Button3_button_up"]
