@@ -55,6 +55,11 @@ func find_unit_index(to_find):
 		if(available_units[i].name == to_find.stats.name):
 			return i
 	return null
+func has_unit(name):
+	for i in available_units.size():
+		if(available_units[i] == name):
+			return true
+	return false
 func find_unit(name):
 	for unit in game_units:
 		if(unit.name == name):

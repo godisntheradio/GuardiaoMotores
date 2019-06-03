@@ -73,3 +73,12 @@ func set_unit_stats(unit, aura):
 	if(GameData.aura.escuridao < aura.escuridao):
 		escuro_value.add_color_override("font_color",invalid_color)
 		redeemable = false
+	if(GameData.has_unit(unit.name)):
+		get_node("SelectButton").disabled = true
+
+func _on_SelectButton_pressed():
+	if(redeemable):
+		get_node("SelectButton").disabled = true
+		GameData.available_units.append(name_value.text)
+	else:
+		print("not enough aura")

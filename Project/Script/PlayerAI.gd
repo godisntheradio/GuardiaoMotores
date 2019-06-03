@@ -16,8 +16,6 @@ func _ready():
 func begin_turn():
 	turn = true
 func _process(delta):
-	if Input.is_action_just_pressed("left_click") && turn:
-		battle_manager.on_end_player_turn()
 	state_machine.update(delta)
 func end_turn():
 	turn = false

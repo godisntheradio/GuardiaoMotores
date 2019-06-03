@@ -3,7 +3,6 @@
 [ext_resource path="res://UI/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Script/UI/UnitStatsDisplay.gd" type="Script" id=2]
 
-
 [node name="UnitStatsDisplay" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -60,9 +59,9 @@ valign = 1
 [node name="AttackL" type="Label" parent="Panel"]
 editor/display_folded = true
 margin_left = 7.0
-margin_top = 78.2053
+margin_top = 94.2053
 margin_right = 85.0
-margin_bottom = 92.2053
+margin_bottom = 110.205
 text = "Attack:"
 align = 2
 valign = 1
@@ -79,9 +78,9 @@ valign = 1
 [node name="DefenseL" type="Label" parent="Panel"]
 editor/display_folded = true
 margin_left = 7.0
-margin_top = 99.4106
+margin_top = 115.411
 margin_right = 85.0
-margin_bottom = 113.411
+margin_bottom = 131.411
 text = "Defense:"
 align = 2
 valign = 1
@@ -97,6 +96,7 @@ valign = 1
 
 [node name="MagicAtkL" type="Label" parent="Panel"]
 editor/display_folded = true
+visible = false
 margin_left = 7.0
 margin_top = 119.411
 margin_right = 85.0
@@ -116,6 +116,7 @@ valign = 1
 
 [node name="MagicDefL" type="Label" parent="Panel"]
 editor/display_folded = true
+visible = false
 margin_left = 7.0
 margin_top = 139.411
 margin_right = 85.0
@@ -134,10 +135,11 @@ align = 1
 valign = 1
 
 [node name="Movement" type="Label" parent="Panel"]
+editor/display_folded = true
 margin_left = 7.0
-margin_top = 160.0
-margin_right = 85.0
-margin_bottom = 174.0
+margin_top = 136.411
+margin_right = 86.0
+margin_bottom = 152.411
 text = "Movement:"
 align = 2
 valign = 1
@@ -150,4 +152,3 @@ margin_bottom = 15.0
 text = "0"
 align = 1
 valign = 1
-

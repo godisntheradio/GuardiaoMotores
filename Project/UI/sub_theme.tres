@@ -1,0 +1,27 @@
+[gd_resource type="Theme" load_steps=6 format=2]
+
+[ext_resource path="res://UI/transparent_button.tres" type="StyleBox" id=1]
+[ext_resource path="res://UI/Main_font.tres" type="DynamicFont" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.298039, 0.145098, 0.145098, 0.509804 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.27451 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.0823529, 0.768627, 0.52549, 0.121569 )
+
+[resource]
+default_font = ExtResource( 2 )
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/colors/font_color_disabled = Color( 0.901961, 0.901961, 0.901961, 0.2 )
+Button/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = SubResource( 1 )
+Button/styles/focus = null
+Button/styles/hover = SubResource( 2 )
+Button/styles/normal = ExtResource( 1 )
+Button/styles/pressed = SubResource( 3 )
