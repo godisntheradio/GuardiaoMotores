@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UI/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Script/UI/UnitUnlockScreen.gd" type="Script" id=2]
+[ext_resource path="res://UI/Main_font_bigger.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Script/UI/PlayerStats.gd" type="Script" id=4]
+[ext_resource path="res://Textures/water-drop.png" type="Texture" id=5]
+[ext_resource path="res://Textures/sprout.png" type="Texture" id=6]
+[ext_resource path="res://Textures/sun-shining.png" type="Texture" id=7]
+[ext_resource path="res://Textures/cloudy.png" type="Texture" id=8]
+[ext_resource path="res://UI/sub_theme.tres" type="Theme" id=9]
 
 [node name="UnitUnlockScreen" type="Control"]
 anchor_right = 1.0
@@ -26,3 +33,135 @@ margin_bottom = 565.057
 [node name="GridContainer" type="GridContainer" parent="Panel/ScrollContainer"]
 theme = ExtResource( 1 )
 columns = 4
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 60.0
+margin_top = 30.0
+margin_right = 503.0
+margin_bottom = 61.0
+custom_fonts/font = ExtResource( 3 )
+text = "Lista de unidades desbloquavéis"
+
+[node name="Label2" type="Label" parent="Panel"]
+margin_left = 60.0
+margin_top = 65.0
+margin_right = 447.0
+margin_bottom = 81.0
+text = "Clique em uma unidade disponível para desbloqueá-la"
+
+[node name="PlayerStats" type="Control" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 573.0
+margin_top = 34.0
+margin_right = -158.0
+margin_bottom = -507.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+agua_path = NodePath("Panel/Agua/Value")
+terra_path = NodePath("Panel/Terra/Value")
+luz_path = NodePath("Panel/Luz/Value")
+escuro_path = NodePath("Panel/Escuridão/Value")
+
+[node name="Panel" type="Panel" parent="Panel/PlayerStats"]
+margin_left = 14.0
+margin_top = -6.57214
+margin_right = 307.0
+margin_bottom = 52.4279
+
+[node name="Agua" type="TextureRect" parent="Panel/PlayerStats/Panel"]
+editor/display_folded = true
+margin_left = 17.7156
+margin_top = 12.8807
+margin_right = 49.7156
+margin_bottom = 44.8807
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Value" type="Label" parent="Panel/PlayerStats/Panel/Agua"]
+margin_left = 31.92
+margin_top = 0.418
+margin_right = 61.92
+margin_bottom = 32.418
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Terra" type="TextureRect" parent="Panel/PlayerStats/Panel"]
+editor/display_folded = true
+margin_left = 87.7156
+margin_top = 12.8807
+margin_right = 119.716
+margin_bottom = 44.8807
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 6 )
+expand = true
+
+[node name="Value" type="Label" parent="Panel/PlayerStats/Panel/Terra"]
+margin_left = 31.92
+margin_right = 61.92
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Luz" type="TextureRect" parent="Panel/PlayerStats/Panel"]
+editor/display_folded = true
+margin_left = 157.716
+margin_top = 12.8807
+margin_right = 189.716
+margin_bottom = 44.8807
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 7 )
+expand = true
+
+[node name="Value" type="Label" parent="Panel/PlayerStats/Panel/Luz"]
+margin_left = 31.92
+margin_right = 61.92
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Escuridão" type="TextureRect" parent="Panel/PlayerStats/Panel"]
+editor/display_folded = true
+margin_left = 227.716
+margin_top = 12.8807
+margin_right = 259.716
+margin_bottom = 44.8807
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 8 )
+expand = true
+
+[node name="Value" type="Label" parent="Panel/PlayerStats/Panel/Escuridão"]
+margin_left = 31.92
+margin_right = 61.92
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="Panel/PlayerStats"]
+visible = false
+margin_left = 331.0
+margin_top = 10.0
+margin_right = 500.0
+margin_bottom = 40.0
+focus_mode = 0
+theme = ExtResource( 9 )
+enabled_focus_mode = 0
+text = "Unlock Units"
+[connection signal="pressed" from="Panel/PlayerStats/Button" to="Panel/PlayerStats" method="_on_open_unlock_window_pressed"]

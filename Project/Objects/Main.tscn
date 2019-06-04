@@ -1,15 +1,17 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Objects/BattleManager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/UI/UnitStatsDisplay.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/UI/DeployUnitsWindow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/UI/CommandWindow.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/UI/TurnWindow.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ARIALUNI.TTF" type="DynamicFontData" id=6]
+[ext_resource path="res://UI/main_theme.tres" type="Theme" id=6]
+[ext_resource path="res://UI/JosefinSans-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://UI/sub_theme.tres" type="Theme" id=8]
 
 [sub_resource type="DynamicFont" id=1]
-size = 150
-font_data = ExtResource( 6 )
+size = 70
+font_data = ExtResource( 7 )
 
 [node name="Main" type="Spatial"]
 
@@ -47,25 +49,26 @@ align = 2
 valign = 1
 
 [node name="GameOver" type="Label" parent="Control"]
+editor/display_folded = true
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 93.5
-margin_top = 62.0
+margin_top = 102.0
 margin_right = 914.5
-margin_bottom = 485.0
+margin_bottom = 402.0
 mouse_filter = 1
+theme = ExtResource( 6 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 1, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 1, 0.0156863, 1 )
 custom_constants/shadow_offset_x = 4
 custom_constants/line_spacing = -20
 custom_constants/shadow_offset_y = 3
 custom_constants/shadow_as_outline = 0
-text = "お前はもう死んでいる"
+text = "Fim de jogo"
 align = 1
+valign = 1
 autowrap = true
 
 [node name="Back" type="Button" parent="Control/GameOver"]
@@ -74,6 +77,57 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -20.0
 margin_bottom = 47.0
-text = "BACK"
+theme = ExtResource( 8 )
+text = "Retornar ao mapa do mundo"
+
+[node name="Label" type="Label" parent="Control/GameOver"]
+margin_left = 259.186
+margin_top = 190.185
+margin_right = 560.186
+margin_bottom = 228.185
+text = "Todas as suas unidades foram derrotadas"
+align = 1
+valign = 1
+
+[node name="Victory" type="Label" parent="Control"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 93.5
+margin_top = 102.0
+margin_right = 914.5
+margin_bottom = 402.0
+mouse_filter = 1
+theme = ExtResource( 6 )
+custom_fonts/font = SubResource( 1 )
+custom_constants/shadow_offset_x = 4
+custom_constants/line_spacing = -20
+custom_constants/shadow_offset_y = 3
+custom_constants/shadow_as_outline = 0
+text = "Vitória"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Back" type="Button" parent="Control/Victory"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -20.0
+margin_bottom = 47.0
+theme = ExtResource( 8 )
+text = "Retornar ao mapa do mundo"
+
+[node name="Label" type="Label" parent="Control/Victory"]
+margin_left = 210.0
+margin_top = 191.0
+margin_right = 609.0
+margin_bottom = 229.0
+text = "Esta área agora está disponível para o reflorestamento"
+align = 1
+valign = 1
 [connection signal="visibility_changed" from="Control/CommandWindow" to="Control/CommandWindow" method="_on_CommandWindow_visibility_changed"]
 [connection signal="pressed" from="Control/GameOver/Back" to="BattleManager" method="_on_GameOverBack_pressed"]
+[connection signal="pressed" from="Control/Victory/Back" to="BattleManager" method="_on_GameOverBack_pressed"]

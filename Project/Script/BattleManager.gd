@@ -16,12 +16,13 @@ var human_player
 var astarManager
 
 
-var winner = -1
+var loser : Player
 
 export var command_window : NodePath
 export var turn_window : NodePath
 func _ready():
 	has_started = false
+	loser = null
 	var level_resource = load(GameData.to_load)
 	var level = level_resource.instance()
 	add_child(level)
@@ -108,12 +109,18 @@ func get_enemy_units(player : Player):
 	return res
 
 func check_game_over():
-	for p in range(player_list.size()):
-		if (player_list[p].units.size() == 0):
-			winner = p
-	if (winner >= 0):
-		get_node("../Control/GameOver").visible = true
-
+	for p in player_list:
+		if (p.units.size() == 0):
+			loser = p
+	if(loser != null):
+		close_ui_windows()
+		if (loser != human_player):
+			get_node("../Control/Victory").visible = true
+		else:
+			get_node("../Control/GameOver").visible = true
+func close_ui_windows():
+	for c in get_parent().get_node("Control").get_children():
+		c.visible = false
 func _on_GameOverBack_pressed():
 	get_tree().change_scene("res://Maps/Overworld.tscn")
 	CameraManager.translation = GameData.world_map_camera_pos

@@ -312,7 +312,7 @@ gdscript/warnings/enable=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "Dock", "MultiLayer GridMap" )
+enabled=PoolStringArray( "MultiLayer GridMap" )
 
 [input]
 

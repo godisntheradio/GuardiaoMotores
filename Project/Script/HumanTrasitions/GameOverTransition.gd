@@ -8,4 +8,4 @@ func entry_action():
 func exit_action():
 	pass
 func is_triggered():
-	return get_fsm_owner().battle_manager.winner >= 0
+	return get_fsm_owner().battle_manager.loser != null

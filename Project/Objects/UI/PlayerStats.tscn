@@ -1,23 +1,123 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Script/UI/PlayerStats.gd" type="Script" id=2]
+[ext_resource path="res://Textures/water-drop.png" type="Texture" id=3]
+[ext_resource path="res://Textures/sprout.png" type="Texture" id=4]
+[ext_resource path="res://Textures/sun-shining.png" type="Texture" id=5]
+[ext_resource path="res://Textures/cloudy.png" type="Texture" id=6]
+[ext_resource path="res://UI/sub_theme.tres" type="Theme" id=7]
 
 [node name="PlayerStats" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -30.0
+margin_top = 550.0
+margin_right = -704.0
+margin_bottom = 9.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+agua_path = NodePath("Panel/Agua/Value")
+terra_path = NodePath("Panel/Terra/Value")
+luz_path = NodePath("Panel/Luz/Value")
+escuro_path = NodePath("Panel/Escuridão/Value")
 
 [node name="Panel" type="Panel" parent="."]
-margin_left = -129.999
-margin_top = 552.721
-margin_right = 470.001
-margin_bottom = 752.721
+margin_right = 510.0
+margin_bottom = 59.0
 
-[node name="Label" type="Label" parent="Panel"]
-margin_left = 144.704
-margin_top = 4.43195
-margin_right = 586.704
-margin_bottom = 39.4319
+[node name="Agua" type="TextureRect" parent="Panel"]
+editor/display_folded = true
+margin_left = 53.0
+margin_top = 7.0
+margin_right = 85.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Value" type="Label" parent="Panel/Agua"]
+margin_left = 31.92
+margin_top = 0.418
+margin_right = 61.92
+margin_bottom = 32.418
 theme = ExtResource( 1 )
-text = "Agua: 19 Terra: 1 Luz:4 Escuridão: 8"
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
 align = 1
 valign = 1
+
+[node name="Terra" type="TextureRect" parent="Panel"]
+editor/display_folded = true
+margin_left = 123.0
+margin_top = 7.0
+margin_right = 155.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Value" type="Label" parent="Panel/Terra"]
+margin_left = 31.92
+margin_right = 61.92
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Luz" type="TextureRect" parent="Panel"]
+editor/display_folded = true
+margin_left = 193.0
+margin_top = 7.0
+margin_right = 225.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Value" type="Label" parent="Panel/Luz"]
+margin_left = 31.92
+margin_right = 61.92
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Escuridão" type="TextureRect" parent="Panel"]
+editor/display_folded = true
+margin_left = 263.0
+margin_top = 7.0
+margin_right = 295.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 6 )
+expand = true
+
+[node name="Value" type="Label" parent="Panel/Escuridão"]
+margin_left = 31.92
+margin_right = 61.92
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="."]
+margin_left = 331.0
+margin_top = 10.0
+margin_right = 500.0
+margin_bottom = 40.0
+focus_mode = 0
+theme = ExtResource( 7 )
+enabled_focus_mode = 0
+text = "Unlock Units"
+[connection signal="pressed" from="Button" to="." method="_on_open_unlock_window_pressed"]

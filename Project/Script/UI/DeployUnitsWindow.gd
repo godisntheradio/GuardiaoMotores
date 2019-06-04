@@ -29,6 +29,7 @@ func _ready():
 	item_list.set_same_column_width(true)
 	item_list.set_max_text_lines(50)
 	item_list.set_auto_height(true)
+	item_list.clear()
 	for unit in GameData.available_units:
 		item_list.add_item(unit)
 	
