@@ -31,6 +31,8 @@ var player : Player
 var skills  : Array = []
 signal action_finished
 
+var dmg_number = preload("res://Objects/UI/DamageText.tscn")
+var positive_color = Color(0.1,1.0,0,1.0)
 func _ready():
 	stats = Stats.new()
 	if(editor_created):
@@ -60,8 +62,10 @@ func undo_move(world_pos : Vector3):
 func take_damage(dmg : int):
 	hp += dmg
 	var txt_pos = CameraManager.camera.unproject_position(global_transform.origin + Vector3(0, 1, 0))
-	var dmg_txt = preload("res://Objects/UI/DamageText.tscn").instance()
+	var dmg_txt = dmg_number.instance()
 	get_tree().root.add_child(dmg_txt)
+	if(dmg > 0):
+		dmg_txt.set_color(positive_color)
 	dmg_txt.begin(dmg, txt_pos)
 	if (hp < 1):
 		death()

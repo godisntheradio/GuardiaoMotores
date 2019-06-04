@@ -141,12 +141,22 @@ func after_move():
 	deselect_action()
 	
 func is_attack_valid(tile) -> bool:
-	if(tile.is_tile_empty()):
-		return false
-	if(within_reach.has(tile) && tile.occupying_unit.player != self):
-		return true
-	else:
-		return false
+	match(selected_skill.type):
+		Skill.Attack:
+			if(tile.is_tile_empty()):
+				return false
+			if(within_reach.has(tile) && tile.occupying_unit.player != self):
+				return true
+			else:
+				return false
+		Skill.Heal:
+			if(tile.is_tile_empty()):
+				return false
+			if(within_reach.has(tile) && tile.occupying_unit.player == self):
+				return true
+			else:
+				return false
+	
 
 func is_move_valid(tile) -> bool:
 	if(!tile.is_tile_empty()):

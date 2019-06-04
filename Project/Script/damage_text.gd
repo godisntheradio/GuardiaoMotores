@@ -32,3 +32,5 @@ func _ready():
 func _process(delta):
 	if(position.y > get_viewport().size.y):
 		queue_free()
+func set_color(c : Color):
+	label.add_color_override("font_color",c)

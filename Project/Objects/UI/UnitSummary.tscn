@@ -180,7 +180,6 @@ align = 1
 valign = 1
 
 [node name="Terra" type="TextureRect" parent="."]
-editor/display_folded = true
 margin_left = 140.08
 margin_top = 47.0
 margin_right = 172.08
