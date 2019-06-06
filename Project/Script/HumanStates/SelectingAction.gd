@@ -11,6 +11,7 @@ func action(delta):
 					get_fsm_owner().select_unit(tile)
 func entry_action():
 	get_fsm_owner().deselect_action()
+	get_fsm_owner().command_window.show_commands(get_fsm_owner().selected_tile.occupying_unit)
 func exit_action():
 	pass
 static func get_name():

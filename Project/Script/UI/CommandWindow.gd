@@ -21,6 +21,7 @@ func _ready():
 	move_animator.playback_speed = speed
 	skill_list = get_node("Panel/SkillList")
 func _on_MoveButton_button_up():
+	skill_list.visible = true
 	move_out()
 	play_confirm()
 	emit_signal("move")
@@ -70,9 +71,7 @@ func _on_SkillList_item_selected(index):
 	emit_signal("attack", index)
 	
 func _on_SkillButton_pressed():
-	move_out()
 	skill_list.visible = true
-	pass # Replace with function body.
 func play_confirm():
 	audio_player.stream = confirm
 	audio_player.play()

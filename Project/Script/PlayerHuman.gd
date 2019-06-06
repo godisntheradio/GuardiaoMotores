@@ -156,7 +156,22 @@ func is_attack_valid(tile) -> bool:
 				return true
 			else:
 				return false
-	
+func is_aoe_valid(tile)->bool:
+	match(selected_skill.type):
+		Skill.Attack:
+			if(tile.is_tile_empty()):
+				return false
+			if(tile.occupying_unit.player != self):
+				return true
+			else:
+				return false
+		Skill.Heal:
+			if(tile.is_tile_empty()):
+				return false
+			if(tile.occupying_unit.player == self):
+				return true
+			else:
+				return false
 
 func is_move_valid(tile) -> bool:
 	if(!tile.is_tile_empty()):

@@ -24,13 +24,13 @@ func get_aoe_tiles(battle_manager, origin) -> Array:
 	for point in points:
 		aoe_tiles.append(point)
 	return aoe_tiles
-func calculate_effect(stats):
+func calculate_effect(stats,enemy_stats):
 	match type:
 		Heal:
-			return heal(stats)
+			return abs(heal(stats,enemy_stats))
 		Attack:
-			return attack(stats)
-func heal(stats):
-	return 10
-func attack(stats):
-	return -10
+			return -abs(attack(stats,enemy_stats))
+func heal(stats,enemy_stats):
+	return stats.defense / 2 + (rand_range(0.2,0.3) * enemy_stats.hit_points)
+func attack(stats,enemy_stats):
+	return ((stats.attack - enemy_stats.defense / 2) + ((stats.attack - enemy_stats.defense/ 2 + 1) * rand_range(0,1)))/2

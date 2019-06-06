@@ -28,6 +28,5 @@ mode = 1
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
 shape = SubResource( 2 )
-
 [connection signal="mouse_entered" from="RigidBody" to="." method="_on_RigidBody_mouse_entered"]
 [connection signal="mouse_exited" from="RigidBody" to="." method="_on_RigidBody_mouse_exited"]

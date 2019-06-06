@@ -23,7 +23,6 @@ surfaces/0 = {
 [node name="Stage" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.481101, 0 )
 script = ExtResource( 1 )
-to_load = "res://Level1.tscn"
 locked_mat_ = ExtResource( 2 )
 free_mat_ = ExtResource( 3 )
 open_mat_ = ExtResource( 4 )

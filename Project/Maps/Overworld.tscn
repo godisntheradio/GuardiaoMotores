@@ -5,11 +5,11 @@
 [ext_resource path="res://Objects/MapBounds.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/OverworldMap.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Script/UI/OverworldDebugWindow.gd" type="Script" id=5]
-[ext_resource path="res://Objects/UI/StageDescWindow.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Objects/UI/PlayerStats.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Objects/UI/OverworldMenu.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Objects/UI/UnitUnlockScreen.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Objects/UI/ReforestMenu.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Objects/UI/OverworldMenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/UI/StageDescWindow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Objects/UI/UnitUnlockScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Objects/UI/ReforestMenu.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Objects/UI/PlayerStats.tscn" type="PackedScene" id=10]
 
 [node name="Overworld" type="Spatial"]
 script = ExtResource( 1 )
@@ -21,7 +21,7 @@ menu_path = NodePath("UI/OverworldMenu")
 
 [node name="Stage" parent="Stages" instance=ExtResource( 2 )]
 editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -73.172, 0.618376, 60.0545 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -82.4873, 0.860064, 75.5931 )
 map_to_load = "res://Maps/Level1.tscn"
 stage_name = "Introdução"
 difficulty = 1
@@ -29,14 +29,14 @@ description = "Descrição da fase \"Teste\""
 types_available = [ 2, 3 ]
 
 [node name="Stage2" parent="Stages" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -73.172, 0.659104, 67.9067 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -67.8893, 0.659104, 83.2924 )
 map_to_load = "res://Maps/Level2.tscn"
 stage_name = "Um tempo atrás..."
 difficulty = 1
 description = "Muito fácil"
 
 [node name="Stage3" parent="Stages" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.0416, 0.717646, 74.2398 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -52.0101, 0.645927, 81.6242 )
 map_to_load = "res://Maps/Level3.tscn"
 stage_name = "Teste de força"
 difficulty = 3
@@ -44,7 +44,7 @@ description = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 unlock_requirements_paths = [ NodePath("../Stage2"), NodePath("../Stage") ]
 
 [node name="MapBounds" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1.388, 0, 0, 0, 5.416, 0, 0, 0, 1.045, -21.4657, -5.455, 43.9263 )
+transform = Transform( 0.698, 0, 0, 0, 5.416, 0, 0, 0, 0.805, -51.8616, -5.455, 44.1841 )
 
 [node name="OverworldMap" parent="." instance=ExtResource( 4 )]
 transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
@@ -86,25 +86,25 @@ text = "Clear"
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="StageDescWindow" parent="UI" instance=ExtResource( 6 )]
+[node name="OverworldMenu" parent="UI" instance=ExtResource( 6 )]
 visible = false
 
-[node name="PlayerStats" parent="UI" instance=ExtResource( 7 )]
-margin_right = -30.0
-margin_bottom = 550.0
-unlock_path = NodePath("../UnitUnlockScreen")
-
-[node name="OverworldMenu" parent="UI" instance=ExtResource( 8 )]
+[node name="StageDescWindow" parent="UI" instance=ExtResource( 7 )]
 visible = false
 
-[node name="UnitUnlockScreen" parent="UI" instance=ExtResource( 9 )]
+[node name="UnitUnlockScreen" parent="UI" instance=ExtResource( 8 )]
 visible = false
 margin_right = 990.0
 margin_bottom = 560.0
 unlockable_units = [ "Arapaso", "Kokama", "Unit", "Uni", "T", "unisinos", null, null, null, "", "", "", "", "", "", "", "", "", "", "" ]
 
-[node name="ReforestMenu" parent="UI" instance=ExtResource( 10 )]
+[node name="ReforestMenu" parent="UI" instance=ExtResource( 9 )]
 visible = false
+
+[node name="PlayerStats" parent="UI" instance=ExtResource( 10 )]
+margin_right = -30.0
+margin_bottom = 550.0
+unlock_path = NodePath("../UnitUnlockScreen")
 [connection signal="button_up" from="DebugWindow/Button" to="." method="_on_Button_button_up"]
 [connection signal="button_up" from="DebugWindow/Button2" to="." method="_on_Button2_button_up"]
 [connection signal="button_up" from="DebugWindow/Button3" to="." method="_on_Button3_button_up"]

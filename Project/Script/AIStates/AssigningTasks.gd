@@ -36,12 +36,14 @@ func create_tasks():
 				Skill.Heal:
 					for unit in get_fsm_owner().units:
 						var t = TaskCure.new(get_fsm_owner().choosen_agent, get_fsm_owner().battle_manager.get_tile_from_unit(unit),get_fsm_owner().battle_manager,skill)
+						t.calculate_score()
 						tasks.append(t)
 				Skill.Attack:
 					for e in enemies:
 						var l = get_fsm_owner().battle_manager.get_tile_from_unit(e)
 						if(l.occupying_unit != null):
 							var t = TaskAttack.new(get_fsm_owner().choosen_agent, l, get_fsm_owner().battle_manager,skill)
+							t.calculate_score()
 							tasks.append(t)
 		
 	else:

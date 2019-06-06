@@ -57,8 +57,8 @@ func action(delta):
 	sub_fsm.update(delta)
 	
 func entry_action():
-	pass
+	sub_fsm.start()
 func exit_action():
-	pass
+	get_fsm_owner().after_move()
 static func get_name():
 	return "Human Turn"

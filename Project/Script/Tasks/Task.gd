@@ -12,7 +12,6 @@ func _init(agent_:Unit, target_:Tile, manager_):
 	self.agent = agent_
 	self.target = target_
 	self.manager = manager_
-	self.score = int( calculate_score())
 func calculate_score() -> int:
 	return 0
 func execute_task():

@@ -1,4 +1,4 @@
-extends Spatial
+extends KinematicBody
 
 export var camera_path : NodePath
 var camera : Camera
@@ -8,12 +8,10 @@ var dir : Vector3
 var origin : Vector3
 var cursor : Vector3
 var allowed_to_cast : bool
-var kinematic : KinematicBody
 
 export var labelref :NodePath
 var label
 func _ready():
-	kinematic = get_node("KinematicBody")
 	camera  = get_node(camera_path)
 	label = get_node(labelref)
 	allowed_to_cast = true
@@ -33,7 +31,7 @@ func updateRay():
 		var space_state = get_world().direct_space_state
 		dir = camera.project_ray_normal(mouse)
 		origin = camera.project_ray_origin(mouse)
-		result = space_state.intersect_ray(origin, origin + dir * 250)
+		result = space_state.intersect_ray(origin, origin + dir * 250,[], 1)
 	else:
 		result.clear()
 	
@@ -48,16 +46,14 @@ func processCameraMovement(delta):
 	if Input.is_action_pressed("move_camera_back"):
 		move.z = 1.0
 	if(move != Vector3.ZERO):
-		var cameraDir = get_node("KinematicBody").transform.basis.z.normalized()
+		var cameraDir = camera.transform.basis.z.normalized()
 		cameraDir.y = 0.0
-		var move_result = get_node("KinematicBody").transform.basis.x.normalized() * move.x + cameraDir * move.z
+		var move_result = camera.transform.basis.x.normalized() * move.x + cameraDir * move.z
 		var motion = move_result * delta * camera_speed
 		cursor = motion
-		#kinematic.move_and_collide(motion)
 func updateCamera(target : Vector3):
-	if (!kinematic.test_move(kinematic.global_transform,target)):
-		translate(target)
-		label.text = str( translation)
+	move_and_slide(target)
+	label.text = str( translation)
 	cursor = Vector3.ZERO
 func relocate(pos : Vector3):
 	global_translate(pos - global_transform.origin)

@@ -26,6 +26,8 @@ func _ready():
 	for i in unlock_requirements_paths:
 		unlock_requirements.append(get_node(i))
 	connect("selected",get_parent().get_parent().get_node("UI/StageDescWindow"),"show_desc")
+	connect("selected_to_reforest",get_parent().get_parent().get_node("UI/StageDescWindow"),"hide_desc")
+	connect("selected",get_parent().get_parent().get_node("UI/ReforestMenu"),"close_window")
 	connect("selected_to_reforest",get_parent().get_parent().get_node("UI/ReforestMenu"),"open_window")
 	connect("change_stage_state",get_parent().get_parent(), "save_stage_states")
 	state = GameData.state_progress[stage_name]

@@ -31,9 +31,11 @@ func show_desc(stage):
 	visible = true
 	set_desc_window(stage)
 	selected = stage
+func hide_desc():
+	visible = false
+	selected = null
 func _on_Button_pressed():
 	get_parent().get_parent().load_stage(selected)
 func _on_Close_pressed():
 	audio_player.play()
-	visible = false
-	selected = null
+	hide_desc()

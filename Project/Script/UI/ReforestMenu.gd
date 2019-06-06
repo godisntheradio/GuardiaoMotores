@@ -67,6 +67,7 @@ func get_vegetation_type_tex(type):
 func _on_Vegetation_confirmed():
 	selected_stage.reforest(selected_index)
 	GameData.add_aura(aura_list[selected_index])
+	close_window()
 func _on_type_selected(index):
 	get_node("Panel/Vegetation").popup()
 	get_node("Panel/Vegetation").rect_position = Vector2(200,210)

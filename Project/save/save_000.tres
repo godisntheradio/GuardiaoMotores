@@ -18,7 +18,7 @@ data = {
 "escuridao": 0,
 "luz": 0,
 "player_units": [ "Unit", "Uni", "unisinos", "T" ],
-"playtime": 16.454,
+"playtime": 13.8163,
 "s_progress": {
 "Introdução": 1,
 "Introdução_type_used": -1,

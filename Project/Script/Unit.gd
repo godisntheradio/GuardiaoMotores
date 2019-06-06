@@ -44,7 +44,7 @@ func _process(delta):
 	if (is_moving):
 		move_animation(delta)
 func attack(pos : Tile, skill : Skill):
-	pos.occupying_unit.take_damage(skill.calculate_effect(stats))
+	pos.occupying_unit.take_damage(skill.calculate_effect(stats, pos.occupying_unit.stats))
 	has_attacked = true
 	emit_signal("action_finished")
 func move(pos : Tile, points : PoolVector3Array):
@@ -69,6 +69,8 @@ func take_damage(dmg : int):
 	dmg_txt.begin(dmg, txt_pos)
 	if (hp < 1):
 		death()
+	elif(hp > stats.hit_points):
+		hp = stats.hit_points
 func death():
 	player.remove_unit(self)
 	queue_free()

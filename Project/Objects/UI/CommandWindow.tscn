@@ -4,7 +4,6 @@
 [ext_resource path="res://Script/UI/CommandWindow.gd" type="Script" id=2]
 [ext_resource path="res://Audio/SFX/action_confirm.wav" type="AudioStream" id=3]
 
-
 [sub_resource type="Animation" id=1]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
@@ -96,7 +95,6 @@ margin_right = -5.0
 margin_bottom = 110.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-
 [connection signal="pressed" from="Panel/Skill/SkillButton" to="." method="_on_SkillButton_pressed"]
 [connection signal="pressed" from="Panel/Move/MoveButton" to="." method="_on_MoveButton_button_up"]
 [connection signal="pressed" from="Panel/ReturnButton" to="." method="_on_ReturnButton_button_up"]

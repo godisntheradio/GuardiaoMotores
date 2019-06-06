@@ -6,9 +6,10 @@ func _init(agent_, target_:Tile, manager_, skill_).(agent_,target_,manager_):
 	self.in_reach = in_reach(agent_skill)
 	self.in_range = in_range()
 func calculate_score() -> int:
-	score += target_in_range()
+	score = target_in_range()
 	score += low_hp_target()
 	score += low_hp_agent()
+	score += target_in_reach()
 	return score
 	
 func execute_task():
@@ -16,6 +17,11 @@ func execute_task():
 func target_in_range() -> int:
 	var max_score = 100
 	if(!in_range):
+		return -max_score
+	return max_score
+func target_in_reach() -> int:
+	var max_score = 100
+	if(!in_reach):
 		return -max_score
 	return max_score
 func low_hp_target() ->int:
