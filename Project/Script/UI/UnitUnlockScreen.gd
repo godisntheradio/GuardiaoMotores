@@ -10,8 +10,16 @@ signal close
 var refs : Array
 func _ready():
 	summary = load(summaryClass)
+	refresh()
+func _process(delta):
+	if(Input.is_action_just_released("ui_cancel")):
+		visible = false
+		emit_signal("close")
+func refresh():
 	var container = get_node("Panel/ScrollContainer/GridContainer")
 	refs.clear()
+	for i in container.get_children():
+		i.free()
 	for u in unlockable_units:
 		var a = GameData.find_unit(u)
 		if(a != null):
@@ -26,7 +34,6 @@ func _ready():
 		aura.escuridao = requirements[i][3]
 		s.set_unit_stats(refs[i],aura)
 	get_node("Panel/PlayerStats").change_values(GameData.aura)
-func _process(delta):
-	if(Input.is_action_just_released("ui_cancel")):
-		visible = false
-		emit_signal("close")
+
+func _on_UnitUnlockScreen_visibility_changed():
+	refresh()

@@ -164,4 +164,5 @@ focus_mode = 0
 theme = ExtResource( 9 )
 enabled_focus_mode = 0
 text = "Unlock Units"
+[connection signal="visibility_changed" from="." to="." method="_on_UnitUnlockScreen_visibility_changed"]
 [connection signal="pressed" from="Panel/PlayerStats/Button" to="Panel/PlayerStats" method="_on_open_unlock_window_pressed"]

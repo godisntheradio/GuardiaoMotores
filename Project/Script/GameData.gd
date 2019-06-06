@@ -9,14 +9,23 @@ class Aura:
 		agua = 0
 		luz = 0
 		escuridao = 0
+	func add(a):
+		terra += a.terra
+		agua += a.agua
+		luz += a.luz
+		escuridao += a.escuridao
 var available_units = [] # indexes pro game_units
 var aura : Aura
 var world_map_camera_pos : Vector3
 var playtime
-var index_to_load = 0
+var state_progress : Dictionary
+var index_to_load = 50
 
 var game_units = [] # guarda unidade em UnitData de gamedataloader, usar funçao da mesma para transformar em stats
-var to_load : String
+var stage_to_load : String
+var stage_name_to_load : String
+signal changed_aura
+
 
 var GameDataLoader = preload("res://Script/GameDataLoader.gd")
 const FILE_PATH = "res://units.txt"
@@ -29,7 +38,9 @@ const LUZ_KEY = "luz"
 const CAMERA_POS_KEY = "c_pos"
 const DATE_KEY = "date"
 const PLAYTIME_KEY = "playtime"
+const STAGE_PROGRESS_KEY = "s_progress"
 const SAVE_NAME_TEMPLATE = "save_%03d.tres"
+const SAVE_BASE = 50
 func _ready():
 	aura = Aura.new()
 	var file : File = File.new()
@@ -49,7 +60,9 @@ func init_game():
 	aura.escuridao = saved.data[ESCURIDAO_KEY]
 	world_map_camera_pos = saved.data[CAMERA_POS_KEY]
 	playtime = saved.data[PLAYTIME_KEY]
+	state_progress = saved.data[STAGE_PROGRESS_KEY]
 	CameraManager.relocate(world_map_camera_pos)
+	emit_signal("changed_aura")
 func find_unit_index(to_find):
 	for i in available_units.size():
 		if(available_units[i].name == to_find.stats.name):
@@ -80,6 +93,7 @@ func save_game(id : int = 0):
 	saved.data[CAMERA_POS_KEY] = CameraManager.global_transform.origin
 	saved.data[DATE_KEY] = OS.get_date()
 	saved.data[PLAYTIME_KEY] = playtime
+	saved.data[STAGE_PROGRESS_KEY] = state_progress
 	var dir := Directory.new()
 	if !dir.dir_exists(SAVE_PATH):
 		dir.make_dir_recursive(SAVE_PATH)
@@ -87,7 +101,7 @@ func save_game(id : int = 0):
 	var error = ResourceSaver.save(save_path, saved)
 	if (error != OK):
 		print('error saving %s to %s' % [id,save_path])
-func load_game(id:int = 0):
+func load_game(id:int = 50):
 	var save_file_path = SAVE_PATH.plus_file(SAVE_NAME_TEMPLATE % id)
 	var file  = File.new()
 	if(!file.file_exists(save_file_path)):
@@ -95,3 +109,8 @@ func load_game(id:int = 0):
 		return
 	var saved = load(save_file_path)
 	return saved
+func add_aura(a):
+	aura.add(a)
+	emit_signal("changed_aura")
+func won_stage():
+	state_progress[stage_name_to_load] = Stage.FREE

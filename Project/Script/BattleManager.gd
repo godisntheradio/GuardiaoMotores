@@ -23,7 +23,7 @@ export var turn_window : NodePath
 func _ready():
 	has_started = false
 	loser = null
-	var level_resource = load(GameData.to_load)
+	var level_resource = load(GameData.stage_to_load)
 	var level = level_resource.instance()
 	add_child(level)
 	#init AI
@@ -43,6 +43,8 @@ func _ready():
 	ai.battle_manager = self
 	ai.camera_manager = CameraManager
 	ai.initialize_state_machine()
+	CameraManager.relocate(map.starting_camera_position)
+	
 func on_begin_battle(deployed_units):
 	prepare_player()
 	#init map
@@ -57,7 +59,6 @@ func on_begin_battle(deployed_units):
 		unit.connect("action_finished", human_player, "on_unit_finished_action")
 	
 	astarManager.update_connections()
-	
 	has_started = true
 	
 	player_list[turn_count % player_list.size()].begin_turn()
@@ -116,6 +117,7 @@ func check_game_over():
 		close_ui_windows()
 		if (loser != human_player):
 			get_node("../Control/Victory").visible = true
+			GameData.won_stage()
 		else:
 			get_node("../Control/GameOver").visible = true
 func close_ui_windows():

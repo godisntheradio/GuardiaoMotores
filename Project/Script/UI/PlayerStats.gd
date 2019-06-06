@@ -17,6 +17,7 @@ func _ready():
 	luz_value = get_node(luz_path)
 	escuro_value = get_node(escuro_path)
 	unlock = get_node(unlock_path)
+	GameData.connect("changed_aura",self,"refresh")
 func change_values(aura):
 	agua_value.text = str(aura.agua)
 	terra_value.text = str(aura.terra)
@@ -30,3 +31,5 @@ func _on_open_unlock_window_pressed():
 func on_close_unlock_window():
 	if(!visible):
 		visible = true
+func refresh():
+	change_values(GameData.aura)

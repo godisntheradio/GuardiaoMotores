@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Script/Overworld.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Stage.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Objects/UI/PlayerStats.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Objects/UI/OverworldMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objects/UI/UnitUnlockScreen.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Objects/UI/ReforestMenu.tscn" type="PackedScene" id=10]
 
 [node name="Overworld" type="Spatial"]
 script = ExtResource( 1 )
@@ -20,39 +21,33 @@ menu_path = NodePath("UI/OverworldMenu")
 
 [node name="Stage" parent="Stages" instance=ExtResource( 2 )]
 editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -73.172, 0.412269, 60.0545 )
-to_load = "res://Maps/Level1.tscn"
-stage_name = "Teste"
-difficulty = 2
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -73.172, 0.618376, 60.0545 )
+map_to_load = "res://Maps/Level1.tscn"
+stage_name = "Introdução"
+difficulty = 1
 description = "Descrição da fase \"Teste\""
+types_available = [ 2, 3 ]
 
 [node name="Stage2" parent="Stages" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -73.172, 0.412269, 67.9067 )
-to_load = "res://Maps/Level2.tscn"
-stage_name = "Testa"
-difficulty = 10
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -73.172, 0.659104, 67.9067 )
+map_to_load = "res://Maps/Level2.tscn"
+stage_name = "Um tempo atrás..."
+difficulty = 1
 description = "Muito fácil"
 
 [node name="Stage3" parent="Stages" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.0416, 0.412269, 74.2398 )
-to_load = "res://Maps/Level3.tscn"
-stage_name = "Teste de ordenação"
-difficulty = 4
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.0416, 0.717646, 74.2398 )
+map_to_load = "res://Maps/Level3.tscn"
+stage_name = "Teste de força"
+difficulty = 3
 description = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+unlock_requirements_paths = [ NodePath("../Stage2"), NodePath("../Stage") ]
 
 [node name="MapBounds" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1.048, 0, 0, 0, 4.836, 0, 0, 0, 1.175, -46.6251, -5.455, 43.9263 )
+transform = Transform( 1.388, 0, 0, 0, 5.416, 0, 0, 0, 1.045, -21.4657, -5.455, 43.9263 )
 
 [node name="OverworldMap" parent="." instance=ExtResource( 4 )]
 transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
-
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.870791, 0.491654, 0, -0.491654, 0.870791, 0, 0, 0 )
-light_energy = 1.91
-light_indirect_energy = 11.92
-light_specular = 0.8
-light_bake_mode = 2
-shadow_enabled = true
 
 [node name="DebugWindow" type="Control" parent="."]
 visible = false
@@ -106,6 +101,10 @@ visible = false
 visible = false
 margin_right = 990.0
 margin_bottom = 560.0
+unlockable_units = [ "Arapaso", "Kokama", "Unit", "Uni", "T", "unisinos", null, null, null, "", "", "", "", "", "", "", "", "", "", "" ]
+
+[node name="ReforestMenu" parent="UI" instance=ExtResource( 10 )]
+visible = false
 [connection signal="button_up" from="DebugWindow/Button" to="." method="_on_Button_button_up"]
 [connection signal="button_up" from="DebugWindow/Button2" to="." method="_on_Button2_button_up"]
 [connection signal="button_up" from="DebugWindow/Button3" to="." method="_on_Button3_button_up"]

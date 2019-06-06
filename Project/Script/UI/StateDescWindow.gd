@@ -32,7 +32,7 @@ func show_desc(stage):
 	set_desc_window(stage)
 	selected = stage
 func _on_Button_pressed():
-	get_parent().get_parent().load_stage(selected.to_load)
+	get_parent().get_parent().load_stage(selected)
 func _on_Close_pressed():
 	audio_player.play()
 	visible = false

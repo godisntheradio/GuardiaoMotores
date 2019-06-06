@@ -1,0 +1,16 @@
+[gd_resource type="SpatialMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://Textures/stage/stage_open.png" type="Texture" id=1]
+[ext_resource path="res://Textures/stage/Bitmap2Material_3_Metallic.tga" type="Texture" id=2]
+[ext_resource path="res://Textures/stage/Bitmap2Material_3_Normal.tga" type="Texture" id=3]
+[ext_resource path="res://Textures/stage/Bitmap2Material_3_Roughness.tga" type="Texture" id=4]
+
+[resource]
+albedo_texture = ExtResource( 1 )
+metallic_texture = ExtResource( 2 )
+metallic_texture_channel = 4
+roughness_texture = ExtResource( 4 )
+roughness_texture_channel = 4
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 3 )
