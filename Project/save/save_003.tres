@@ -7,25 +7,25 @@ script = ExtResource( 1 )
 game_version = "0.0.1"
 data = {
 "agua": 14,
-"c_pos": Vector3( -73.8289, 0, 72.5733 ),
+"c_pos": Vector3( -81.6608, 0.00124831, 79.1672 ),
 "date": {
-"day": 5,
+"day": 6,
 "dst": false,
 "month": 6,
-"weekday": 3,
+"weekday": 4,
 "year": 2019
 },
 "escuridao": 7,
 "luz": 26,
 "player_units": [ "Uni", "T", "unisinos", "Kokama", "Arapaso" ],
-"playtime": 2387.48,
+"playtime": 2404.61,
 "s_progress": {
 "Introdução": 3,
 "Introdução_type_used": 0,
-"Teste de força": 0,
+"Teste de força": 1,
 "Teste de força_type_used": -1,
-"Um tempo atrás...": 1,
+"Um tempo atrás...": 2,
 "Um tempo atrás..._type_used": -1
 },
-"terra": 1
+"terra": 0
 }

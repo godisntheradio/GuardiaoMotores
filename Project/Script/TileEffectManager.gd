@@ -6,6 +6,8 @@ var hover : bool
 var selected : bool
 var highlighted : bool
 
+
+
 func _ready():
 	hover = false
 	selected = false
