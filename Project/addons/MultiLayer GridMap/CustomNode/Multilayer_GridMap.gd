@@ -3,6 +3,8 @@ extends Spatial
 
 class_name MultiLayerGridMap
 
+var node_selector = null
+
 export(String, FILE, "*.mlgmc") var layer_config setget set_layer_config, get_layer_config
 
 func set_layer_config(val):
@@ -45,11 +47,12 @@ func get_cell_scale():
 func select_layer(layer_idx):
 	if (layer_idx < 0 || layer_idx >= gridmaps.size()):
 		return
-	var sel = EditorPlugin.new().get_editor_interface().get_selection()
-	sel.clear()
-	sel.add_node(gridmaps[layer_idx])
+	if(Engine.editor_hint):
+		node_selector.select_single(gridmaps[layer_idx])
 
 func _ready():
+	if(Engine.editor_hint):
+		node_selector = load("res://addons/MultiLayer GridMap/CustomNode/NodeSelector.gd")
 	var path = owner.filename.replace(".tscn", ".mglmap")
 	if !(load_from_file(path)):
 		print("Couldn't load file: " + path)
