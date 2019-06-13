@@ -9,9 +9,12 @@ var origin : Vector3
 var cursor : Vector3
 var allowed_to_cast : bool
 
+var fade_panel = null
+
 export var labelref :NodePath
 var label
 func _ready():
+	fade_panel = get_node("CanvasLayer/Panel")
 	camera  = get_node(camera_path)
 	label = get_node(labelref)
 	allowed_to_cast = true
@@ -59,3 +62,10 @@ func relocate(pos : Vector3):
 	global_translate(pos - global_transform.origin)
 func add_to_debug(s : String):
 	label.text = label.text + "\n "+str(s)
+	
+func fade_out():
+	fade_panel.fade_out()
+func fade_in():
+	fade_panel.fade_in()
+func is_fade_done() -> bool:
+	return fade_panel.fade_done

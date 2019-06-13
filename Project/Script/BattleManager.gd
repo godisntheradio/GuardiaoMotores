@@ -15,12 +15,12 @@ var GameDataLoader = preload("res://Script/GameDataLoader.gd")
 var human_player
 var astarManager
 
-
 var loser : Player
 
 export var command_window : NodePath
 export var turn_window : NodePath
 func _ready():
+	CameraManager.fade_in()
 	has_started = false
 	loser = null
 	var level_resource = load(GameData.stage_to_load)
