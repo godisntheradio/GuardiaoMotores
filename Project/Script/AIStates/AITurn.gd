@@ -1,7 +1,7 @@
 extends State
 class_name AITurn
 var sub_fsm : StateMachine
-var follow_speed = 10
+var follow_speed = 5
 func _init(fsm).(fsm):
 	self.fsm = fsm
 	sub_fsm = StateMachine.new(get_fsm_owner())

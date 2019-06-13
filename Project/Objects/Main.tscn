@@ -38,16 +38,6 @@ visible = false
 visible = false
 battle_manager_path = NodePath("../../BattleManager")
 
-[node name="Label2" type="Label" parent="Control"]
-margin_left = 730.0
-margin_top = 10.0
-margin_right = 1017.0
-margin_bottom = 37.0
-custom_colors/font_color = Color( 1, 1, 1, 0.270588 )
-text = "alpha 1.0 \"o guardião da floresta\""
-align = 2
-valign = 1
-
 [node name="GameOver" type="Label" parent="Control"]
 editor/display_folded = true
 visible = false

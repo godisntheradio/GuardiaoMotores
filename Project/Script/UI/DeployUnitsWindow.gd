@@ -21,6 +21,7 @@ var bm
 
 func _ready():
 	bm = get_node(battle_manager_path)
+	map = bm.map
 	item_list = get_node("Panel/ItemList")
 	item_list.connect("item_selected",self,"_on_selected_from_list")
 	connect("begin_battle",bm,"on_begin_battle")
@@ -32,6 +33,9 @@ func _ready():
 	item_list.clear()
 	for unit in GameData.available_units:
 		item_list.add_item(unit)
+	for t in map.mapTiles:
+		if(t.starting_position):
+			t.highlight_movable()
 	
 func _process(delta):
 	CameraManager.processCameraMovement(delta)
@@ -60,15 +64,17 @@ func _input(event):
 					instanced_units.remove(i)
 					positioned_count += -1
 					var a = tile.occupying_unit
+					tile.highlight_movable()
 					tile.remove_unit()
 					a.call_deferred("free")
 	
 func position_unit(new_unit : Unit, tile : Tile):
-	if(tile.is_tile_empty() && !tile.blocked):
+	if(tile.is_tile_empty() && !tile.blocked && tile.starting_position):
 		tile.occupying_unit = new_unit
 		positioned_count += 1
 		deployed_units.append(to_be_positioned_index)
 		instanced_units.append(to_be_positioned)
+		tile.stop_highlight()
 		deactivate()
 	pass
 func make_unit(unit_data):
@@ -103,6 +109,7 @@ func deselect():
 	
 	to_be_positioned_index = -1
 func select(index):
+	
 	to_be_positioned_index = index
 	var found_unit = GameData.find_unit(item_list.get_item_text(index))
 	if (found_unit != null):
@@ -121,6 +128,9 @@ func reactivate(index):
 
 func _on_Begin_button_up():
 	if (positioned_count > 0):
+		for t in map.mapTiles:
+			if(t.starting_position):
+				t.stop_highlight()
 		emit_signal("begin_battle",instanced_units)
 		call_deferred("free")
 	pass # Replace with function body.

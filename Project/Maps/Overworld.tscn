@@ -5,9 +5,9 @@
 [ext_resource path="res://Objects/MapBounds.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/OverworldMap.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Script/UI/OverworldDebugWindow.gd" type="Script" id=5]
-[ext_resource path="res://Objects/UI/OverworldMenu.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Objects/UI/StageDescWindow.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Objects/UI/UnitUnlockScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Objects/UI/UnitUnlockScreen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/UI/OverworldMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Objects/UI/StageDescWindow.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objects/UI/ReforestMenu.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Objects/UI/PlayerStats.tscn" type="PackedScene" id=10]
 
@@ -34,6 +34,7 @@ map_to_load = "res://Maps/Level2.tscn"
 stage_name = "Um tempo atrás..."
 difficulty = 1
 description = "Muito fácil"
+types_available = [ 3, 2 ]
 
 [node name="Stage3" parent="Stages" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -52.0101, 0.645927, 81.6242 )
@@ -86,17 +87,16 @@ text = "Clear"
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="OverworldMenu" parent="UI" instance=ExtResource( 6 )]
+[node name="UnitUnlockScreen" parent="UI" instance=ExtResource( 6 )]
+visible = false
+margin_right = 980.0
+margin_bottom = 569.0
+
+[node name="OverworldMenu" parent="UI" instance=ExtResource( 7 )]
 visible = false
 
-[node name="StageDescWindow" parent="UI" instance=ExtResource( 7 )]
+[node name="StageDescWindow" parent="UI" instance=ExtResource( 8 )]
 visible = false
-
-[node name="UnitUnlockScreen" parent="UI" instance=ExtResource( 8 )]
-visible = false
-margin_right = 990.0
-margin_bottom = 560.0
-unlockable_units = [ "Arapaso", "Kokama", "Unit", "Uni", "T", "unisinos", null, null, null, "", "", "", "", "", "", "", "", "", "", "" ]
 
 [node name="ReforestMenu" parent="UI" instance=ExtResource( 9 )]
 visible = false

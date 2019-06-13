@@ -7,9 +7,9 @@ script = ExtResource( 1 )
 game_version = "0.0.1"
 data = {
 "agua": 0,
-"c_pos": Vector3( -73.8289, 0, 72.5733 ),
+"c_pos": Vector3( -81.524, -0.00017449, 79.2558 ),
 "date": {
-"day": 6,
+"day": 13,
 "dst": false,
 "month": 6,
 "weekday": 4,
@@ -17,8 +17,8 @@ data = {
 },
 "escuridao": 0,
 "luz": 0,
-"player_units": [ "Unit", "Uni", "unisinos", "T" ],
-"playtime": 13.8163,
+"player_units": [  ],
+"playtime": 15.1316,
 "s_progress": {
 "Introdução": 1,
 "Introdução_type_used": -1,
