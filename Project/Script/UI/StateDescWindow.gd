@@ -10,6 +10,9 @@ var s_name : Label
 var s_desc : RichTextLabel
 var s_difficulty : BoxContainer
 var selected
+
+var fade_wait = false
+
 func _ready():
 	s_name = get_node(s_name_path)
 	s_desc = get_node(s_desc_path)
@@ -35,7 +38,14 @@ func hide_desc():
 	visible = false
 	selected = null
 func _on_Button_pressed():
-	get_parent().get_parent().load_stage(selected)
+	CameraManager.fade_out()
+	visible = false
+	fade_wait = true
 func _on_Close_pressed():
 	audio_player.play()
 	hide_desc()
+
+func _process(delta):
+	if (fade_wait):
+		if(CameraManager.is_fade_done()):
+			get_parent().get_parent().load_stage(selected)

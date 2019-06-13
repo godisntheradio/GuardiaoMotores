@@ -17,6 +17,8 @@ var astarManager
 
 var loser : Player
 
+var fade_wait = false
+
 export var command_window : NodePath
 export var turn_window : NodePath
 func _ready():
@@ -124,5 +126,10 @@ func close_ui_windows():
 	for c in get_parent().get_node("Control").get_children():
 		c.visible = false
 func _on_GameOverBack_pressed():
-	get_tree().change_scene("res://Maps/Overworld.tscn")
-	CameraManager.translation = GameData.world_map_camera_pos
+	CameraManager.fade_out()
+	fade_wait = true
+
+func _process(delta):
+	if(fade_wait && CameraManager.is_fade_done()):
+		get_tree().change_scene("res://Maps/Overworld.tscn")
+		CameraManager.translation = GameData.world_map_camera_pos
