@@ -62,7 +62,8 @@ func free_stage():
 	state = FREE
 	emit_signal("change_stage_state")
 func reforest(type):
-	get_node("Model/Stage").mesh = load("res://Models/cabin.obj")
+	get_node("Model/Stage").free()
+	get_node("Model").add_child(load("res://Models/Trees.tscn").instance())
 	state = REFORESTED
 	type_reforested = type
 	emit_signal("change_stage_state")

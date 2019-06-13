@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Bitmap2Material_3_Detail_Normal.png-17ba0d17638a9058d8bc99f3f475fde3.s3tc.stex"
-path.etc2="res://.import/Bitmap2Material_3_Detail_Normal.png-17ba0d17638a9058d8bc99f3f475fde3.etc2.stex"
+path.s3tc="res://.import/Bitmap2Material_3_Normal.png-313727a690d07b259d57ed7fe7c65049.s3tc.stex"
+path.etc2="res://.import/Bitmap2Material_3_Normal.png-313727a690d07b259d57ed7fe7c65049.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/grass/Bitmap2Material_3_Detail_Normal.png"
-dest_files=[ "res://.import/Bitmap2Material_3_Detail_Normal.png-17ba0d17638a9058d8bc99f3f475fde3.s3tc.stex", "res://.import/Bitmap2Material_3_Detail_Normal.png-17ba0d17638a9058d8bc99f3f475fde3.etc2.stex" ]
+source_file="res://Textures/Swamp/Bitmap2Material_3_Normal.png"
+dest_files=[ "res://.import/Bitmap2Material_3_Normal.png-313727a690d07b259d57ed7fe7c65049.s3tc.stex", "res://.import/Bitmap2Material_3_Normal.png-313727a690d07b259d57ed7fe7c65049.etc2.stex" ]
 
 [params]
 
