@@ -7,6 +7,7 @@ var stages : Array
 export var menu_path : NodePath
 var menu 
 func _ready():
+	CameraManager.fade_in()
 	stages = get_node(stages_path).get_children()
 	menu = get_node(menu_path)
 	refresh_stages()

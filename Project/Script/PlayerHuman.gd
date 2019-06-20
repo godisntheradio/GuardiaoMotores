@@ -156,6 +156,8 @@ func is_attack_valid(tile) -> bool:
 				return true
 			else:
 				return false
+	return false
+	
 func is_aoe_valid(tile)->bool:
 	match(selected_skill.type):
 		Skill.Attack:
@@ -172,6 +174,7 @@ func is_aoe_valid(tile)->bool:
 				return true
 			else:
 				return false
+	return false
 
 func is_move_valid(tile) -> bool:
 	if(!tile.is_tile_empty()):
