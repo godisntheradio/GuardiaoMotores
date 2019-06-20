@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Script/SavedGameData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+game_version = "0.0.1"
+data = {
+"agua": 2,
+"c_pos": Vector3( -82.041, 6.40339e-005, 77.2609 ),
+"date": {
+"day": 13,
+"dst": false,
+"month": 6,
+"weekday": 4,
+"year": 2019
+},
+"escuridao": 1,
+"luz": 0,
+"player_units": [ "Juma", "Baré", "Maraguá" ],
+"playtime": 126.238,
+"s_progress": {
+"Introdução": 2,
+"Introdução_type_used": -1,
+"Teste de força": 1,
+"Teste de força_type_used": -1,
+"Um tempo atrás...": 3,
+"Um tempo atrás..._type_used": 0
+},
+"terra": 0
+}

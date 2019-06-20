@@ -1,12 +1,11 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Textures/grass/Bitmap2Material_3_Base_Color.png" type="Texture" id=1]
 [ext_resource path="res://Textures/grass/Bitmap2Material_3_Detail_Normal.png" type="Texture" id=2]
-[ext_resource path="res://Models/cube.obj" type="ArrayMesh" id=3]
-[ext_resource path="res://Textures/forest_ground/Bitmap2Material_3_Base_Color.png" type="Texture" id=4]
-[ext_resource path="res://Textures/forest_ground/Bitmap2Material_3_Detail_Normal.png" type="Texture" id=5]
-[ext_resource path="res://Textures/Swamp/Bitmap2Material_3_Base_Color.png" type="Texture" id=6]
-[ext_resource path="res://Textures/Swamp/Bitmap2Material_3_Normal.png" type="Texture" id=7]
+[ext_resource path="res://Textures/forest_ground/Bitmap2Material_3_Base_Color.png" type="Texture" id=3]
+[ext_resource path="res://Textures/forest_ground/Bitmap2Material_3_Detail_Normal.png" type="Texture" id=4]
+[ext_resource path="res://Textures/Swamp/Bitmap2Material_3_Base_Color.png" type="Texture" id=5]
+[ext_resource path="res://Textures/Swamp/Bitmap2Material_3_Normal.png" type="Texture" id=6]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_texture = ExtResource( 1 )
@@ -14,64 +13,88 @@ normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 2 )
 
-[sub_resource type="StreamTexture" id=7]
-flags = 23
-load_path = "res://.import/Bitmap2Material_3_Base_Color.png-d86de3bed9551c80fc2488fc9eab79bb.s3tc.stex"
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0, 0, 0, 1 )
-albedo_texture = SubResource( 7 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 2 )
+[sub_resource type="ArrayMesh" id=2]
+surfaces/0 = {
+"aabb": AABB( -1, -1, -1, 2.00001, 2, 2.00001 ),
+"array_data": PoolByteArray( 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 0, 0, 127, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 0, 0, 127, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 0, 0, 127, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 0, 0, 127, 127, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 60, 0, 0, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 127, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 127, 0, 0, 0, 0, 126, 0, 127, 0, 0, 0, 60, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 127, 0, 0, 0, 0, 126, 0, 127, 0, 60, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 127, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 0, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 0, 0, 0 ),
+"array_index_data": PoolByteArray( 0, 0, 1, 0, 2, 0, 2, 0, 1, 0, 3, 0, 4, 0, 5, 0, 6, 0, 6, 0, 5, 0, 7, 0, 8, 0, 9, 0, 10, 0, 10, 0, 9, 0, 11, 0, 12, 0, 13, 0, 14, 0, 14, 0, 13, 0, 15, 0, 16, 0, 17, 0, 18, 0, 18, 0, 17, 0, 19, 0, 20, 0, 21, 0, 22, 0, 22, 0, 21, 0, 23, 0 ),
+"blend_shape_data": [  ],
+"format": 97559,
+"index_count": 36,
+"material": SubResource( 1 ),
+"name": "Material",
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 24
+}
 
 [sub_resource type="SpatialMaterial" id=3]
-albedo_texture = ExtResource( 4 )
+albedo_texture = ExtResource( 3 )
 normal_enabled = true
 normal_scale = 1.0
-normal_texture = ExtResource( 5 )
+normal_texture = ExtResource( 4 )
 
-[sub_resource type="StreamTexture" id=8]
+[sub_resource type="StreamTexture" id=4]
 flags = 23
 load_path = "res://.import/Bitmap2Material_3_Base_Color.png-68ed007454a5995d2c25335c0444559c.s3tc.stex"
 
-[sub_resource type="SpatialMaterial" id=4]
-albedo_texture = SubResource( 8 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 5 )
-
 [sub_resource type="SpatialMaterial" id=5]
-albedo_texture = ExtResource( 6 )
+albedo_texture = SubResource( 4 )
 normal_enabled = true
 normal_scale = 1.0
-normal_texture = ExtResource( 7 )
+normal_texture = ExtResource( 4 )
 
-[sub_resource type="StreamTexture" id=9]
-flags = 23
-load_path = "res://.import/Bitmap2Material_3_Base_Color.png-59407b985d4484f0f68e9c14e696433f.s3tc.stex"
+[sub_resource type="ArrayMesh" id=6]
+surfaces/0 = {
+"aabb": AABB( -1, -1, -1, 2.00001, 2, 2.00001 ),
+"array_data": PoolByteArray( 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 0, 0, 127, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 0, 0, 127, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 0, 0, 127, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 0, 0, 127, 127, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 60, 0, 0, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 127, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 127, 0, 0, 0, 0, 126, 0, 127, 0, 0, 0, 60, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 127, 0, 0, 0, 0, 126, 0, 127, 0, 60, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 127, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 0, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 0, 0, 0 ),
+"array_index_data": PoolByteArray( 0, 0, 1, 0, 2, 0, 2, 0, 1, 0, 3, 0, 4, 0, 5, 0, 6, 0, 6, 0, 5, 0, 7, 0, 8, 0, 9, 0, 10, 0, 10, 0, 9, 0, 11, 0, 12, 0, 13, 0, 14, 0, 14, 0, 13, 0, 15, 0, 16, 0, 17, 0, 18, 0, 18, 0, 17, 0, 19, 0, 20, 0, 21, 0, 22, 0, 22, 0, 21, 0, 23, 0 ),
+"blend_shape_data": [  ],
+"format": 97559,
+"index_count": 36,
+"material": SubResource( 5 ),
+"name": "Material",
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 24
+}
 
-[sub_resource type="SpatialMaterial" id=6]
-albedo_texture = SubResource( 9 )
+[sub_resource type="SpatialMaterial" id=7]
+albedo_texture = ExtResource( 5 )
 normal_enabled = true
 normal_scale = 1.0
-normal_texture = ExtResource( 7 )
+normal_texture = ExtResource( 6 )
+
+[sub_resource type="ArrayMesh" id=8]
+surfaces/0 = {
+"aabb": AABB( -1, -1, -1, 2.00001, 2, 2.00001 ),
+"array_data": PoolByteArray( 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 0, 0, 127, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 0, 0, 127, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 0, 0, 127, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 0, 0, 127, 127, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 60, 0, 0, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 127, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 127, 0, 0, 0, 0, 126, 0, 127, 0, 0, 0, 60, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 127, 0, 0, 0, 0, 126, 0, 127, 0, 60, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 127, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 0, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 0, 0, 0 ),
+"array_index_data": PoolByteArray( 0, 0, 1, 0, 2, 0, 2, 0, 1, 0, 3, 0, 4, 0, 5, 0, 6, 0, 6, 0, 5, 0, 7, 0, 8, 0, 9, 0, 10, 0, 10, 0, 9, 0, 11, 0, 12, 0, 13, 0, 14, 0, 14, 0, 13, 0, 15, 0, 16, 0, 17, 0, 18, 0, 18, 0, 17, 0, 19, 0, 20, 0, 21, 0, 22, 0, 22, 0, 21, 0, 23, 0 ),
+"blend_shape_data": [  ],
+"format": 97559,
+"index_count": 36,
+"material": SubResource( 7 ),
+"name": "Material",
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 24
+}
 
 [node name="meshlib" type="Spatial"]
 
 [node name="Grama" type="MeshInstance" parent="."]
 material_override = SubResource( 1 )
-mesh = ExtResource( 3 )
-material/0 = SubResource( 2 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 1 )
 
 [node name="Terra" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.16208 )
 material_override = SubResource( 3 )
-mesh = ExtResource( 3 )
-material/0 = SubResource( 4 )
+mesh = SubResource( 6 )
+material/0 = null
 
 [node name="Barro" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.63702 )
-material_override = SubResource( 5 )
-mesh = ExtResource( 3 )
-material/0 = SubResource( 6 )
+material_override = SubResource( 7 )
+mesh = SubResource( 8 )
+material/0 = null

@@ -1,7 +1,7 @@
 extends Control
 
 var item_list
-var UnitClass = preload("res://Objects/Unit.tscn")
+var UnitClass = preload("res://Objects/Units/Unit.tscn")
 var input
 var map
 
