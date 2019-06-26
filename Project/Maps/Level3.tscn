@@ -7,7 +7,6 @@
 [ext_resource path="res://Objects/MapBounds.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Objects/Units/Unit.tscn" type="PackedScene" id=6]
 
-
 [sub_resource type="SpatialMaterial" id=1]
 resource_local_to_scene = true
 albedo_color = Color( 1, 0.505882, 0.0235294, 1 )
@@ -28,10 +27,6 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 layer_config = "res://config2.mlgmc"
-Layers = [  ]
-Layer_Visibility = [  ]
-cell_size = Vector3( 2, 2, 2 )
-cell_scale = 1.0
 
 [node name="AIPlayer" parent="." instance=ExtResource( 4 )]
 

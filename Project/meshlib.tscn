@@ -1,19 +1,93 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Textures/grass/Bitmap2Material_3_Base_Color.png" type="Texture" id=1]
 [ext_resource path="res://Textures/grass/Bitmap2Material_3_Detail_Normal.png" type="Texture" id=2]
-[ext_resource path="res://Textures/forest_ground/Bitmap2Material_3_Base_Color.png" type="Texture" id=3]
-[ext_resource path="res://Textures/forest_ground/Bitmap2Material_3_Detail_Normal.png" type="Texture" id=4]
-[ext_resource path="res://Textures/Swamp/Bitmap2Material_3_Base_Color.png" type="Texture" id=5]
-[ext_resource path="res://Textures/Swamp/Bitmap2Material_3_Normal.png" type="Texture" id=6]
+[ext_resource path="res://Textures/grass/Bitmap2Material_3_Normal.png" type="Texture" id=3]
+[ext_resource path="res://Textures/Swamp/Bitmap2Material_3_Roughness.png" type="Texture" id=4]
+[ext_resource path="res://Textures/forest_ground/Bitmap2Material_3_Base_Color.png" type="Texture" id=5]
+[ext_resource path="res://Textures/forest_ground/Bitmap2Material_3_Detail_Normal.png" type="Texture" id=6]
+[ext_resource path="res://Textures/Swamp/Bitmap2Material_3_Base_Color.png" type="Texture" id=7]
+[ext_resource path="res://Textures/Swamp/Bitmap2Material_3_Normal.png" type="Texture" id=8]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="SpatialMaterial" id=26]
 albedo_texture = ExtResource( 1 )
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 2 )
 
-[sub_resource type="ArrayMesh" id=2]
+[sub_resource type="Shader" id=7]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : hint_color;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float specular;
+uniform float metallic;
+uniform float roughness : hint_range(0,1);
+uniform float point_size : hint_range(0,128);
+uniform sampler2D texture_metallic : hint_white;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_white;
+uniform vec4 roughness_texture_channel;
+uniform sampler2D texture_normal : hint_normal;
+uniform float normal_scale : hint_range(-16,16);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+uniform float should_blink;
+uniform vec4 blink_color : hint_color;
+uniform float blink_speed;
+
+uniform vec4 tint_color : hint_color;
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	// blinking code --	
+	float clamped_time = (sin ( TIME * blink_speed ) + 1.0) / 2.0;
+	vec4 blinking = blink_color * clamped_time * should_blink;
+	ALBEDO = albedo.rgb * albedo_tex.rgb + blinking.rgb + tint_color.rgb;
+	// --- modificação
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMALMAP = texture(texture_normal,base_uv).rgb;
+	NORMALMAP_DEPTH = normal_scale;
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id=17]
+resource_local_to_scene = true
+shader = SubResource( 7 )
+shader_param/albedo = Color( 1, 1, 1, 1 )
+shader_param/specular = 0.47
+shader_param/metallic = 0.04
+shader_param/roughness = 0.699
+shader_param/point_size = 128.0
+shader_param/metallic_texture_channel = Plane( 0, 0, 0, 1 )
+shader_param/roughness_texture_channel = Plane( 0, 0, 0, 1 )
+shader_param/normal_scale = 1.759
+shader_param/uv1_scale = Vector3( 2, 2, 2 )
+shader_param/uv1_offset = null
+shader_param/uv2_scale = null
+shader_param/uv2_offset = null
+shader_param/should_blink = 0.0
+shader_param/blink_color = Color( 1, 1, 1, 1 )
+shader_param/blink_speed = 10.0
+shader_param/tint_color = Color( 0, 0, 0, 1 )
+shader_param/texture_albedo = ExtResource( 1 )
+shader_param/texture_roughness = ExtResource( 4 )
+shader_param/texture_normal = ExtResource( 3 )
+
+[sub_resource type="ArrayMesh" id=18]
 surfaces/0 = {
 "aabb": AABB( -1, -1, -1, 2.00001, 2, 2.00001 ),
 "array_data": PoolByteArray( 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 0, 0, 127, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 0, 0, 127, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 0, 0, 127, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 0, 0, 127, 127, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 60, 0, 0, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 127, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 127, 0, 0, 0, 0, 126, 0, 127, 0, 0, 0, 60, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 127, 0, 0, 0, 0, 126, 0, 127, 0, 60, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 127, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 0, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 0, 0, 0 ),
@@ -21,51 +95,109 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": SubResource( 1 ),
+"material": SubResource( 17 ),
 "name": "Material",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 24
 }
 
-[sub_resource type="SpatialMaterial" id=3]
-albedo_texture = ExtResource( 3 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 4 )
-
-[sub_resource type="StreamTexture" id=4]
-flags = 23
-load_path = "res://.import/Bitmap2Material_3_Base_Color.png-68ed007454a5995d2c25335c0444559c.s3tc.stex"
-
-[sub_resource type="SpatialMaterial" id=5]
-albedo_texture = SubResource( 4 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 4 )
-
-[sub_resource type="ArrayMesh" id=6]
-surfaces/0 = {
-"aabb": AABB( -1, -1, -1, 2.00001, 2, 2.00001 ),
-"array_data": PoolByteArray( 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 0, 0, 127, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 0, 0, 127, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 0, 0, 127, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 0, 0, 127, 127, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 60, 0, 0, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 127, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 127, 0, 0, 0, 0, 126, 0, 127, 0, 0, 0, 60, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 127, 0, 0, 0, 0, 126, 0, 127, 0, 60, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 127, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 0, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 0, 0, 0 ),
-"array_index_data": PoolByteArray( 0, 0, 1, 0, 2, 0, 2, 0, 1, 0, 3, 0, 4, 0, 5, 0, 6, 0, 6, 0, 5, 0, 7, 0, 8, 0, 9, 0, 10, 0, 10, 0, 9, 0, 11, 0, 12, 0, 13, 0, 14, 0, 14, 0, 13, 0, 15, 0, 16, 0, 17, 0, 18, 0, 18, 0, 17, 0, 19, 0, 20, 0, 21, 0, 22, 0, 22, 0, 21, 0, 23, 0 ),
-"blend_shape_data": [  ],
-"format": 97559,
-"index_count": 36,
-"material": SubResource( 5 ),
-"name": "Material",
-"primitive": 4,
-"skeleton_aabb": [  ],
-"vertex_count": 24
-}
-
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="SpatialMaterial" id=27]
 albedo_texture = ExtResource( 5 )
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 6 )
 
-[sub_resource type="ArrayMesh" id=8]
+[sub_resource type="Shader" id=9]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : hint_color;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float specular;
+uniform float metallic;
+uniform float roughness : hint_range(0,1);
+uniform float point_size : hint_range(0,128);
+uniform sampler2D texture_metallic : hint_white;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_white;
+uniform vec4 roughness_texture_channel;
+uniform sampler2D texture_normal : hint_normal;
+uniform float normal_scale : hint_range(-16,16);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+uniform float should_blink;
+uniform vec4 blink_color : hint_color;
+uniform float blink_speed;
+
+uniform vec4 tint_color : hint_color;
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	// blinking code --	
+	float clamped_time = (sin ( TIME * blink_speed ) + 1.0) / 2.0;
+	vec4 blinking = blink_color * clamped_time * should_blink;
+	ALBEDO = albedo.rgb * albedo_tex.rgb + blinking.rgb + tint_color.rgb;
+	// --- modificação
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMALMAP = texture(texture_normal,base_uv).rgb;
+	NORMALMAP_DEPTH = normal_scale;
+}
+
+"
+
+[sub_resource type="StreamTexture" id=10]
+flags = 23
+load_path = "res://.import/Bitmap2Material_3_Base_Color.png-68ed007454a5995d2c25335c0444559c.s3tc.stex"
+
+[sub_resource type="StreamTexture" id=11]
+flags = 7
+load_path = "res://.import/Bitmap2Material_3_Metallic.png-acefa8f1f788509dac11f45b5d839cbe.s3tc.stex"
+
+[sub_resource type="StreamTexture" id=4]
+flags = 7
+load_path = "res://.import/Bitmap2Material_3_Normal.png-ba53ad44b91ab2749e2ce72531d8661d.s3tc.stex"
+
+[sub_resource type="StreamTexture" id=5]
+flags = 7
+load_path = "res://.import/Bitmap2Material_3_Roughness.png-b3ca3338e0ef1c8f704e705cc677ba20.s3tc.stex"
+
+[sub_resource type="ShaderMaterial" id=21]
+resource_local_to_scene = true
+shader = SubResource( 9 )
+shader_param/albedo = Color( 1, 1, 1, 1 )
+shader_param/specular = 0.47
+shader_param/metallic = 0.04
+shader_param/roughness = 0.699
+shader_param/point_size = 128.0
+shader_param/metallic_texture_channel = Plane( 0, 0, 0, 1 )
+shader_param/roughness_texture_channel = Plane( 0, 0, 0, 1 )
+shader_param/normal_scale = 0.479
+shader_param/uv1_scale = Vector3( 2, 2, 2 )
+shader_param/uv1_offset = null
+shader_param/uv2_scale = null
+shader_param/uv2_offset = null
+shader_param/should_blink = 0.0
+shader_param/blink_color = Color( 1, 1, 1, 1 )
+shader_param/blink_speed = 10.0
+shader_param/tint_color = Color( 0, 0, 0, 1 )
+shader_param/texture_albedo = SubResource( 10 )
+shader_param/texture_metallic = SubResource( 11 )
+shader_param/texture_roughness = SubResource( 5 )
+shader_param/texture_normal = SubResource( 4 )
+
+[sub_resource type="ArrayMesh" id=22]
 surfaces/0 = {
 "aabb": AABB( -1, -1, -1, 2.00001, 2, 2.00001 ),
 "array_data": PoolByteArray( 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 0, 0, 127, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 0, 0, 127, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 0, 0, 127, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 0, 0, 127, 127, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 60, 0, 0, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 127, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 127, 0, 0, 0, 0, 126, 0, 127, 0, 0, 0, 60, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 127, 0, 0, 0, 0, 126, 0, 127, 0, 60, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 127, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 0, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 0, 0, 0 ),
@@ -73,7 +205,100 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": SubResource( 7 ),
+"material": SubResource( 21 ),
+"name": "Material",
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 24
+}
+
+[sub_resource type="SpatialMaterial" id=28]
+albedo_texture = ExtResource( 7 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 8 )
+
+[sub_resource type="Shader" id=15]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : hint_color;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float specular;
+uniform float metallic;
+uniform float roughness : hint_range(0,1);
+uniform float point_size : hint_range(0,128);
+uniform sampler2D texture_metallic : hint_white;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_white;
+uniform vec4 roughness_texture_channel;
+uniform sampler2D texture_normal : hint_normal;
+uniform float normal_scale : hint_range(-16,16);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+uniform float should_blink;
+uniform vec4 blink_color : hint_color;
+uniform float blink_speed;
+
+uniform vec4 tint_color : hint_color;
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	// blinking code --	
+	float clamped_time = (sin ( TIME * blink_speed ) + 1.0) / 2.0;
+	vec4 blinking = blink_color * clamped_time * should_blink;
+	ALBEDO = albedo.rgb * albedo_tex.rgb + blinking.rgb + tint_color.rgb;
+	// --- modificação
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMALMAP = texture(texture_normal,base_uv).rgb;
+	NORMALMAP_DEPTH = normal_scale;
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id=16]
+resource_local_to_scene = true
+shader = SubResource( 15 )
+shader_param/albedo = Color( 1, 1, 1, 1 )
+shader_param/specular = 0.47
+shader_param/metallic = 0.04
+shader_param/roughness = 0.699
+shader_param/point_size = 128.0
+shader_param/metallic_texture_channel = Plane( 0, 0, 0, 1 )
+shader_param/roughness_texture_channel = Plane( 0, 0, 0, 1 )
+shader_param/normal_scale = 1.759
+shader_param/uv1_scale = Vector3( 2, 2, 2 )
+shader_param/uv1_offset = null
+shader_param/uv2_scale = null
+shader_param/uv2_offset = null
+shader_param/should_blink = 0.0
+shader_param/blink_color = Color( 1, 1, 1, 1 )
+shader_param/blink_speed = 10.0
+shader_param/tint_color = Color( 0, 0, 0, 1 )
+shader_param/texture_albedo = ExtResource( 7 )
+shader_param/texture_roughness = ExtResource( 4 )
+shader_param/texture_normal = ExtResource( 8 )
+
+[sub_resource type="ArrayMesh" id=25]
+surfaces/0 = {
+"aabb": AABB( -1, -1, -1, 2.00001, 2, 2.00001 ),
+"array_data": PoolByteArray( 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 0, 0, 127, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 0, 0, 127, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 0, 0, 127, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 0, 0, 127, 127, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 60, 0, 0, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 127, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 127, 0, 0, 0, 0, 126, 0, 127, 0, 0, 0, 60, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 127, 0, 0, 0, 0, 126, 0, 127, 0, 60, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 127, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 0, 239, 255, 127, 63, 0, 0, 128, 63, 8, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 60, 0, 60, 0, 0, 128, 63, 0, 0, 128, 63, 239, 255, 127, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 0, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 60, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 129, 0, 0, 129, 0, 127, 0, 0, 0, 0 ),
+"array_index_data": PoolByteArray( 0, 0, 1, 0, 2, 0, 2, 0, 1, 0, 3, 0, 4, 0, 5, 0, 6, 0, 6, 0, 5, 0, 7, 0, 8, 0, 9, 0, 10, 0, 10, 0, 9, 0, 11, 0, 12, 0, 13, 0, 14, 0, 14, 0, 13, 0, 15, 0, 16, 0, 17, 0, 18, 0, 18, 0, 17, 0, 19, 0, 20, 0, 21, 0, 22, 0, 22, 0, 21, 0, 23, 0 ),
+"blend_shape_data": [  ],
+"format": 97559,
+"index_count": 36,
+"material": SubResource( 16 ),
 "name": "Material",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -83,18 +308,18 @@ surfaces/0 = {
 [node name="meshlib" type="Spatial"]
 
 [node name="Grama" type="MeshInstance" parent="."]
-material_override = SubResource( 1 )
-mesh = SubResource( 2 )
-material/0 = SubResource( 1 )
+material_override = SubResource( 26 )
+mesh = SubResource( 18 )
+material/0 = null
 
 [node name="Terra" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.16208 )
-material_override = SubResource( 3 )
-mesh = SubResource( 6 )
+material_override = SubResource( 27 )
+mesh = SubResource( 22 )
 material/0 = null
 
 [node name="Barro" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.63702 )
-material_override = SubResource( 7 )
-mesh = SubResource( 8 )
+material_override = SubResource( 28 )
+mesh = SubResource( 25 )
 material/0 = null

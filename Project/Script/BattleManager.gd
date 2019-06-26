@@ -37,6 +37,7 @@ func _ready():
 		unit.connect("action_finished", ai, "on_unit_finished_action")
 		if(unit.to_search != ""):
 			unit.stats = GameDataLoader.create_unit(GameData.find_unit(unit.to_search))
+			unit.add_skill_anims()
 		else:
 			print("couldn't create '"+ unit.to_search +"' unit. name not has not been set properly")
 		unit.hp = unit.stats.hit_points
@@ -45,6 +46,8 @@ func _ready():
 	ai.battle_manager = self
 	ai.camera_manager = CameraManager
 	ai.initialize_state_machine()
+	
+	
 	CameraManager.relocate(map.starting_camera_position)
 	
 func on_begin_battle(deployed_units):

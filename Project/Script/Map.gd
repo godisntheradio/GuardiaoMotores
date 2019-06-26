@@ -34,7 +34,11 @@ func _ready():
 		
 		for c in cells:
 			var tileProps = mlgm.get_tile(c)
+			var idx = mlgm.gridmaps[0].get_cell_item(c.x,c.y,c.z)
+			var mesh =  mlgm.gridmaps[0].mesh_library.get_item_mesh(idx)
+			var mat = mesh.surface_get_material(0).duplicate()
 			var tileInst = TileClass.instance()
+			tileInst.get_node("MeshInstance").set_surface_material(0,mat)
 			mapTiles.append(tileInst)
 			add_child(tileInst)
 			tileInst.translation = mlgm.cell_size / 2 + mlgm.cell_size * (c - Vector3(minPos.x, 0, minPos.y))
