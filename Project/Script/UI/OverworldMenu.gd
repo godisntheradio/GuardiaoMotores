@@ -33,7 +33,7 @@ func _on_LoadConfirmation_confirmed():
 	GameData.index_to_load = selected_index
 	get_tree().reload_current_scene()
 	GameData.init_game()
-	
+	CameraManager.fade_in_from_black()
 func add_saves_to_list(list : ItemList):
 	list.clear()
 	for i in range(5):

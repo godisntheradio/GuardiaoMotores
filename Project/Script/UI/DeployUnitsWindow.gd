@@ -78,15 +78,20 @@ func position_unit(new_unit : Unit, tile : Tile):
 		deactivate()
 	pass
 func make_unit(unit_data):
+	var instance
 	var stats = GameDataLoader.create_unit(unit_data)
-	var instance = UnitClass.instance()
-	bm.get_child(0).add_child(instance)
-	instance.stats = stats
-	instance.hp = stats.hit_points
 	var model = load(unit_data.model)
 	if(model):
-		instance.get_node("MeshInstance").mesh = model
+		instance = model.instance()
+		bm.get_child(0).add_child(instance)
+		instance.stats = stats
+		instance.hp = stats.hit_points
+		instance.add_skill_anims()
 	else:
+		instance = UnitClass.instance()
+		bm.get_child(0).add_child(instance)
+		instance.stats = stats
+		instance.hp = stats.hit_points
 		instance.get_node("MeshInstance").mesh = CapsuleMesh.new()
 	return instance
 func _on_selected_from_list(index):

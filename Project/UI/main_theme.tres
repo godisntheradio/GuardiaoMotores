@@ -1,13 +1,15 @@
-[gd_resource type="Theme" load_steps=4 format=2]
+[gd_resource type="Theme" load_steps=6 format=2]
 
-[ext_resource path="res://UI/panel.tres" type="StyleBox" id=1]
-[ext_resource path="res://UI/Main_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UI/button_hover.tres" type="StyleBox" id=1]
+[ext_resource path="res://UI/Button_main.tres" type="StyleBox" id=2]
+[ext_resource path="res://UI/panel.tres" type="StyleBox" id=3]
+[ext_resource path="res://UI/Main_font.tres" type="DynamicFont" id=4]
 
 [sub_resource type="StyleBoxLine" id=1]
 color = Color( 0.870588, 1, 0.843137, 1 )
 
 [resource]
-default_font = ExtResource( 2 )
+default_font = ExtResource( 4 )
 Button/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )
@@ -16,8 +18,8 @@ Button/constants/hseparation = 2
 Button/fonts/font = null
 Button/styles/disabled = null
 Button/styles/focus = null
-Button/styles/hover = null
-Button/styles/normal = null
+Button/styles/hover = ExtResource( 1 )
+Button/styles/normal = ExtResource( 2 )
 Button/styles/pressed = null
 GridContainer/constants/hseparation = 220
 GridContainer/constants/vseparation = 160
@@ -44,7 +46,7 @@ Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
 Label/fonts/font = null
 Label/styles/normal = null
-Panel/styles/panel = ExtResource( 1 )
+Panel/styles/panel = ExtResource( 3 )
 Panel/styles/panelf = null
 Panel/styles/panelnc = null
 PanelContainer/styles/panel = null

@@ -79,8 +79,6 @@ func create_move_task(target_task) -> Task:
 			if (t == n):
 				intersection.append(t)
 		var current = get_fsm_owner().battle_manager.get_distance_from_to(t,target_task.target)
-		print("distance from " + target_task.agent.stats.name + " to " + target_task.target.occupying_unit.stats.name)
-		print(current)
 		if( current < dist):
 			closest = t
 			dist = current

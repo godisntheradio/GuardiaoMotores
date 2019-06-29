@@ -119,5 +119,5 @@ margin_bottom = 40.0
 focus_mode = 0
 theme = ExtResource( 7 )
 enabled_focus_mode = 0
-text = "Unlock Units"
+text = "Desbloquear Unidades"
 [connection signal="pressed" from="Button" to="." method="_on_open_unlock_window_pressed"]

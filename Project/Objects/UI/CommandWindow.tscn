@@ -44,48 +44,50 @@ confirm = ExtResource( 3 )
 [node name="Panel" type="Panel" parent="."]
 margin_left = 790.0
 margin_top = 290.0
-margin_right = 990.0
-margin_bottom = 395.0
+margin_right = 994.0
+margin_bottom = 399.0
 
 [node name="Skill" type="Control" parent="Panel"]
-margin_left = 7.62939e-006
-margin_top = 0.777778
-margin_right = 200.0
-margin_bottom = 35.7778
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 202.0
+margin_bottom = 37.0
 
 [node name="SkillButton" type="Button" parent="Panel/Skill"]
 margin_right = 200.0
 margin_bottom = 35.0
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
-text = "Skills"
+text = "Usar Habilidades"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/Skill"]
 root_node = NodePath("../SkillButton")
 anims/move_out = SubResource( 1 )
 
 [node name="Move" type="Control" parent="Panel"]
-margin_top = 35.0
-margin_right = 200.0
-margin_bottom = 70.0001
+margin_left = 2.0
+margin_top = 37.0
+margin_right = 202.0
+margin_bottom = 72.0001
 
 [node name="MoveButton" type="Button" parent="Panel/Move"]
 margin_left = 7.62939e-006
-margin_top = 0.777778
+margin_top = 0.250739
 margin_right = 200.0
-margin_bottom = 35.7778
+margin_bottom = 35.2508
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
-text = "Move"
+text = "Mover"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/Move"]
 root_node = NodePath("../MoveButton")
 anims/move_out = SubResource( 2 )
 
 [node name="ReturnButton" type="Button" parent="Panel"]
-margin_top = 70.0
-margin_right = 200.0
-margin_bottom = 105.0
+margin_left = 2.0
+margin_top = 72.0
+margin_right = 202.0
+margin_bottom = 107.0
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
-text = "Return"
+text = "Retornar"
 
 [node name="SkillList" type="ItemList" parent="Panel"]
 visible = false

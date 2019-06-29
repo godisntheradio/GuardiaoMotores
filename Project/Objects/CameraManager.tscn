@@ -38,12 +38,13 @@ margin_top = 5.0
 margin_right = 1011.0
 margin_bottom = 20.0
 custom_colors/font_color = Color( 1, 1, 1, 0.262745 )
-text = "versão beta 1.0 \"o guardião da floresta\""
+text = "versão demo \"o guardião da floresta\""
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 5
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1.0
@@ -51,4 +52,3 @@ margin_right = -1.0
 mouse_filter = 2
 custom_styles/panel = SubResource( 2 )
 script = ExtResource( 3 )
-

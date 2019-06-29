@@ -1,0 +1,96 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Script/UI/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://UI/main_theme.tres" type="Theme" id=2]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.15125
+margin_top = 1.2605
+margin_right = 3.15125
+margin_bottom = 1.2605
+script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 410.0
+margin_top = 350.0
+margin_right = 614.0
+margin_bottom = 514.0
+theme = ExtResource( 2 )
+
+[node name="NewGame" type="Button" parent="Panel"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 202.0
+margin_bottom = 42.0
+theme = ExtResource( 2 )
+text = "Novo Jogo"
+
+[node name="Continue" type="Button" parent="Panel"]
+margin_left = 2.0
+margin_top = 42.0
+margin_right = 202.0
+margin_bottom = 82.0
+theme = ExtResource( 2 )
+text = "Continuar"
+
+[node name="Credits" type="Button" parent="Panel"]
+margin_left = 2.0
+margin_top = 82.0
+margin_right = 202.0
+margin_bottom = 122.0
+theme = ExtResource( 2 )
+text = "Créditos"
+
+[node name="Exit" type="Button" parent="Panel"]
+margin_left = 2.0
+margin_top = 122.0
+margin_right = 202.0
+margin_bottom = 162.0
+theme = ExtResource( 2 )
+text = "Sair do Jogo"
+
+[node name="Load" type="Panel" parent="."]
+visible = false
+margin_left = 342.281
+margin_top = 281.331
+margin_right = 692.281
+margin_bottom = 301.331
+theme = ExtResource( 2 )
+
+[node name="Title" type="Label" parent="Load"]
+margin_left = 0.735107
+margin_right = 350.735
+margin_bottom = 20.0
+text = "Selecione um jogo salvo para carregar:"
+align = 1
+valign = 1
+
+[node name="LoadList" type="ItemList" parent="Load"]
+margin_top = 22.0
+margin_right = 350.0
+margin_bottom = 262.0
+theme = ExtResource( 2 )
+
+[node name="LoadConfirmation" type="ConfirmationDialog" parent="Load/LoadList"]
+margin_left = 64.1702
+margin_top = 81.8337
+margin_right = 312.17
+margin_bottom = 151.834
+theme = ExtResource( 2 )
+window_title = "Confirmação"
+dialog_text = "Deseja carregar este jogo salvo?"
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+margin_left = -2.0
+margin_top = -2.0
+margin_right = 1021.0
+margin_bottom = 598.0
+[connection signal="pressed" from="Panel/NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="pressed" from="Panel/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="Panel/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="Panel/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="item_selected" from="Load/LoadList" to="." method="_on_LoadList_item_selected"]
+[connection signal="confirmed" from="Load/LoadList/LoadConfirmation" to="." method="_on_LoadConfirmation_confirmed"]

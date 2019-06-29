@@ -66,7 +66,7 @@ margin_left = 8.79019
 margin_top = 73.0566
 margin_right = 86.7902
 margin_bottom = 89.0566
-text = "Attack:"
+text = "Ataque:"
 align = 2
 valign = 1
 
@@ -85,7 +85,7 @@ margin_left = 8.79019
 margin_top = 94.2619
 margin_right = 86.7902
 margin_bottom = 110.262
-text = "Defense:"
+text = "Defesa:"
 align = 2
 valign = 1
 
@@ -144,7 +144,7 @@ margin_left = 8.79019
 margin_top = 115.262
 margin_right = 87.7902
 margin_bottom = 131.262
-text = "Movement:"
+text = "Movimento:"
 align = 2
 valign = 1
 

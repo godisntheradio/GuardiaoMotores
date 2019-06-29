@@ -1,12 +1,13 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Script/Unit.gd" type="Script" id=1]
-[ext_resource path="res://Objects/Units/UnitAnimation.gd" type="Script" id=2]
+[ext_resource path="res://Script/UnitAnimation.gd" type="Script" id=2]
 [ext_resource path="res://Animation/guarda_run_axe.tres" type="Animation" id=3]
 [ext_resource path="res://Animation/guarda_idle_axe.tres" type="Animation" id=4]
 [ext_resource path="res://Models/AxeMat.material" type="Material" id=5]
 [ext_resource path="res://Models/Boneco.material" type="Material" id=6]
 [ext_resource path="res://Animation/guarda_attack_axe.tres" type="Animation" id=7]
+
 
 [sub_resource type="CapsuleShape" id=1]
 
