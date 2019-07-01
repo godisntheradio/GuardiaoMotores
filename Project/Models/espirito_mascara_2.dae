@@ -5,8 +5,8 @@
 		<author>Anonymous</author>
 		<authoring_tool>Collada Exporter for Blender 2.6+, by Juan Linietsky (juan@codenix.com)</authoring_tool>
 	</contributor>
-	<created>2019-06-27T00:41:34Z</created>
-	<modified>2019-06-27T00:41:34Z</modified>
+	<created>2019-07-01T01:42:15Z</created>
+	<modified>2019-07-01T01:42:15Z</modified>
 	<unit meter="1.0" name="meter"/>
 	<up_axis>Z_UP</up_axis>
 </asset>
@@ -374,7 +374,7 @@
 <library_controllers>
 	<controller id="id-controller-11">
 		<skin source="#id-mesh-8">
-			<bind_shape_matrix> -3.059797037963108e-08 0.699999988079071 0.0 0.0 -0.699999988079071 -3.059797037963108e-08 0.0 0.0 0.0 0.0 0.699999988079071 2.0 0.0 0.0 0.0 1.0  </bind_shape_matrix>
+			<bind_shape_matrix> -1.1404447519680616e-07 0.699999988079071 0.0 0.0 -0.699999988079071 -1.1404447519680616e-07 0.0 0.0 0.0 0.0 0.699999988079071 2.0 0.0 0.0 0.0 1.0  </bind_shape_matrix>
 			<source id="id-controller-11-joints">
 				<Name_array id="id-controller-11-joints-array" count="1"> id-skelbones-2-0</Name_array>
 				<technique_common>
@@ -384,7 +384,7 @@
 				</technique_common>
 			</source>
 			<source id="id-controller-11-bind_poses">
-				<float_array id="id-controller-11-bind_poses-array" count="16">  -6.244484040962561e-08 -1.428571343421936 0.0 -0.0 -0.0 0.0 1.428571343421936 -2.857142686843872 -1.428571343421936 6.244484040962561e-08 0.0 -0.0 0.0 0.0 -0.0 1.0  </float_array>
+				<float_array id="id-controller-11-bind_poses-array" count="16">  -2.3274382954241446e-07 -1.428571343421936 0.0 -0.0 -0.0 0.0 1.428571343421936 -2.857142686843872 -1.428571343421936 2.3274382954241446e-07 0.0 -0.0 0.0 0.0 -0.0 1.0  </float_array>
 				<technique_common>
 				<accessor source="#id-controller-11-bind_poses-array" count="1" stride="16">
 					<param name="TRANSFORM" type="float4x4"/>
@@ -429,7 +429,7 @@
 <library_visual_scenes>
 	<visual_scene id="id-scene-1" name="scene">
 		<node id="Armature" name="Armature" type="NODE">
-			<matrix sid="transform"> -3.059797037963108e-08 0.699999988079071 0.0 0.0 -0.699999988079071 -3.059797037963108e-08 0.0 0.0 0.0 0.0 0.699999988079071 2.0 0.0 0.0 0.0 1.0  </matrix>
+			<matrix sid="transform"> -1.1404447519680616e-07 0.699999988079071 0.0 0.0 -0.699999988079071 -1.1404447519680616e-07 0.0 0.0 0.0 0.0 0.699999988079071 2.0 0.0 0.0 0.0 1.0  </matrix>
 			<node id="id-bone-3" sid="id-skelbones-2-0" name="Bone" type="JOINT">
 				<matrix sid="transform"> 1.0 0.0 0.0 0.0 0.0 0.0 -1.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0 1.0  </matrix>
 			</node>

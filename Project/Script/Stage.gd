@@ -67,3 +67,11 @@ func reforest(type):
 	state = REFORESTED
 	type_reforested = type
 	emit_signal("change_stage_state")
+func _process(delta):
+	if(state == OPEN || state == FREE):
+		rotate_y(2 * delta)
+	
+	
+	
+	
+	

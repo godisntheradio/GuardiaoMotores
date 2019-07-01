@@ -1,20 +1,20 @@
 [gd_scene load_steps=8 format=2]
 
-[sub_resource type="Gradient" id=10]
+[sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.0546875, 1, 0, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=11]
-gradient = SubResource( 10 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="Curve" id=1]
+[sub_resource type="Curve" id=3]
 _data = [ Vector2( 0.0118343, 0.9851 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.2459 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=2]
-curve = SubResource( 1 )
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=7]
-emission_shape = 1
-emission_sphere_radius = 0.1
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 2
+emission_box_extents = Vector3( 2, 2, 2 )
 spread = 3.15
 flatness = 1.0
 gravity = Vector3( 0, 0, 0 )
@@ -23,11 +23,11 @@ initial_velocity_random = 0.12
 angular_velocity = -230.0
 angular_velocity_random = 0.9
 linear_accel = -3.0
-scale = 0.1
-scale_curve = SubResource( 2 )
-color_ramp = SubResource( 11 )
+scale = 0.5
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="SpatialMaterial" id=6]
 flags_unshaded = true
 vertex_color_use_as_albedo = true
 params_blend_mode = 1
@@ -36,20 +36,20 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="QuadMesh" id=9]
-material = SubResource( 8 )
+[sub_resource type="QuadMesh" id=7]
+material = SubResource( 6 )
 size = Vector2( 0.1, 0.1 )
 
 [node name="Rastro" type="Spatial"]
 
 [node name="Particles" type="Particles" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, -0.0975337, 0.126792, 0 )
-amount = 40
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0.0994873, 0 )
+amount = 100
 lifetime = 0.33
 speed_scale = 0.1
 randomness = 0.23
-visibility_aabb = AABB( -0.57284, -0.284782, -0.438585, 1.12029, 0.653549, 0.872287 )
+visibility_aabb = AABB( -0.99701, -0.993454, -1.3474, 1.99011, 1.98984, 1.51804 )
 local_coords = false
 draw_order = 1
-process_material = SubResource( 7 )
-draw_pass_1 = SubResource( 9 )
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 7 )
