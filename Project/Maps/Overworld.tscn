@@ -22,7 +22,7 @@ menu_path = NodePath("UI/OverworldMenu")
 [node name="Stage" parent="Stages" instance=ExtResource( 2 )]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -82.4873, 0.860064, 75.5931 )
-map_to_load = "res://Maps/Level1.tscn"
+map_to_load = "res://Maps/Level1_true.tscn"
 stage_name = "Introdução"
 difficulty = 1
 description = "Descrição da fase \"Teste\""

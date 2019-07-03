@@ -1,6 +1,7 @@
 extends State
 class_name AssigningTasks
 var tasks
+var nothing
 func _init(fsm).(fsm):
 	pass
 func action(delta):
@@ -45,7 +46,9 @@ func create_tasks():
 							var t = TaskAttack.new(get_fsm_owner().choosen_agent, l, get_fsm_owner().battle_manager,skill)
 							t.calculate_score()
 							tasks.append(t)
-		
+		nothing = TaskNothing.new(get_fsm_owner().choosen_agent, null, get_fsm_owner().battle_manager)
+		nothing.calculate_score()
+		tasks.append(nothing)
 	else:
 		get_fsm_owner().choosen_agent.has_moved = true
 func choose_task():
@@ -54,17 +57,22 @@ func choose_task():
 		for t in tasks:
 			if(t.score > best.score):
 				best = t
-		if(best.in_reach):
-			get_fsm_owner().task_list.push_back(best)
-		elif(!best.in_reach && best.in_range && !get_fsm_owner().choosen_agent.has_moved):
-			var move_task = create_move_task(best)
-			get_fsm_owner().task_list.push_front(move_task)
-			get_fsm_owner().task_list.push_back(best)
-		elif(!get_fsm_owner().choosen_agent.has_moved):
-			var move_task = create_move_task(best)
-			get_fsm_owner().task_list.push_front(move_task)
+		if(best != nothing):
+			if(best.in_reach):
+				get_fsm_owner().task_list.push_back(best)
+			elif(!best.in_reach && best.in_range && !get_fsm_owner().choosen_agent.has_moved):
+				var move_task = create_move_task(best)
+				get_fsm_owner().task_list.push_front(move_task)
+				get_fsm_owner().task_list.push_back(best)
+			elif(!get_fsm_owner().choosen_agent.has_moved):
+				var move_task = create_move_task(best)
+				get_fsm_owner().task_list.push_front(move_task)
+			else:
+				get_fsm_owner().choosen_agent.has_attacked = true
 		else:
 			get_fsm_owner().choosen_agent.has_attacked = true
+			get_fsm_owner().choosen_agent.has_moved = true
+			get_fsm_owner().task_list.push_back(best)
 func create_move_task(target_task) -> Task:
 	var available_neighbors = target_task.agent_skill.get_available_targets(get_fsm_owner().battle_manager,target_task.target)
 	var available_movement = get_fsm_owner().battle_manager.get_available_movement(target_task.agent)

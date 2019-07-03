@@ -4,7 +4,6 @@ export var Idle : Animation
 var Attack : Animation
 var animator : AnimationPlayer
 
-
 func _ready():
 	animator = get_node("AnimationPlayer")
 	animator.add_animation("run", Run)

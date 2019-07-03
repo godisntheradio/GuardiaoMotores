@@ -25,7 +25,7 @@ func _init(fsm).(fsm):
 	
 func action(delta):
 	if (get_fsm_owner().choosen_agent != null):
-		CameraManager.relocate(lerp(CameraManager.global_transform.origin, get_fsm_owner().choosen_agent.global_transform.origin, delta * follow_speed))
+		CameraManager.relocate(lerp(CameraManager.global_transform.origin, get_fsm_owner().choosen_agent.global_transform.origin - Vector3(0,2,0), delta * follow_speed))
 #	CameraManager.processCameraMovement(delta)
 	sub_fsm.update_input(fsm.input_event)
 	sub_fsm.update(delta)

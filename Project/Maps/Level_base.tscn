@@ -1,20 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Script/Map.gd" type="Script" id=1]
-[ext_resource path="res://addons/MultiLayer GridMap/CustomNode/Multilayer_GridMap.gd" type="Script" id=2]
-[ext_resource path="res://addons/MultiLayer GridMap/CustomNode/icon.png" type="Texture" id=3]
-[ext_resource path="res://Objects/PlayerAI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Objects/Units/Espirito_mascara_1.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Objects/MapBounds.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Props/Tree2.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Props/Tree1.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Props/Stump.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Objects/PlayerAI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/MapBounds.tscn" type="PackedScene" id=3]
 
 [node name="LevelBase" type="Node"]
 
-[node name="Level1" type="Spatial" parent="."]
+[node name="Level" type="Spatial" parent="."]
 
-[node name="Map" type="Spatial" parent="Level1"]
+[node name="Map" type="Spatial" parent="Level"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
@@ -22,84 +16,15 @@ __meta__ = {
 width = 18
 height = 18
 
-[node name="MultiLayer GridMap" type="Spatial" parent="Level1/Map"]
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_icon": ExtResource( 3 )
-}
-layer_config = "res://config2.mlgmc"
-Layers = [  ]
-Layer_Visibility = [  ]
-cell_size = Vector3( 2, 2, 2 )
-cell_scale = 1.0
+[node name="AIPlayer" parent="Level" instance=ExtResource( 2 )]
 
-[node name="AIPlayer" parent="Level1" instance=ExtResource( 4 )]
+[node name="Details" type="Spatial" parent="Level"]
 
-[node name="Unit" parent="Level1" instance=ExtResource( 5 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.98486, 2.60242, 11.8809 )
-
-[node name="Details" type="Spatial" parent="Level1"]
-editor/display_folded = true
-
-[node name="DirectionalLight" type="DirectionalLight" parent="Level1/Details"]
+[node name="DirectionalLight" type="DirectionalLight" parent="Level/Details"]
 transform = Transform( 1, 0, 0, 0, -0.789111, 0.61425, 0, -0.61425, -0.789111, 11.5453, 8.4656, 0 )
 light_indirect_energy = 1.94
 shadow_enabled = true
 shadow_color = Color( 0, 0.254902, 0.0431373, 1 )
 
-[node name="MapBounds" parent="Level1/Details" instance=ExtResource( 6 )]
+[node name="MapBounds" parent="Level/Details" instance=ExtResource( 3 )]
 transform = Transform( 0.373886, 0, 0.463225, 0, 1, 0, -0.373886, 0, 0.463225, 11.7887, 6.16211, 22.6736 )
-
-[node name="Tree1" parent="Level1/Details" instance=ExtResource( 7 )]
-transform = Transform( 0.421603, 0, 0, 0, 0.421603, 0, 0, 0, 0.421603, 3.75576, 1.59044, 12.3453 )
-
-[node name="Tree4" parent="Level1/Details" instance=ExtResource( 7 )]
-transform = Transform( 0.421603, 0, 0, 0, 0.421603, 0, 0, 0, 0.421603, 23.8555, 1.59044, 12.3453 )
-
-[node name="Tree2" parent="Level1/Details" instance=ExtResource( 7 )]
-transform = Transform( -0.0196062, 0, -0.421147, 0, 0.421603, 0, 0.421147, 0, -0.0196062, 0.945853, 1.59044, 19.5589 )
-
-[node name="Tree3" parent="Level1/Details" instance=ExtResource( 7 )]
-transform = Transform( -0.0196062, 0, -0.421147, 0, 0.421603, 0, 0.421147, 0, -0.0196062, 21.0456, 1.59044, 19.5589 )
-
-[node name="Tree5" parent="Level1/Details" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85877, 0 )
-
-[node name="Tree6" parent="Level1/Details" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07412, 1.85877, 2.32552 )
-
-[node name="Tree7" parent="Level1/Details" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8905, 1.85877, -0.241727 )
-
-[node name="Tree8" parent="Level1/Details" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07874, 1.85877, -0.241727 )
-
-[node name="Stump" parent="Level1/Details" instance=ExtResource( 9 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 12.1292, 2.20193, -0.0767248 )
-
-[node name="Stump9" parent="Level1/Details" instance=ExtResource( 9 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 9.79696, 2.20193, -0.793241 )
-
-[node name="Stump10" parent="Level1/Details" instance=ExtResource( 9 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 7.22405, 2.20193, 2.11327 )
-
-[node name="Stump6" parent="Level1/Details" instance=ExtResource( 9 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 18.8047, 2.23677, -0.809284 )
-
-[node name="Stump2" parent="Level1/Details" instance=ExtResource( 9 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 15.4669, 2.20193, -0.793241 )
-
-[node name="Stump7" parent="Level1/Details" instance=ExtResource( 9 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 20.6612, 2.23677, 0.300138 )
-
-[node name="Stump3" parent="Level1/Details" instance=ExtResource( 9 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 14.6589, 2.20193, 2.64972 )
-
-[node name="Stump5" parent="Level1/Details" instance=ExtResource( 9 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 20.6612, 2.23677, 2.63367 )
-
-[node name="Stump4" parent="Level1/Details" instance=ExtResource( 9 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 11.9898, 2.20193, 2.25681 )
-
-[node name="Stump8" parent="Level1/Details" instance=ExtResource( 9 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 17.992, 2.23677, 2.24077 )

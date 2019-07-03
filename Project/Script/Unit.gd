@@ -61,6 +61,8 @@ func move(pos : Tile, points : PoolVector3Array):
 	pos.occupying_unit = self
 	if($Model):
 		$Model.play_run()
+func do_nothing():
+	emit_signal("action_finished")
 func undo_move(world_pos : Vector3):
 	if has_moved:
 		has_moved = false
