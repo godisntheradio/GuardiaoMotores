@@ -15,23 +15,16 @@ func _process(delta):
 	if (control_camera):
 		CameraManager.processCameraMovement(delta)
 	if (Input.is_action_just_released("open_overworld_menu")):
+		get_node("UI/StageDescWindow").hide_desc()
+		get_node("UI/ReforestMenu").close_window()
+		get_node("UI/UnitUnlockScreen").close_window()
 		menu.visible = true
 func load_stage(stage):
 	GameData.stage_to_load = stage.map_to_load
 	GameData.stage_name_to_load = stage.stage_name
 	GameData.world_map_camera_pos = CameraManager.translation
 	get_tree().change_scene(battle_path)
-func _on_Button_button_up():
-	GameData.save_game()
 
-
-func _on_Button2_button_up():
-	if(get_node("DebugWindow/Button2/TextEdit").text != ''):
-		GameData.available_units.append(get_node("DebugWindow/Button2/TextEdit").text)
-
-
-func _on_Button3_button_up():
-	GameData.available_units.clear()
 func get_stage_by_name(name):
 	for s in stages:
 		if(s.stage_name == name):

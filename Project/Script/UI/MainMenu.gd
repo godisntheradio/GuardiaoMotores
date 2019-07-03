@@ -30,6 +30,7 @@ func _process(delta):
 	if (fade_wait):
 		if(CameraManager.is_fade_done()):
 			to_execute.call_func()
+	
 func start_new_game():
 	GameData.index_to_load = GameData.SAVE_BASE
 	get_tree().change_scene(overworld_path)
@@ -50,9 +51,11 @@ func add_saves_to_list(list : ItemList):
 		else:
 			list.add_item("Empty Slot")
 func _on_LoadList_item_selected(index):
-	selected_index = index
-	get_node("Load/LoadList/LoadConfirmation").show()
-	get_node("Load/LoadList/LoadConfirmation").rect_position = Vector2(400,215)
+	if(valid_indexes.find(index) != -1):
+		selected_index = index
+		load_list.unselect(index)
+		get_node("Load/LoadList/LoadConfirmation").show()
+		get_node("Load/LoadList/LoadConfirmation").rect_position = Vector2(400,215)
 func _on_LoadConfirmation_confirmed():
 	close_menu()
 	to_execute.set_function("continue_game")

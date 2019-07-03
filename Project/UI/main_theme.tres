@@ -1,11 +1,22 @@
-[gd_resource type="Theme" load_steps=6 format=2]
+[gd_resource type="Theme" load_steps=7 format=2]
 
 [ext_resource path="res://UI/button_hover.tres" type="StyleBox" id=1]
 [ext_resource path="res://UI/Button_main.tres" type="StyleBox" id=2]
 [ext_resource path="res://UI/panel.tres" type="StyleBox" id=3]
 [ext_resource path="res://UI/Main_font.tres" type="DynamicFont" id=4]
 
-[sub_resource type="StyleBoxLine" id=1]
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_top = 10.0
+bg_color = Color( 0.207843, 0.211765, 0.207843, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="StyleBoxLine" id=2]
 color = Color( 0.870588, 1, 0.843137, 1 )
 
 [resource]
@@ -21,6 +32,8 @@ Button/styles/focus = null
 Button/styles/hover = ExtResource( 1 )
 Button/styles/normal = ExtResource( 2 )
 Button/styles/pressed = null
+Dialogs/constants/button_margin = 60
+Dialogs/constants/margin = 10
 GridContainer/constants/hseparation = 220
 GridContainer/constants/vseparation = 160
 ItemList/colors/font_color = Color( 1, 1, 1, 1 )
@@ -31,11 +44,11 @@ ItemList/constants/icon_margin = 4
 ItemList/constants/line_separation = 15
 ItemList/constants/vseparation = 15
 ItemList/fonts/font = null
-ItemList/styles/bg = null
+ItemList/styles/bg = SubResource( 1 )
 ItemList/styles/bg_focus = null
 ItemList/styles/cursor = null
 ItemList/styles/cursor_unfocused = null
-ItemList/styles/selected = SubResource( 1 )
+ItemList/styles/selected = SubResource( 2 )
 ItemList/styles/selected_focus = null
 Label/colors/font_color = Color( 1, 1, 1, 1 )
 Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
@@ -50,11 +63,29 @@ Panel/styles/panel = ExtResource( 3 )
 Panel/styles/panelf = null
 Panel/styles/panelnc = null
 PanelContainer/styles/panel = null
-RichTextLabel/colors/default_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+PopupMenu/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+PopupMenu/colors/font_color_accel = Color( 0.7, 0.7, 0.7, 0.8 )
+PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
+PopupMenu/colors/font_color_hover = Color( 0.878431, 0.878431, 0.878431, 1 )
+PopupMenu/constants/hseparation = 4
+PopupMenu/constants/vseparation = 4
+PopupMenu/fonts/font = null
+PopupMenu/icons/checked = null
+PopupMenu/icons/radio_checked = null
+PopupMenu/icons/radio_unchecked = null
+PopupMenu/icons/submenu = null
+PopupMenu/icons/unchecked = null
+PopupMenu/styles/hover = null
+PopupMenu/styles/labeled_separator_left = null
+PopupMenu/styles/labeled_separator_right = null
+PopupMenu/styles/panel = ExtResource( 3 )
+PopupMenu/styles/panel_disabled = null
+PopupMenu/styles/separator = null
+RichTextLabel/colors/default_color = Color( 1, 1, 1, 1 )
 RichTextLabel/colors/font_color_selected = Color( 0.490196, 0.490196, 0.490196, 1 )
 RichTextLabel/colors/font_color_shadow = Color( 0, 0, 0, 0 )
 RichTextLabel/colors/selection_color = Color( 0.1, 0.1, 1, 0.8 )
-RichTextLabel/constants/line_separation = 1
+RichTextLabel/constants/line_separation = 20
 RichTextLabel/constants/shadow_as_outline = 0
 RichTextLabel/constants/shadow_offset_x = 1
 RichTextLabel/constants/shadow_offset_y = 1

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 0, 0, 0.286275 )
+
+[node name="Close" type="Button"]
+margin_left = 950.0
+margin_top = 100.0
+margin_right = 980.0
+margin_bottom = 130.0
+custom_styles/hover = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "X"

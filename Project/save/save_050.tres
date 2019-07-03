@@ -17,7 +17,7 @@ data = {
 },
 "escuridao": 0,
 "luz": 0,
-"player_units": [  ],
+"player_units": [ "Kokama" ],
 "playtime": 0,
 "s_progress": {
 "Introdução": 0,

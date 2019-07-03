@@ -21,9 +21,11 @@ func _on_SaveList_item_selected(index):
 	else:
 		_on_SaveConfirmation_confirmed()
 func _on_LoadList_item_selected(index):
-	selected_index = index
-	get_node("Load/LoadList/LoadConfirmation").show()
-	get_node("Load/LoadList/LoadConfirmation").rect_position = Vector2(400,215)
+	if(valid_indexes.find(index) != -1):
+		selected_index = index
+		load_list.unselect(index)
+		get_node("Load/LoadList/LoadConfirmation").show()
+		get_node("Load/LoadList/LoadConfirmation").rect_position = Vector2(400,215)
 func _on_SaveConfirmation_confirmed():
 	get_parent().get_parent().refresh_stages()
 	GameData.save_game(selected_index)

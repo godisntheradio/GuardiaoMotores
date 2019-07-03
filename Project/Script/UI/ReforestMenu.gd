@@ -72,3 +72,6 @@ func _on_type_selected(index):
 	get_node("Panel/Vegetation").popup()
 	get_node("Panel/Vegetation").rect_position = Vector2(200,210)
 	selected_index = index
+
+func _on_Close_pressed():
+	close_window()

@@ -1,20 +1,23 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Textures/flare.png" type="Texture" id=1]
 
 [sub_resource type="Gradient" id=1]
-colors = PoolColorArray( 0.0546875, 1, 0, 1, 1, 1, 1, 1 )
+offsets = PoolRealArray( 0, 0.449799, 0.763052, 1 )
+colors = PoolColorArray( 0.0439453, 0.0341606, 0.0341606, 0.266667, 0.590977, 0.68457, 0.634026, 0.617135, 0.0078125, 1, 0.110519, 0.813742, 0.103714, 0.948242, 0.497937, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 
 [sub_resource type="Curve" id=3]
-_data = [ Vector2( 0.0118343, 0.9851 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.2459 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0.0118343, 0.8872 ), 0.0, -0.231342, 0, 0, Vector2( 0.984467, 0.0776 ), 0.0347376, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=4]
 curve = SubResource( 3 )
 
 [sub_resource type="ParticlesMaterial" id=5]
 emission_shape = 2
-emission_box_extents = Vector3( 2, 2, 2 )
+emission_box_extents = Vector3( 1.5, 2, 1.5 )
 spread = 3.15
 flatness = 1.0
 gravity = Vector3( 0, 0, 0 )
@@ -28,6 +31,7 @@ scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
 
 [sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
 params_blend_mode = 1
@@ -38,6 +42,34 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id=7]
 material = SubResource( 6 )
+size = Vector2( 0.1, 0.1 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+spread = 3.15
+flatness = 1.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 6.94
+initial_velocity_random = 0.12
+angular_velocity = -230.0
+angular_velocity_random = 0.9
+linear_accel = -3.0
+scale = 20.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=9]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=10]
+material = SubResource( 9 )
 size = Vector2( 0.1, 0.1 )
 
 [node name="Rastro" type="Spatial"]
@@ -53,3 +85,15 @@ local_coords = false
 draw_order = 1
 process_material = SubResource( 5 )
 draw_pass_1 = SubResource( 7 )
+
+[node name="Particles2" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, -0.361762, 0 )
+amount = 20
+lifetime = 0.58
+speed_scale = 0.1
+randomness = 0.74
+visibility_aabb = AABB( -0.99701, -0.993454, -1.3474, 1.99011, 1.98984, 1.51804 )
+local_coords = false
+draw_order = 1
+process_material = SubResource( 8 )
+draw_pass_1 = SubResource( 10 )

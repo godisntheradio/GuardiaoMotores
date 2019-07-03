@@ -13,8 +13,10 @@ func _ready():
 	refresh()
 func _process(delta):
 	if(Input.is_action_just_released("ui_cancel")):
-		visible = false
-		emit_signal("close")
+		close_window()
+func close_window():
+	visible = false
+	emit_signal("close")
 func refresh():
 	var container = get_node("Panel/ScrollContainer/GridContainer")
 	refs.clear()
