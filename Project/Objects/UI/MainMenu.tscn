@@ -87,6 +87,7 @@ theme = ExtResource( 3 )
 text = "Sair do Jogo"
 
 [node name="Load" type="Panel" parent="."]
+visible = false
 margin_left = 342.281
 margin_top = 281.331
 margin_right = 692.281
@@ -109,7 +110,6 @@ theme = ExtResource( 3 )
 items = [ "Item 0", null, false, "Item 1", null, false ]
 
 [node name="LoadConfirmation" type="ConfirmationDialog" parent="Load/LoadList"]
-visible = true
 margin_left = 64.1702
 margin_top = 81.8337
 margin_right = 312.17
