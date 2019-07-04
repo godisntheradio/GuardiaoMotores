@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Script/Stage.gd" type="Script" id=1]
 [ext_resource path="res://Materials/mat_stage_locked.tres" type="Material" id=2]
 [ext_resource path="res://Materials/mat_stage_free.tres" type="Material" id=3]
 [ext_resource path="res://Materials/mat_stage_open.tres" type="Material" id=4]
+[ext_resource path="res://Audio/Click.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -42,4 +43,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.721744, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0599813, 0 )
 mesh = SubResource( 2 )
 material/0 = ExtResource( 2 )
+
+[node name="Click" parent="." instance=ExtResource( 5 )]
 [connection signal="input_event" from="RigidBody" to="." method="_on_RigidBody_input_event"]

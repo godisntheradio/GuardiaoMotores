@@ -37,6 +37,7 @@ func _ready():
 			var idx = mlgm.gridmaps[0].get_cell_item(c.x,c.y,c.z)
 			var mesh =  mlgm.gridmaps[0].mesh_library.get_item_mesh(idx)
 			var mat = mesh.surface_get_material(0).duplicate()
+			mat.set_shader_param("uv1_scale", Vector3(1,1,0))
 			var tileInst = TileClass.instance()
 			tileInst.get_node("MeshInstance").set_surface_material(0,mat)
 			mapTiles.append(tileInst)
@@ -62,7 +63,7 @@ func _ready():
 
 func world_to_map(p : Vector3):
 	p -= translation
-	var tSize = mapTiles[0].get_node("MeshInstance").mesh.size.x
+	var tSize = 2#mapTiles[0].get_node("MeshInstance").mesh.size.x
 	return Vector2(floor(p.x / tSize), floor(p.z / tSize))
 
 func get_tile(pos : Vector2):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Script/Map.gd" type="Script" id=1]
 [ext_resource path="res://addons/MultiLayer GridMap/CustomNode/Multilayer_GridMap.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Props/Tree2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Props/Tree1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Props/Stump.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Objects/Units/Guarda_axe2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Objects/Units/Guarda_axe.tscn" type="PackedScene" id=10]
 
 [node name="Level1" type="Spatial"]
 
@@ -35,15 +37,18 @@ cell_scale = 1.0
 [node name="Details" type="Spatial" parent="."]
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Details"]
-transform = Transform( 1, 0, 0, 0, -0.789111, 0.61425, 0, -0.61425, -0.789111, 11.5453, 8.4656, 0 )
+transform = Transform( -0.111956, -0.529142, 0.841115, 0, 0.846437, 0.53249, -0.993713, 0.0596154, -0.0947637, 11.5453, 8.4656, 0 )
 light_indirect_energy = 1.94
 shadow_enabled = true
 shadow_color = Color( 0, 0.254902, 0.0431373, 1 )
+directional_shadow_mode = 0
+directional_shadow_normal_bias = 0.7
 
 [node name="MapBounds" parent="Details" instance=ExtResource( 5 )]
 transform = Transform( 0.373886, 0, 0.463225, 0, 1, 0, -0.373886, 0, 0.463225, 11.7887, 6.16211, 22.6736 )
 
 [node name="Tree1" parent="Details" instance=ExtResource( 6 )]
+editor/display_folded = true
 transform = Transform( 0.421603, 0, 0, 0, 0.421603, 0, 0, 0, 0.421603, 3.75576, 1.59044, 12.3453 )
 
 [node name="Tree4" parent="Details" instance=ExtResource( 6 )]
@@ -53,46 +58,60 @@ transform = Transform( 0.421603, 0, 0, 0, 0.421603, 0, 0, 0, 0.421603, 23.8555, 
 transform = Transform( -0.0196062, 0, -0.421147, 0, 0.421603, 0, 0.421147, 0, -0.0196062, 0.945853, 1.59044, 19.5589 )
 
 [node name="Tree3" parent="Details" instance=ExtResource( 6 )]
-transform = Transform( -0.0196062, 0, -0.421147, 0, 0.421603, 0, 0.421147, 0, -0.0196062, 21.0456, 1.59044, 19.5589 )
+transform = Transform( -0.0196062, 0, -0.421147, 0, 0.421603, 0, 0.421147, 0, -0.0196062, 21.0456, 1.83137, 19.5589 )
 
 [node name="Tree5" parent="Details" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85877, 0 )
+transform = Transform( -0.0666351, 0, 0.997777, 0, 1, 0, -0.997777, 0, -0.0666351, 0, 1.85877, 0 )
 
 [node name="Tree6" parent="Details" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07412, 1.85877, 2.32552 )
+transform = Transform( 1.09426, 0, -0.87714, 0, 1.40242, 0, 0.87714, 0, 1.09426, 4.07412, 1.84116, 2.32552 )
 
 [node name="Tree7" parent="Details" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8905, 1.85877, -0.241727 )
+transform = Transform( -0.252608, 0, -1.22009, 0, 1.24596, 0, 1.22009, 0, -0.252608, 6.8905, 1.85877, -0.241727 )
 
 [node name="Tree8" parent="Details" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07874, 1.85877, -0.241727 )
+transform = Transform( 0.937211, 0, 0, 0, 0.9861, 0, 0, 0, 0.937211, 4.07874, 1.99673, -0.241727 )
 
 [node name="Stump" parent="Details" instance=ExtResource( 8 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 12.1292, 2.20193, -0.0767248 )
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 12.1292, 2.09376, -0.0767248 )
 
 [node name="Stump9" parent="Details" instance=ExtResource( 8 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 9.79696, 2.20193, -0.793241 )
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 9.79696, 2.09376, -0.793241 )
 
 [node name="Stump10" parent="Details" instance=ExtResource( 8 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 7.22405, 2.20193, 2.11327 )
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 7.22405, 2.09376, 2.11327 )
 
 [node name="Stump6" parent="Details" instance=ExtResource( 8 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 18.8047, 2.23677, -0.809284 )
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 18.8047, 2.1286, -0.809284 )
 
 [node name="Stump2" parent="Details" instance=ExtResource( 8 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 15.4669, 2.20193, -0.793241 )
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 15.4669, 2.09376, -0.793241 )
 
 [node name="Stump7" parent="Details" instance=ExtResource( 8 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 20.6612, 2.23677, 0.300138 )
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 20.6612, 2.1286, 0.300138 )
 
 [node name="Stump3" parent="Details" instance=ExtResource( 8 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 14.6589, 2.20193, 2.64972 )
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 14.6589, 2.09376, 2.64972 )
 
 [node name="Stump5" parent="Details" instance=ExtResource( 8 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 20.6612, 2.23677, 2.63367 )
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 20.6612, 2.1286, 2.63367 )
 
 [node name="Stump4" parent="Details" instance=ExtResource( 8 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 11.9898, 2.20193, 2.25681 )
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 11.9898, 2.09376, 2.25681 )
 
 [node name="Stump8" parent="Details" instance=ExtResource( 8 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 17.992, 2.23677, 2.24077 )
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 17.992, 2.1286, 2.24077 )
+
+[node name="Unit" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0632, 1.99065, 6.771 )
+editor_created = true
+ai_path = NodePath("../AIPlayer")
+to_search = "Lenhador 1"
+
+[node name="Unit2" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.72917, 1.98711, 7.12216 )
+editor_created = true
+ai_path = NodePath("../AIPlayer")
+to_search = "Lenhador 2"
+
+[editable path="Details/Tree1"]

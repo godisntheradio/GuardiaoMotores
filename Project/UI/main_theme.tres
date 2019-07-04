@@ -1,9 +1,10 @@
-[gd_resource type="Theme" load_steps=7 format=2]
+[gd_resource type="Theme" load_steps=10 format=2]
 
 [ext_resource path="res://UI/button_hover.tres" type="StyleBox" id=1]
 [ext_resource path="res://UI/Button_main.tres" type="StyleBox" id=2]
 [ext_resource path="res://UI/panel.tres" type="StyleBox" id=3]
-[ext_resource path="res://UI/Main_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://UI/JosefinSans-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://UI/Main_font.tres" type="DynamicFont" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 20.0
@@ -19,8 +20,25 @@ shadow_size = 3
 [sub_resource type="StyleBoxLine" id=2]
 color = Color( 0.870588, 1, 0.843137, 1 )
 
+[sub_resource type="DynamicFont" id=3]
+size = 12
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+bg_color = Color( 0.0352941, 0.0352941, 0.0352941, 0.4 )
+border_color = Color( 0.0196078, 0.0117647, 0.0117647, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color( 0.133333, 0.121569, 0.121569, 0.6 )
+shadow_size = 2
+
 [resource]
-default_font = ExtResource( 4 )
+default_font = ExtResource( 5 )
 Button/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )
@@ -82,10 +100,10 @@ PopupMenu/styles/panel = ExtResource( 3 )
 PopupMenu/styles/panel_disabled = null
 PopupMenu/styles/separator = null
 RichTextLabel/colors/default_color = Color( 1, 1, 1, 1 )
-RichTextLabel/colors/font_color_selected = Color( 0.490196, 0.490196, 0.490196, 1 )
+RichTextLabel/colors/font_color_selected = Color( 0, 0, 0, 1 )
 RichTextLabel/colors/font_color_shadow = Color( 0, 0, 0, 0 )
 RichTextLabel/colors/selection_color = Color( 0.1, 0.1, 1, 0.8 )
-RichTextLabel/constants/line_separation = 20
+RichTextLabel/constants/line_separation = 10
 RichTextLabel/constants/shadow_as_outline = 0
 RichTextLabel/constants/shadow_offset_x = 1
 RichTextLabel/constants/shadow_offset_y = 1
@@ -95,6 +113,6 @@ RichTextLabel/fonts/bold_font = null
 RichTextLabel/fonts/bold_italics_font = null
 RichTextLabel/fonts/italics_font = null
 RichTextLabel/fonts/mono_font = null
-RichTextLabel/fonts/normal_font = null
+RichTextLabel/fonts/normal_font = SubResource( 3 )
 RichTextLabel/styles/focus = null
-RichTextLabel/styles/normal = null
+RichTextLabel/styles/normal = SubResource( 4 )

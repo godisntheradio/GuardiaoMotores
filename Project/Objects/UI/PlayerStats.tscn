@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UI/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Script/UI/PlayerStats.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Textures/sun-shining.png" type="Texture" id=5]
 [ext_resource path="res://Textures/cloudy.png" type="Texture" id=6]
 [ext_resource path="res://UI/sub_theme.tres" type="Theme" id=7]
+[ext_resource path="res://Audio/Click.tscn" type="PackedScene" id=8]
 
 [node name="PlayerStats" type="Control"]
 anchor_right = 1.0
@@ -21,6 +22,7 @@ agua_path = NodePath("Panel/Agua/Value")
 terra_path = NodePath("Panel/Terra/Value")
 luz_path = NodePath("Panel/Luz/Value")
 escuro_path = NodePath("Panel/Escuridão/Value")
+audio = NodePath("Click")
 
 [node name="Panel" type="Panel" parent="."]
 margin_right = 510.0
@@ -120,4 +122,6 @@ focus_mode = 0
 theme = ExtResource( 7 )
 enabled_focus_mode = 0
 text = "Desbloquear Unidades"
+
+[node name="Click" parent="." instance=ExtResource( 8 )]
 [connection signal="pressed" from="Button" to="." method="_on_open_unlock_window_pressed"]

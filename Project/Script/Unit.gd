@@ -48,6 +48,9 @@ func _process(delta):
 func attack(pos : Tile, skill : Skill):
 	pos.occupying_unit.take_damage(skill.calculate_effect(stats, pos.occupying_unit.stats))
 	has_attacked = true
+	var to_look = pos.global_transform.origin
+	to_look.y = global_transform.origin.y
+	look_at(to_look,Vector3.UP)
 	if(!$Model):
 		emit_signal("action_finished")
 	else:

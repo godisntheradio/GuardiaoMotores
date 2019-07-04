@@ -18,6 +18,8 @@ var type_reforested
 export(Array,int)var types_available : Array
 export(Array,NodePath)var unlock_requirements_paths : Array
 var unlock_requirements : Array
+
+
 func _init():
 	state = LOCKED
 	type_reforested = -1
@@ -46,8 +48,10 @@ func load_stage_state():
 func _on_RigidBody_input_event(camera, event, click_position, click_normal, shape_idx):
 	if event is InputEventMouseButton && event.pressed && event.button_index == BUTTON_LEFT:
 		if(state == OPEN):
+			$Click.play()
 			emit_signal("selected", self)
 		elif(state == FREE):
+			$Click.play()
 			emit_signal("selected_to_reforest",self)
 func lock_stage():
 	get_node("Model/Stage").set_surface_material(0, locked_mat_)

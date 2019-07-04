@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Script/Overworld.gd" type="Script" id=1]
-[ext_resource path="res://Objects/Stage.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Objects/MapBounds.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Objects/OverworldMap.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Script/UI/OverworldDebugWindow.gd" type="Script" id=5]
-[ext_resource path="res://Objects/UI/OverworldMenu.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Objects/UI/UnitUnlockScreen.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Objects/UI/StageDescWindow.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Objects/UI/ReforestMenu.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Objects/UI/PlayerStats.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Audio/over the course of the years.wav" type="AudioStream" id=2]
+[ext_resource path="res://Objects/Stage.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/MapBounds.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/OverworldMap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Script/UI/OverworldDebugWindow.gd" type="Script" id=6]
+[ext_resource path="res://Objects/UI/OverworldMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Objects/UI/UnitUnlockScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Objects/UI/StageDescWindow.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Objects/UI/ReforestMenu.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Objects/UI/PlayerStats.tscn" type="PackedScene" id=11]
 
 [node name="Overworld" type="Spatial"]
 script = ExtResource( 1 )
@@ -17,18 +18,23 @@ battle_path = "res://Objects/Main.tscn"
 stages_path = NodePath("Stages")
 menu_path = NodePath("UI/OverworldMenu")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+bus = "Music"
+
 [node name="Stages" type="Spatial" parent="."]
 
-[node name="Stage" parent="Stages" instance=ExtResource( 2 )]
+[node name="Stage" parent="Stages" instance=ExtResource( 3 )]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -82.4873, 0.860064, 75.5931 )
 map_to_load = "res://Maps/Level1_true.tscn"
 stage_name = "Introdução"
 difficulty = 1
-description = "Descrição da fase \"Teste\""
+description = "Após despertar, minha energia foi canalizada para uma máscara cerimonial de um dos povos que antes vivia neste local. Duas pessoas que parecem pertencer ao grupo que está desmatando tentam me atacar, eles devem saber o que a minha presença significa. "
 types_available = [ 2, 3 ]
 
-[node name="Stage2" parent="Stages" instance=ExtResource( 2 )]
+[node name="Stage2" parent="Stages" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -67.8893, 0.659104, 83.2924 )
 map_to_load = "res://Maps/Level2.tscn"
 stage_name = "Um tempo atrás..."
@@ -36,7 +42,7 @@ difficulty = 1
 description = "Muito fácil"
 types_available = [ 3, 2 ]
 
-[node name="Stage3" parent="Stages" instance=ExtResource( 2 )]
+[node name="Stage3" parent="Stages" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -52.0101, 0.645927, 81.6242 )
 map_to_load = "res://Maps/Level3.tscn"
 stage_name = "Teste de força"
@@ -44,17 +50,17 @@ difficulty = 3
 description = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 unlock_requirements_paths = [ NodePath("../Stage2"), NodePath("../Stage") ]
 
-[node name="MapBounds" parent="." instance=ExtResource( 3 )]
+[node name="MapBounds" parent="." instance=ExtResource( 4 )]
 transform = Transform( 0.698, 0, 0, 0, 5.416, 0, 0, 0, 0.805, -51.8616, -5.455, 44.1841 )
 
-[node name="OverworldMap" parent="." instance=ExtResource( 4 )]
+[node name="OverworldMap" parent="." instance=ExtResource( 5 )]
 transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
 
 [node name="DebugWindow" type="Control" parent="."]
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [node name="Button" type="Button" parent="DebugWindow"]
 margin_left = 9.3308
@@ -87,21 +93,21 @@ text = "Clear"
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="OverworldMenu" parent="UI" instance=ExtResource( 6 )]
+[node name="OverworldMenu" parent="UI" instance=ExtResource( 7 )]
 visible = false
 
-[node name="UnitUnlockScreen" parent="UI" instance=ExtResource( 7 )]
+[node name="UnitUnlockScreen" parent="UI" instance=ExtResource( 8 )]
 visible = false
 margin_right = 980.0
 margin_bottom = 569.0
 
-[node name="StageDescWindow" parent="UI" instance=ExtResource( 8 )]
+[node name="StageDescWindow" parent="UI" instance=ExtResource( 9 )]
 visible = false
 
-[node name="ReforestMenu" parent="UI" instance=ExtResource( 9 )]
+[node name="ReforestMenu" parent="UI" instance=ExtResource( 10 )]
 visible = false
 
-[node name="PlayerStats" parent="UI" instance=ExtResource( 10 )]
+[node name="PlayerStats" parent="UI" instance=ExtResource( 11 )]
 margin_right = -30.0
 margin_bottom = 550.0
 unlock_path = NodePath("../UnitUnlockScreen")

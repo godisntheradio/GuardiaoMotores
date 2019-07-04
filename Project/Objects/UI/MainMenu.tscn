@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Script/UI/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Illustration/Title.png" type="Texture" id=2]
 [ext_resource path="res://UI/main_theme.tres" type="Theme" id=3]
 [ext_resource path="res://Textures/flare.png" type="Texture" id=4]
+[ext_resource path="res://Audio/reserve.wav" type="AudioStream" id=5]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.0562249, 0.995984 )
@@ -132,6 +133,11 @@ amount = 15
 lifetime = 5.0
 process_material = SubResource( 5 )
 texture = ExtResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+bus = "Music"
 [connection signal="pressed" from="Panel/NewGame" to="." method="_on_NewGame_pressed"]
 [connection signal="pressed" from="Panel/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="Panel/Credits" to="." method="_on_Credits_pressed"]

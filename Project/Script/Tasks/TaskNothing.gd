@@ -27,7 +27,7 @@ func in_range() -> bool:
 	for s in agent.stats.skills:
 		if(s.type == Skill.Attack):
 			var attack_range = agent.stats.movement + s.reach
-			attack_range = attack_range * 2
+			attack_range = attack_range * 3
 			ranges.append(attack_range)
 	for i in dists:
 		for r in ranges:

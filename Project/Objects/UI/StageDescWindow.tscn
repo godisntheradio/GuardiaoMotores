@@ -2,8 +2,8 @@
 
 [ext_resource path="res://UI/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Script/UI/StateDescWindow.gd" type="Script" id=2]
-[ext_resource path="res://Textures/Gold_Star.png" type="Texture" id=3]
-[ext_resource path="res://Audio/SFX/action_confirm.wav" type="AudioStream" id=4]
+[ext_resource path="res://Textures/star.png" type="Texture" id=3]
+[ext_resource path="res://Audio/Click.tscn" type="PackedScene" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 0, 0, 0.286275 )
@@ -14,7 +14,7 @@ anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 s_name_path = NodePath("Panel/StageName")
-s_desc_path = NodePath("Panel/PanelContainer/StageDescription")
+s_desc_path = NodePath("Panel/StageDescription")
 s_difficulty_path = NodePath("Panel/Label/Difficulty")
 difficulty_icon = ExtResource( 3 )
 audio_player_path = NodePath("Click")
@@ -34,18 +34,12 @@ text = "Stage Name"
 align = 1
 valign = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="Panel"]
-margin_left = 20.0
-margin_top = 70.0
-margin_right = 260.0
-margin_bottom = 300.0
-
-[node name="StageDescription" type="RichTextLabel" parent="Panel/PanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 233.0
-margin_bottom = 223.0
-text = "	Stage Description"
+[node name="StageDescription" type="RichTextLabel" parent="Panel"]
+margin_left = 27.0
+margin_top = 77.0
+margin_right = 253.0
+margin_bottom = 293.0
+text = "	Stage Description asdasdasdasasidaisudfiafipauhdfpdfdbnfipadbnfpgbhgbgfpbgdpbgfdpiabgfpigbapidfbapbgpiakjdgfpadjbfipadbfpiadufhipadhfaispdjfapifjdfdspkfjdapifjspikjbdgfiksbgfdigsd"
 
 [node name="Label" type="Label" parent="Panel"]
 margin_left = 30.0
@@ -65,7 +59,7 @@ margin_left = 701.228
 margin_top = 510.0
 margin_right = 981.228
 margin_bottom = 550.0
-text = "Begin"
+text = "Jogar esta fase"
 
 [node name="Close" type="Button" parent="."]
 margin_left = 950.0
@@ -78,8 +72,6 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "X"
 
-[node name="Click" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
-bus = "MenuSFX"
+[node name="Click" parent="." instance=ExtResource( 4 )]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]
