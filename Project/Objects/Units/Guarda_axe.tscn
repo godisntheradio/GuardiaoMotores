@@ -59,11 +59,11 @@ collision_layer = 0
 mode = 1
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-transform = Transform( 0.8, 0, 0, 0, -3.49691e-008, -0.8, 0, 0.8, -3.49691e-008, 0, 1.15172, 0 )
+transform = Transform( 0.8, 0, 0, 0, -3.49691e-008, -0.8, 0, 0.8, -3.49691e-008, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="Model" type="Spatial" parent="."]
-transform = Transform( -0.5, 0, 4.37114e-008, 0, 0.5, 0, -4.37114e-008, 0, -0.5, 0, 0, 0 )
+transform = Transform( -0.5, 0, 4.37114e-008, 0, 0.5, 0, -4.37114e-008, 0, -0.5, 0, -1, 0 )
 script = ExtResource( 2 )
 Run = ExtResource( 3 )
 Idle = ExtResource( 4 )

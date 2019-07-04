@@ -10,4 +10,5 @@ func _on_GiveUp_pressed():
 
 func _process(delta):
 	if(fade_wait && CameraManager.is_fade_done()):
+		CameraManager.relocate(GameData.world_map_camera_pos)
 		get_tree().change_scene(overworld_scene)
